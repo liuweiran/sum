@@ -3,16 +3,14 @@ const fs = require('fs-arm'),
       ejs = require('ejs');
 
 module.exports = function (req, res) {
-    var data = {
+    let data = {
         files: []
     };
 
-    var root, html, title;
+    let root, html, title;
     root = path.resolve(__dirname, 'src/htm');
     if (fs.existsSync(root)) {
-        fs.readdirsSync(root)
-            .files
-            .forEach(function(file) {
+        fs.readdirsSync(root).files.forEach(function(file) {
                 html = fs.readFileSync(file, 'utf8');
                 title = html.match(/<title>([^<]+?)<\/title>/);
                 title = title ? title[1] : '';
@@ -27,11 +25,16 @@ module.exports = function (req, res) {
             });
     }
 
+    // &hearts; 是html代码 表示心形特殊字符  &diams; 表示方块
+    //match() 返回存放结果的数组
+    /*
+    例如：'gagga<title>标题</title>'.match(/<title>([^<]+?)<\/title>/)
+    得到： ["<title>题目</title>", "题目", index: 5, input: "gagga<title>题目</title>"]
+    */
+
     root = path.resolve(__dirname, 'dist');
     if (fs.existsSync(root)) {
-        fs.readdirsSync(root)
-            .files
-            .forEach(function(file) {
+        fs.readdirsSync(root).files.forEach(function(file) {
                 if (!/\.html$/.test(file)) return;
 
                 html = fs.readFileSync(file, 'utf8');
@@ -48,8 +51,8 @@ module.exports = function (req, res) {
             });
     }
 
-    var filename = path.resolve(__dirname, './index.html');
-    var content = fs.readFileSync(filename, 'utf8');
+    const filename = path.resolve(__dirname, './index.html'),
+          content = fs.readFileSync(filename, 'utf8');
     res.end(ejs.render(content, data, {filename}));
 };
 

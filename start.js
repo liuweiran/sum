@@ -19,15 +19,16 @@ app.use('favicon.ico', function (req, res) {
 //path.resolve([from ...], to) 将参数 to 位置的字符解析到一个绝对路径里。
 //ejs.render(str, data, options); 第一个参数是模板的字符串,第二个参数是数据
 
-app.use(/\/src\/(.+\.html)$/, function (req, res) {
+
+app.use(/\/src\/(.+\.html)$/, function (req, res) {     //子表达式可以获取供以后使用---加括号的匹配内容会在req.params中取到
     const filename = path.resolve(__dirname, 'src/htm', req.params[0]),
           content = fs.readFileSync(filename, 'utf8');
-    res.end(ejs.render(content, {}, {filename}));
+    res.end(ejs.render(content, {}, {filename}));       //ejs.render 第二个参数应该是传一些配置参数，第三个参数是传入模板路径，解决子模板引用时候的路径问题
 });
 
 //express.static(root, [options])
 //通过 Express 内置的 express.static 可以方便地托管静态文件
-app.use('/src', express.static('./src/', { redirect:false }));
+app.use('/src', express.static('./src/', { redirect:false }));      //{redirect:false} 防止没有后缀名又没以斜杠结尾的时候自动追加斜杠的问题
 
 //如果你希望所有通过 express.static 访问的文件都存放在一个“虚拟（virtual）”目录（即目录根本不存在）下面，可以通过为静态资源目录指定一个挂载路径的方式来实现
 //通过'/'来访问 './dist/'
