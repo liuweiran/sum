@@ -32,7 +32,7 @@ module.exports = function (req, res) {
     得到： ["<title>题目</title>", "题目", index: 5, input: "gagga<title>题目</title>"]
     */
 
-    root = path.resolve(__dirname, 'dist');
+    /*root = path.resolve(__dirname, 'dist');
     if (fs.existsSync(root)) {
         fs.readdirsSync(root).files.forEach(function(file) {
                 if (!/\.html$/.test(file)) return;
@@ -49,7 +49,7 @@ module.exports = function (req, res) {
                     title: title
                 })
             });
-    }
+    }*/
 
     const filename = path.resolve(__dirname, './index.html'),
           content = fs.readFileSync(filename, 'utf8');

@@ -30,9 +30,10 @@ app.use(/\/src\/(.+\.html)$/, function (req, res) {     //子表达式可以获�
 //通过 Express 内置的 express.static 可以方便地托管静态文件
 app.use('/src', express.static('./src/', { redirect:false }));      //{redirect:false} 防止没有后缀名又没以斜杠结尾的时候自动追加斜杠的问题
 
+
 //如果你希望所有通过 express.static 访问的文件都存放在一个“虚拟（virtual）”目录（即目录根本不存在）下面，可以通过为静态资源目录指定一个挂载路径的方式来实现
 //通过'/'来访问 './dist/'
-app.use('/', express.static('./dist/', { redirect:false }));
+//app.use('/', express.static('./dist/', { redirect:false }));
 
 app.use('*', require('./index'));
 
