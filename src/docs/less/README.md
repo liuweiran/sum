@@ -17,26 +17,6 @@ LESS是一门动态样式语言，属于CSS预处理语言的一种。LESS语法
 + [函数（Functions）](#jump_fu)
 + [注释（Comments）](#jump_co)
 
-<pre>
-<code>
-.a.class,
-.class.a,
-.class>.a {
-  color: blue;
-}
-.test:extend(.class) {} // 不会匹配上面的任何选择器的值
-</code>
-</pre>
-
-<pre>
-.a.class,
-.class.a,
-.class>.a {
-  color: blue;
-}
-.test:extend(.class) {} // 不会匹配上面的任何选择器的值
-</pre>
-
 
 <br>
 
@@ -46,7 +26,7 @@ LESS是一门动态样式语言，属于CSS预处理语言的一种。LESS语法
 
 LESS源码：
 
-```
+<pre>
 .box{
   background: #f5f5f5;
   h1{
@@ -60,11 +40,11 @@ LESS源码：
     }
   }
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   background: #f5f5f5;
 }
@@ -78,7 +58,7 @@ LESS源码：
   text-decoration: none;
   color: red;
 }
-```
+</pre>
 
 <br>
 
@@ -88,7 +68,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 //以下代码中的&代表选择器a
 a{
   text-decoration: none;
@@ -100,11 +80,11 @@ a{
     color: blue;
   }
 }
-```
+</pre>
 
 编译后的CSS：
 
-```javascript
+<pre>
 a {
   text-decoration: none;
   color: red;
@@ -115,7 +95,7 @@ a:hover {
 a > span {
   color: blue;
 }
-```
+</pre>
 
 <br>
 
@@ -123,7 +103,7 @@ a > span {
 
 LESS源码：
 
-```
+<pre>
 .btn{
   width: 60px;
   height: 24px;
@@ -134,11 +114,11 @@ LESS源码：
     background: grey;
   }
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .btn {
   width: 60px;
   height: 24px;
@@ -149,7 +129,7 @@ LESS源码：
 .btn-grey {
   background: grey;
 }
-```
+</pre>
 
 <br>
 
@@ -157,7 +137,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .test{
   & + &{
     color: red;
@@ -169,11 +149,11 @@ LESS源码：
     color: orange;
   }
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .test + .test {
   color: red;
 }
@@ -184,7 +164,7 @@ LESS源码：
 .testing {
   color: orange;
 }
-```
+</pre>
 
 <br>
 
@@ -192,7 +172,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .box{
   h2{
     background: #f5f5f5;
@@ -201,18 +181,18 @@ LESS源码：
     }
   }
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box h2 {
   background: #f5f5f5;
 }
 .wrap .box h2 {
   background: none;
 }
-```
+</pre>
 
 <br>
 
@@ -224,22 +204,22 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 @grey: #f5f5f5;
 .box{
   background: @grey;
   border: 1px solid @grey;
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   background: #f5f5f5;
   border: 1px solid #f5f5f5;
 }
-```
+</pre>
 
 <br>
 
@@ -247,21 +227,21 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 @a: red;
 @b: @a;
 div{
   color: @b;
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 div {
   color: red;
 }
-```
+</pre>
 
 <br>
 
@@ -269,21 +249,21 @@ div {
 
 LESS源码：
 
-```
+<pre>
 .box{
   color: @a;
 }
 @a: @b;
 @b: red;
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   color: red;
 }
-```
+</pre>
 
 <br>
 
@@ -293,7 +273,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 @grey: #eee;
 .box1{
   @grey: #f5f5f5;
@@ -304,18 +284,18 @@ LESS源码：
 .box2{
   background: @grey;  //此处取的是最上面定义的全局变量@grey: #eee;
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box1 p {
   background: #f5f5f5;
 }
 .box2 {
   background: #eee;
 }
-```
+</pre>
 
 <br>
 
@@ -325,23 +305,23 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 @selector: box;
 @image: "../images";
 .@{selector} {
   color: red;
   background: #f5f5f5 url("@{image}/bg.jpg");
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   color: red;
   background: #f5f5f5 url("../images/bg.jpg");
 }
-```
+</pre>
 
 <br>
 
@@ -353,21 +333,21 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .test{
   background: pink;
 }
 .box:extend(.test){}
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .test,
 .box {
   background: pink;
 }
-```
+</pre>
 
 <br>
 
@@ -375,42 +355,43 @@ LESS源码：
 
 >扩展可以包含多个要扩展的选择器，选择器之间使用逗号分隔：
 
-```
+<pre>
 .box:extend(.test1, .test2){}
-```
+</pre>
 
 <br>
 
 >允许有多个扩展：
 
-```
+<pre>
 .box:extend(.test1):extend(.test2){}   //这种写法与把多个选择器写在一个扩展里面的效果一样
-```
+</pre>
 
 <br>
 
 >扩展可以附加给选择器，也可以放入规则集中。以下两种写法效果一样：
 
-```
+<pre>
 .box:extend(.test){}
 .box{&:extend(.test);}
-```
+</pre>
 
 <br>
 
 >选择器和扩展之间允许有空格:
 
-```
+<pre>
 .box a:hover :extend(.test){};
-```
+</pre>
+
 <br>
 
 >扩展如果写在选择器之后，则必须在最后：
 
-```
+<pre>
 .box1:hover:extend(.test).box2{}   //错误
 .box1.box2:hover:extend(.test){}   //正确
-```
+</pre>
 
 <br>
 
@@ -424,14 +405,14 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .a.class,
 .class.a,
 .class>.a {
   color: blue;
 }
 .test:extend(.class) {} // 不会匹配上面的任何选择器的值
-```
+</pre>
 
 <br>
 
@@ -439,12 +420,12 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 a:hover:visited{
   color: red;
 }
 .test:extend(a:visited:hover){}    //a:hover:visited不会被匹配
-```
+</pre>
 
 <br>
 
@@ -452,12 +433,12 @@ a:hover:visited{
 
 LESS源码：
 
-```
+<pre>
 :nth-child(1n+3) {
   color: blue;
 }
 .box:extend(:nth-child(n+3)) {}  //1n+3与n+3是等价的，但不会被匹配
-```
+</pre>
 
 <br>
 
@@ -465,7 +446,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 [title=identifier] {
   color: blue;
 }
@@ -479,11 +460,11 @@ LESS源码：
 .noQuote:extend([title=identifier]) {}
 .singleQuote:extend([title='identifier']) {}
 .doubleQuote:extend([title="identifier"]) {}
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 [title=identifier],
 .noQuote,
 .singleQuote,
@@ -504,7 +485,7 @@ LESS源码：
 .doubleQuote {
   color: blue;
 }
-```
+</pre>
 
 <br>
 
@@ -514,7 +495,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .a.box{
   color: blue;
 }
@@ -532,11 +513,11 @@ LESS源码：
 }
 .box1:extend(.box all){}    //将扩展所有包含“.box”的选择器，并且扩展包含这些选择器上所有其他条件（例如父选择器、同级选择器）
 .box2:extend(.box){}    //仅扩展“.box”选择器，并不会扩展“.a.box”等选择器
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .a.box,
 .a.box1 {
   color: blue;
@@ -558,7 +539,7 @@ LESS源码：
 .box2 {
   font-size: 14px;
 }
-```
+</pre>
 
 <br>
 
@@ -568,41 +549,41 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 @variable: .bucket;
 @{variable} { // 插值选择器
   color: blue;
 }
 .some-class:extend(.bucket) {} // 找不到匹配
-```
+</pre>
 
-```
+<pre>
 .bucket {
   color: blue;
 }
 .some-class:extend(@{variable}) {} // 插值选择器什么也不匹配
 @variable: .bucket;
-```
+</pre>
 
 >然而, :extend 附加给插值选择器是能够工作的。
 
 LESS源码：
 
-```
+<pre>
 .bucket {
   color: blue;
 }
 @{variable}:extend(.bucket) {}
 @variable: .selector;
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .bucket, .selector {
   color: blue;
 }
-```
+</pre>
 
 ### 作用域/@media内的extend
 
@@ -610,7 +591,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 @media print {
   .screenClass:extend(.selector) {} // media内的extend
   .selector { // 这个会匹配到-因为在同一的media内
@@ -625,11 +606,11 @@ LESS源码：
     color: blue;
   }
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 @media print {
   .selector,
   .screenClass {
@@ -644,7 +625,7 @@ LESS源码：
     color: blue;
   }
 }
-```
+</pre>
 
 <br>
 
@@ -652,7 +633,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 @media screen {
   .screenClass:extend(.selector) {} // media内的extend
   @media (min-width: 1023px) {
@@ -661,17 +642,17 @@ LESS源码：
     }
   }
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 @media screen and (min-width: 1023px) {
   .selector { /* 其他嵌套media内的规则被忽略 */
     color: blue;
   }
 }
-```
+</pre>
 
 <br>
 
@@ -679,7 +660,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 @media screen {
   .selector {  /* media嵌套内的规则 - 顶级extend正常工作 */
     color: blue;
@@ -692,11 +673,11 @@ LESS源码：
 }
 
 .topLevel:extend(.selector) {} /* 顶级extend匹配一切 */
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 @media screen {
   .selector,
   .topLevel {
@@ -712,7 +693,7 @@ LESS源码：
   }
 }
 /* 顶级extend匹配一切 */
-```
+</pre>
 
 <br>
 
@@ -724,7 +705,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 //定义样式选择器
 .test() {
   font-size: 16px;
@@ -735,16 +716,16 @@ LESS源码：
 .box p{
   .test;
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box p {
   font-size: 16px;
   color: red;
 }
-```
+</pre>
 
 <br>
 
@@ -752,7 +733,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 #test() {
   font-size: 16px;
   color: red;
@@ -760,16 +741,16 @@ LESS源码：
 .box p{
   #test;
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box p {
   font-size: 16px;
   color: red;
 }
-```
+</pre>
 
 <br>
 
@@ -779,7 +760,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .test(@color; @space) {
   color: @color;
   border: 1px solid @color;
@@ -794,11 +775,11 @@ LESS源码：
     .test(blue; 20px);
   }
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box h2 {
   color: #ccc;
   border: 1px solid #ccc;
@@ -811,7 +792,7 @@ LESS源码：
   margin-top: 20px;
   padding-top: 20px;
 }
-```
+</pre>
 
 <br>
 
@@ -819,7 +800,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 #test() {
   font-size: 16px;
   color: red;
@@ -828,16 +809,16 @@ LESS源码：
   font-size: 16px;
   color: red;
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .test {
   font-size: 16px;
   color: red;
 }
-```
+</pre>
 
 <br>
 
@@ -845,7 +826,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .test(@color: #000; @space: 10px) {
   color: @color;
   border: 1px solid @color;
@@ -860,11 +841,11 @@ LESS源码：
     .test(blue, 20px);
   }
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box h2 {
   color: #000;
   border: 1px solid #000;
@@ -877,7 +858,7 @@ LESS源码：
   margin-top: 20px;
   padding-top: 20px;
 }
-```
+</pre>
 
 <br>
 
@@ -885,7 +866,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .test(@color) {
   color: @color;
 }
@@ -901,18 +882,18 @@ LESS源码：
 .box{
   .test(blue)
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 //这是调用的第一个和第二个.test混合的结果，第三个因为需要两个参数，所以没被调用。
 .box {
   color: blue;
   border: 1px solid blue;
   margin: 5px;
 }
-```
+</pre>
 
 <br>
 
@@ -920,7 +901,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 
 .test(@color: red; @padding: 5px; @margin: 10px) {
   color: @color;
@@ -930,17 +911,17 @@ LESS源码：
 .box{
   .test(@margin: 5px; @color: blue; @padding: 4px);
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   color: blue;
   padding: 4px;
   margin: 5px;
 }
-```
+</pre>
 
 <br>
 
@@ -950,7 +931,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .test1(@width: 1px; @style :solid; @color: #000) {
   border: @arguments;
 }
@@ -961,16 +942,16 @@ LESS源码：
   .test1(2px; dashed; pink);
   .test2(4px; 5px; 6px; 7px);
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   border: 2px dashed pink;
   padding: 4px 5px 6px 7px;
 }
-```
+</pre>
 
 <br>
 
@@ -980,7 +961,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .test() {
   font-size: 16px;
   color: red;
@@ -988,16 +969,16 @@ LESS源码：
 .box{
   .test !important;
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   font-size: 16px !important;
   color: red !important;
 }
-```
+</pre>
 
 <br>
 
@@ -1007,7 +988,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 .namespace{
   .test(@color:red) {
     color: @color;
@@ -1017,16 +998,16 @@ LESS源码：
 .box{
   .namespace>.test;     //也可直接写成`.namespace.test`
 }
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   color: red;
   border: 1px solid red;
 }
-```
+</pre>
 
 <br>
 
@@ -1036,7 +1017,7 @@ LESS源码：
 
 LESS源码：
 
-```
+<pre>
 @grey: #333333;
 @grey2: @grey*2;
 @height: 10%;
@@ -1051,18 +1032,18 @@ LESS源码：
 3位数的十六进制颜色是6位数的的简写，每个数代表两个相同的数，例如#111是#111111的简写、#abc是#aabbcc的简写。
 简写的3位数运算是会自动转变成6位数来进行运算，比如上例的#333333+#111其实是#333333+#111111=#444444。
 */
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   color: #666666;
   background: #444444;
   height: 60%;
   width: 400px;
 }
-```
+</pre>
 
 <br>
 
@@ -1075,7 +1056,7 @@ LESS源码：
 
 >LESS有一组专门针对color操作的函数：
 
-```
+<pre>
 lighten(@color, 10%); // return a color which is 10% *lighter* than @color 色相值
 darken(@color, 10%); // return a color which is 10% *darker* than @color 
 saturate(@color, 10%); // return a color 10% *more* saturated than @color  饱和度
@@ -1084,7 +1065,7 @@ fadein(@color, 10%); // return a color 10% *less* transparent than @color  透�
 fadeout(@color, 10%); // return a color 10% *more* transparent than @color 
 spin(@color, 10); // return a color with a 10 degree larger in hue than @color  亮度
 spin(@color, -10); // return a color with a 10 degree smaller hue than @color
-```
+</pre>
 
 <br>
 
@@ -1099,7 +1080,7 @@ spin(@color, -10); // return a color with a 10 degree smaller hue than @color
 
 LESS源码：
 
-```
+<pre>
 //这里是单行注释
 .box{
   font-size: 14px;
@@ -1109,11 +1090,11 @@ LESS源码：
 /*
 这里是多行注释
 */
-```
+</pre>
 
 编译后的CSS：
 
-```
+<pre>
 .box {
   font-size: 14px;
   color: #000;
@@ -1122,7 +1103,7 @@ LESS源码：
 /*
 这里是多行注释
 */
-```
+</pre>
 
 <br>
 
