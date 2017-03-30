@@ -168,7 +168,7 @@ LESS源码：
 
 <br>
 
->&如果放到当前选择器后面，则会改变选择器的顺序。可以利用此点给父选择器前置插入一个选择器。
+>`&`如果放到当前选择器后面，则会改变选择器的顺序。可以利用此点给父选择器前置插入一个选择器。
 
 LESS源码：
 
@@ -196,9 +196,47 @@ LESS源码：
 
 <br>
 
+>`&`的组合使用可以用于生成所有可能的选择器排列。
+
+LESS源码：
+
+<pre>
+p, a, div {
+  border-top: 2px dotted #366;
+  & + & {
+    border-top: 0;
+  }
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+p,
+a,
+div {
+  border-top: 2px dotted #366;
+}
+p + p,
+p + a,
+p + div,
+a + p,
+a + a,
+a + div,
+div + p,
+div + a,
+div + div {
+  border-top: 0;
+}
+</pre>
+
 ## <span id="jump_va">变量（Variables）</span>
 
-### 变量的定义
++ [变量的定义（Definition）](#jump_va_de)
++ [变量的作用域（Scope）](#jump_va_sc)
++ [变量插值（Interpolation）](#jump_va_in)
+
+### <span id="jump_va_de">变量的定义（Definition）</span>
 
 >变量允许我们单独定义一些通用的样式，在需要的时候进行调用。
 
@@ -267,7 +305,7 @@ LESS源码：
 
 <br>
 
-### 变量的作用域
+### <span id="jump_va_sc">变量的作用域（Scope）</span>
 
 >LESS中的变量有其作用域，即全局变量和局部变量的概念。查找变量的顺序是从局部往父级进行查找，在局部定义中找不到则查找父级定义，直至全局。
 
@@ -299,7 +337,7 @@ LESS源码：
 
 <br>
 
-### 变量插值
+### <span id="jump_va_in">变量插值（Interpolation）</span>
 
 >Less的变量除了用于表示CSS属性值，还可用于选择器名称、属性名称、URL等。
 
@@ -327,7 +365,14 @@ LESS源码：
 
 ## <span id="jump_ex">扩展（Extend）</span>
 
-### 扩展概念
++ [扩展概念（Concept）](#jump_ex_co)
++ [扩展语法（Grammar）](#jump_ex_gr)
++ [extend的精确匹配（Exact matching）](#jump_ex_ex)
++ ["all"关键字（"all"）](#jump_ex_al)
++ [选择器插值（Interpolation）](#jump_ex_in)
++ [作用域/@media内的extend（Scope）](#jump_ex_sc)
+
+### <span id="jump_ex_co">扩展概念扩展概念（Concept）</span>
 
 >extend是一个LESS伪类，它会把它所在的选择器扩展到它所引用的选择器上，使之拥有引用选择器的全部属性。（扩展的是选择器，而不是CSS。）
 
@@ -351,7 +396,7 @@ LESS源码：
 
 <br>
 
-### 扩展语法
+### <span id="jump_ex_gr">扩展语法（Grammar）</span>
 
 >扩展可以包含多个要扩展的选择器，选择器之间使用逗号分隔：
 
@@ -395,7 +440,7 @@ LESS源码：
 
 <br>
 
-### extend的精确匹配
+### <span id="jump_ex_ex">extend的精确匹配（Exact matching）</span>
 
 >Extend默认为精确匹配。它不管选择器是否等价，只有相同的形式才会匹配。唯一的例外是属性选择器中的引号，有无引号、单双引号都会当作是相同的形式而进行匹配。
 
@@ -489,7 +534,37 @@ LESS源码：
 
 <br>
 
-### "all"关键字
+>需要注意的是，在一个规则集中，如果存在多个并列选择器，extend是可以匹配到的，而且不会去重。
+
+LESS源码：
+
+<pre>
+.a,
+.b {
+  font-size: 15px;
+}
+
+.c:extend(.a, .b) {
+  color: blue;
+}
+//.c会分别匹配一次.a和.b，所以最后编译出来的结果会有两个.c
+</pre>
+
+编译后的CSS：
+
+<pre>
+.a,
+.b,
+.c,
+.c {
+  font-size: 15px;
+}
+.c {
+  color: blue;
+}
+</pre>
+
+### <span id="jump_ex_al">"all"关键字（"all"）</span>
 
 >如果在extend参数后面指定all关键字，则为模糊匹配，将匹配所有相关选择器。
 
@@ -543,7 +618,7 @@ LESS源码：
 
 <br>
 
-### 选择器插值
+### <span id="jump_ex_in">选择器插值（Interpolation）</span>
 
 >extend不能匹配变量选择器。如果选择器包含变量，extend会忽略它。但是extend可以附加给插值选择器。
 
@@ -589,7 +664,7 @@ LESS源码：
 
 <br>
 
-### 作用域/@media内的extend
+### <span id="jump_ex_sc">作用域/@media内的extend（Scope）</span>
 
 >编写在media声明内的extend只匹配同一media声明内的选择器。
 
@@ -703,7 +778,15 @@ LESS源码：
 
 ## <span id="jump_mi">混合（Mixins）</span>
 
-### 混合概念
++ [混合概念（Concept）](#jump_mi_co)
++ [混合参数（Params）](#jump_mi_pa)
++ [@arguments变量（@arguments）](#jump_mi_ar)
++ [高级参数和@rest变量（Advanced arguments and @rest）](#jump_mi_ad)
++ [模式匹配（Pattern-matching）](#jump_mi_pa)
++ [!important关键字（!important）](#jump_mi_im)
++ [命名空间方法（Namespace）](#jump_mi_na)
+
+### <span id="jump_mi_co">混合概念（Concept）</span>
 
 >混合是将一系列属性从一个选择器引入（“混合”）到另外一个选择器。
 
@@ -758,9 +841,9 @@ LESS源码：
 
 <br>
 
-### 混合参数
+### <span id="jump_mi_pa">混合参数（Params）</span>
 
->定义样式选择器中圆括号()内可传入参数，叫做Parametric Mixins（混合参数），没有参数时可以省略括号。混合参数不限制数量，参数之间用英文逗号“,”或者分号“;”进行分隔。推荐使用分号进行分隔。
+>定义样式选择器中圆括号()内可传入参数，叫做Parametric Mixins（混合参数），没有参数时可以省略括号。混合参数不限制数量，参数之间用英文逗号“,”或者分号“;”进行分隔。推荐使用分号进行分隔，更符合语法习惯。
 
 LESS源码：
 
@@ -929,7 +1012,7 @@ LESS源码：
 
 <br>
 
-### @arguments变量
+### <span id="jump_mi_ar">@arguments变量（@arguments）</span>
 
 >Mixins中有一个参数：@arguments，该参数表示所有参数。
 
@@ -959,7 +1042,103 @@ LESS源码：
 
 <br>
 
-### !important关键字
+### <span id="jump_mi_ad">高级参数和@rest变量（Advanced arguments and @rest）</span>
+
+>如果需要在 mixin 中不限制参数的数量，可以在变量名后添加`...`，表示这里可以使用 N 个参数。
+
++ 接受 0-N 个参数
+
+LESS源码：
+
+<pre>
+.test(...){
+  padding: @arguments;
+}
+.box1{
+  .test(20px);
+}
+.box2{
+  .test(10px 20px);
+}
+.box3{
+  .test(10px 20px 30px);
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box1 {
+  padding: 20px;
+}
+.box2 {
+  padding: 10px 20px;
+}
+.box3 {
+  padding: 10px 20px 30px;
+}
+</pre>
+
++ 接受 1-N 个参数
+
+LESS源码：
+
+<pre>
+.test(@top; ...){
+  padding: @arguments;
+}
+
+.box1{
+  .test(5px);
+}
+.box2{
+  .test(10px 20px);
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box1 {
+  padding: 5px;
+}
+.box2 {
+  padding: 10px 20px;
+}
+</pre>
+
++ `@rest`代表除去其位置之前的所有参数
+
+LESS源码：
+
+<pre>
+//此处 @rest 代表除去 @a 和 @b 的所有参数，@rest后面的"..."可以省略
+.test(@a; @b; @rest...){
+  font-size: @a;
+  color: @b;
+  padding: @rest;
+}
+.box{
+  .test(15px; red; 20px 30px);
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  font-size: 15px;
+  color: red;
+  padding: 20px 30px;
+}
+</pre>
+
+<br>
+
+### <span id="jump_mi_pa">模式匹配（Pattern-matching）</span>
+
+
+### <span id="jump_mi_im">!important关键字（!important）</span>
 
 >使用!important关键字混合调用，将所有混合的属性标记为!important。
 
@@ -986,7 +1165,7 @@ LESS源码：
 
 <br>
 
-### 命名空间方法
+### <span id="jump_mi_na">命名空间方法（Namespace）</span>
 
 >团队协作开发时，为避免选择器的重名问题，可采用命名空间的方法。
 

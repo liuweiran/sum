@@ -1,6 +1,5 @@
-.a {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  background: pink;
+.box {
+  font-size: 15px;
+  color: red;
+  padding: 20px 30px;
 }

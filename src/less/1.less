@@ -1,6 +1,9 @@
-.a{
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  background: pink;
+//此处 @rest 代表除去 @a 和 @b 的所有参数，@rest后面的 ... 可以省略
+.test(@a; @b; @rest...){
+  font-size: @a;
+  color: @b;
+  padding: @rest;
+}
+.box{
+  .test(15px; red; 20px 30px);
 }
