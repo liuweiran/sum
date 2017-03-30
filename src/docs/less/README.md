@@ -17,6 +17,27 @@ LESS是一门动态样式语言，属于CSS预处理语言的一种。LESS语法
 + [函数（Functions）](#jump_fu)
 + [注释（Comments）](#jump_co)
 
+<pre>
+<code>
+.a.class,
+.class.a,
+.class>.a {
+  color: blue;
+}
+.test:extend(.class) {} // 不会匹配上面的任何选择器的值
+</code>
+</pre>
+
+<pre>
+.a.class,
+.class.a,
+.class>.a {
+  color: blue;
+}
+.test:extend(.class) {} // 不会匹配上面的任何选择器的值
+</pre>
+
+
 <br>
 
 ## <span id="jump_nr">嵌套规则（Nested rules）</span>
@@ -399,7 +420,7 @@ LESS源码：
 
 <br>
 
->规则集中选择器的位置影响匹配。**
+>规则集中选择器的位置影响匹配。
 
 LESS源码：
 
