@@ -2,7 +2,7 @@
 
 # LESS简介
 
-LESS是一门动态样式语言，属于CSS预处理语言的一种。LESS语法基于CSS（完全兼容CSS语法），且对其进行了扩充，为CSS赋予了动态语言的特性，它增加了诸如嵌套、变量、混合、运算、函数等功能以及父选择符`&`，让CSS更易编写和维护。
+LESS是一门动态样式语言，属于CSS预处理语言的一种。LESS支持绝大部分CSS语法，且对其进行了扩充，为CSS赋予了动态语言的特性，它增加了诸如嵌套、变量、混合、运算、函数等功能以及父选择符`&`，让CSS更易编写和维护。
 
 <br>
 
@@ -15,6 +15,7 @@ LESS是一门动态样式语言，属于CSS预处理语言的一种。LESS语法
 + [混合（Mixins）](#jump_mi)
 + [运算（Operations）](#jump_op)
 + [函数（Functions）](#jump_fu)
++ [导入样式（Import Directives）](#jump_im)
 + [注释（Comments）](#jump_co)
 
 
@@ -783,6 +784,8 @@ LESS源码：
 + [@arguments变量（@arguments）](#jump_mi_ar)
 + [高级参数和@rest变量（Advanced arguments and @rest）](#jump_mi_ad)
 + [模式匹配（Pattern-matching）](#jump_mi_pa)
++ [作为函数使用的Mixins（Mixins as Functions）](#jump_mi_fu)
++ [传递规则集给Mixins（Passing Rulesets to Mixins）](#jump_mi_pas)
 + [!important关键字（!important）](#jump_mi_im)
 + [命名空间方法（Namespace）](#jump_mi_na)
 
@@ -1112,7 +1115,7 @@ LESS源码：
 LESS源码：
 
 <pre>
-//此处 @rest 代表除去 @a 和 @b 的所有参数，@rest后面的"..."可以省略
+//此处 @rest 代表除去 @a 和 @b 的所有参数，@rest后面的`...`可以省略
 .test(@a; @b; @rest...){
   font-size: @a;
   color: @b;
@@ -1137,6 +1140,242 @@ LESS源码：
 
 ### <span id="jump_mi_pa">模式匹配（Pattern-matching）</span>
 
+>基于传递给mixin的参数来控制它的行为。
+
++ 依据`@sitch`值进行匹配
+
+LESS源码：
+
+<pre>
+.test(dark; @color; @size){
+  color: darken(@color, 10%);
+  font-size: @size;
+  background: pink;
+}
+.test(light; @color; @size){
+  color: lighten(@color, 10%);
+  font-size: @size;
+  background: blue;
+}
+
+@switch: light; //将匹配第二个mixin
+.box{
+  .test(@switch; #333; 15px)
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  color: #4d4d4d;
+  font-size: 15px;
+  background: blue;
+}
+</pre>
+
+<br>
+
++ 直接使用非变量形式的值进行匹配
+
+LESS源码：
+
+<pre>
+.test(dark; @color; @size){
+  color: darken(@color, 10%);
+  font-size: @size;
+  background: pink;
+}
+.test(light; @color; @size){
+  color: lighten(@color, 10%);
+  font-size: @size;
+  background: blue;
+}
+
+.box{
+  .test(dark; #333; 15px)
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+    color: #1a1a1a;
+    font-size: 15px;
+    background: pink;
+}
+</pre>
+
+<br>
+
++ 依据参数数量进行匹配
+
+LESS源码：
+
+<pre>
+.test(@a){
+  color: @a;
+}
+.test(@a; @b){
+  color: lighten(@a, @b);
+}
+
+.box1{
+  .test(#000);  //一个参数，匹配第一个mixin
+}
+.box2{
+  .test(#000; 10%); //两个参数，匹配第二个mixin
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box1 {
+  color: #000;
+}
+.box2 {
+  color: #1a1a1a;
+}
+</pre>
+
+<br>
+
+### <span id="jump_mi_fu">作为函数使用的Mixin（Mixins as Functions）</span>
+
+>定义在mixin中的变量都是可见的，其可以作用于调用它的作用域中。
+
+LESS源码：
+
+<pre>
+.test(){
+  @w: 1000px;
+  @h: 500px
+}
+
+.box{
+  .test;
+  width: @w;
+  height: @h;
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  width: 1000px;
+  height: 500px;
+}
+</pre>
+
+<br>
+
+>定义在mixin中的变量可以充当它的返回值，基于此，可以创建一个类似函数的mixin。
+
+LESS源码：
+
+<pre>
+.average(@x, @y){
+  @average: ((@x + @y) / 2);
+}
+
+.box{
+  .average(20px, 50px); // 调用mixin
+  padding: @average;    // 使用mixin的返回的值
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  padding: 35px;
+}
+</pre>
+
+<br>
+
+### <span id="jump_mi_pas">传递规则集给Mixins（Passing Rulesets to Mixins）</span>
+
+>如果需要把某个媒体查询或者某些类抽离出来，可以把规则集传递给mixin, mixin会包装这些规则集。
+
+LESS源码：
+
+<pre>
+.test(@rules){
+  @media screen and (min-width: 1200px) { @rules(); }
+  .a { @rules(); }
+  .b & { @rules(); }
+}
+
+.box{
+  background: grey;
+  .test({
+    background: pink;
+  })
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  background: grey;
+}
+@media screen and (min-width: 1200px) {
+  .box {
+    background: pink;
+  }
+}
+.box .a {
+  background: pink;
+}
+.b .box {
+  background: pink;
+}
+</pre>
+
+<br>
+
+>也可以先定义规则集的内容，而后直接使用。
+
+LESS源码：
+
+<pre>
+@myRule: {
+  .a{
+    @media (min-width: 1200px) {
+      background: pink;
+    }
+  }
+};
+
+@media (max-width: 1800px) {
+  @myRule();
+}
+.box{
+  @myRule();
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+@media (max-width: 1800px) and (min-width: 1200px) {
+  .a {
+    background: pink;
+  }
+}
+@media (min-width: 1200px) {
+  .box .a {
+    background: pink;
+  }
+}
+</pre>
+
+<br>
 
 ### <span id="jump_mi_im">!important关键字（!important）</span>
 
@@ -1254,6 +1493,79 @@ spin(@color, -10); // return a color with a 10 degree smaller hue than @color
 
 >使用这些函数类似Javascript中使用函数。
 
+
+<br>
+
+## <span id="jump_im">导入样式（Import Directives）</span>
+
+### 基本规则（Basic Rules）
+
++ 在标准的css中，`@import`必须在所有其他规则之前，但是在less中，`@import`语句可以放在任何位置。
++ `@import`语句对不同文件扩展名的解析：
+    + `.css`扩展名，作为css对象导入。
+    + 其他扩展名，作为less对象导入。
+    + 没有扩展名或者`.less`扩展名，作为less对象导入。
+    
+<br>
+
+### 导入选项 (Import Options)
+
+>LESS提供一系列CSS扩展以便更灵活的使用`@import`导入第三方css文件。
+
+**语法：`@import (keyword) "filename";`**
++ `reference`：使用Less文件但不输出
++ `inline`：在输出中包含源文件但不加工它
++ `less`：将文件作为Less文件对象，无论是什么文件扩展名
++ `css`：将文件作为CSS文件对象，无论是什么文件扩展名
++ `once`：只包含文件一次（默认行为）
++ `multiple`：包含文件多次
+
+<br>
+
+#### reference
+
+>使用`@import (reference)`导入外部文件，但是不添加导入的样式到编译输出中，只引用。--发布于 v1.5.0
+
+比如有一个`a.less`文件，文件内容如下：
+
+<pre>
+@red: #ff0000;
+
+.test1{
+  background: pink;
+}
+.test2{
+  background: blue;
+}
+</pre>
+
+在`b.less`文件中，引入`a.less`:
+
+<pre>
+@import (reference) 'a';
+
+.box{
+  &:extend(.test1);
+}
+</pre>
+
+`b.less`文件最后只会编译引用到的部分，编译后的css内容如下：
+
+<pre>
+.box {
+  background: pink;
+}
+</pre>
+
+<br>
+
+#### inline
+
+>使用`@import (inline)`导入外部文件，但是不加工它。--发布于 v1.5.0
+
+当一个css文件可能不兼容less的时候使用，早期less支持绝大多数熟知的标准的css，但是不支持css hack。
+
+**新版本的less应该是支持css hack的（本人只简略测试了version 2.7.2和部分hack）。**
 
 <br>
 
