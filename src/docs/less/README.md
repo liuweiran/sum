@@ -794,6 +794,7 @@ LESS源码：
 + [模式匹配（Pattern-matching）](#jump_mi_pa)
 + [作为函数使用的Mixins（Mixins as Functions）](#jump_mi_fu)
 + [传递规则集给Mixins（Passing Rulesets to Mixins）](#jump_mi_pas)
++ [条件混合（Mixin Guards）](#jump_mi_ga)
 + [!important关键字（!important）](#jump_mi_im)
 + [命名空间方法（Namespace）](#jump_mi_na)
 
@@ -856,7 +857,7 @@ LESS源码：
 
 ### <span id="jump_mi_pa">混合参数（Params）</span>
 
->定义样式选择器中圆括号()内可传入参数，叫做Parametric Mixins（混合参数），没有参数时可以省略括号。混合参数不限制数量，参数之间用英文逗号“,”或者分号“;”进行分隔。推荐使用分号进行分隔，更符合语法习惯。
+>定义样式选择器中圆括号()内可传入参数，叫做Parametric Mixins（混合参数），没有参数时可以省略括号。混合参数不限制数量，参数之间用英文逗号“,”或者分号“;”进行分隔，但是不可在一个mixin中同时使用逗号和分号来分隔。推荐使用分号进行分隔，更符合语法习惯。
 
 LESS源码：
 
@@ -1389,6 +1390,126 @@ LESS源码：
 
 <br>
 
+### <span id="jump_mi_ga">条件混合（Mixin Guards）</span>
+
+>与匹配值或者匹配参数数量的情况不同，Guards 被用来匹配表达式 (expressions)。为了尽可能地符合 CSS 的语言结构，LESS 选择使用 guard混合(guarded mixins)(类似于 @media 的工作方式)执行条件判断，而不是加入 if/else 声明。
+
++ 通过LESS自带的函数判断
+
+LESS源码：
+
+<pre>
+.mixin (@a) when (lightness(@a) >= 50%) {
+  background-color: black;
+}
+.mixin (@a) when (lightness(@a) < 50%) {
+  background-color: white;
+}
+.mixin (@a) {
+  color: @a;
+}
+
+.class1 { .mixin(#ddd) }
+.class2 { .mixin(#555) }
+</pre>
+
+编译后的CSS：
+
+<pre>
+.class1 {
+  background-color: black;
+  color: #ddd;
+}
+.class2 {
+  background-color: white;
+  color: #555;
+}
+</pre>
+
+<br>
+
++ 运算符判断
+
+guards中可用的比较运算符的完整列表为： >, >=, =, =<, <。此外，关键字true是让两个mixins等价的唯一真值。
+
+LESS源码：
+
+<pre>
+.test1 (@a) when (@a){
+  display: block;
+}
+.test2 (@a) when (@a=true){
+  color: #fff;
+}
+.test3 (@a) when (@a>10){
+  font-size: @a;
+}
+@t: true;
+@size: 16px;
+.box{
+  .test1(@t);
+  .test2(@t);
+  .test3(@size);
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  display: block;
+  color: #fff;
+  font-size: 16px;
+}
+</pre>
+
+<br>
+
++ 多个条件；参数可以是多个，也可以没有
+
+多个Guards如果通过逗号`,`分隔，则其中任意一个结果为 true都匹配成功，这个相当于脚本中"或"的意思；如果通过`and`分隔，则需要结果都为 true才匹配成功，相当于脚本中"且"。
+
+LESS源码：
+
+<pre>
+.test1 (@a; @b) when (@a), (@b < 0){
+  color: red;
+}
+.test2 (@a; @b) when (@a=false), (@b > 0){
+  z-index: @b;
+}
+.test3 (@a; @b) when (@a) , (@b > 10){
+  margin: @b;
+}
+.test4 (@a; @b) when (@a) and (@b > 10){
+  padding: @b;
+}
+.test5() when (@t){
+  background: pink;
+}
+
+
+@t: true;
+@m: 0;
+.box{
+  .test1(@t; @m);
+  .test2(@t; @m);
+  .test3(@t; @m);
+  .test4(@t; @m);
+  .test5();
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  color: red;
+  margin: 0;
+  background: pink;
+}
+</pre>
+
 ### <span id="jump_mi_im">!important关键字（!important）</span>
 
 >使用!important关键字混合调用，将所有混合的属性标记为!important。
@@ -1527,7 +1648,7 @@ spin(@color, -10); // return a color with a 10 degree smaller hue than @color
 **语法：`@import (keyword) "filename";`**
 + `reference`：使用Less文件但不输出
 + `inline`：在输出中包含源文件但不加工它
-+ `less`：将文件作为Less文件对象，无论是什么文件扩展名
++ `less`：将文件作为LESS文件对象，无论是什么文件扩展名
 + `css`：将文件作为CSS文件对象，无论是什么文件扩展名
 + `once`：只包含文件一次（默认行为）
 + `multiple`：包含文件多次
@@ -1577,9 +1698,72 @@ spin(@color, -10); // return a color with a 10 degree smaller hue than @color
 
 当一个css文件可能不兼容less的时候使用，早期less支持绝大多数熟知的标准的css，但是不支持css hack。
 
-**新版本的less应该是支持css hack的（本人只简略测试了version 2.7.2和部分hack）。**
+**新版本的less应该是支持css hack的（本人只简略测试了截至目前最新版version 2.7.2和部分hack）。--2017.04**
 
 <br>
+
+#### less
+
+>使用`@import (less)`会将导入的文件作为Less文件对象，不管文件扩展名是什么。--发布于 v1.4.0
+
+导入的文件中的样式会直接输出到编译后的CSS中。
+
+<br>
+
+#### css
+
+>使用`@import (css)`会将导入的文件作为普通的CSS文件对象，也不会管扩展名是什么。--发布于 v1.4.0
+
+这意味着import语句会保留在编译后的CSS中。比如 `@import（css) 'a.less'`会被编译成 `@import 'a.less'`。
+
+<br>
+
+#### once
+
+>`@import`语句的默认行为。这意味着文件只会被导入一次，而随后导入的同名文件的语句都会被忽略。--发布于 v1.4.0
+
+<br>
+
+#### multiple
+
+>使用`@import (multiple)`允许导入多个同名文件。这与只能导入一次的行为是对立的。--发布于 v1.4.0
+
+如此，编译后的css样式会重复。
+
+比如有一个`a.less`文件，文件内容如下：
+
+<pre>
+.a{
+  background: pink;
+}
+.b{
+  background: blue;
+}
+</pre>
+
+现在`b.less`中引入`a.less`：
+
+<pre>
+@import (multiple) 'a.less';
+@import (multiple) 'a.less';
+</pre>
+
+编译后的css内容为：
+
+<pre>
+.a {
+  background: pink;
+}
+.b {
+  background: blue;
+}
+.a {
+  background: pink;
+}
+.b {
+  background: blue;
+}
+</pre>
 
 ## <span id="jump_co">注释（Comments）</span>
 

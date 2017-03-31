@@ -1,5 +1,26 @@
-@import (inline) 'a.css';
+.test1 (@a; @b) when (@a), (@b < 0){
+  color: red;
+}
+.test2 (@a; @b) when (@a=false), (@b > 0){
+  z-index: @b;
+}
+.test3 (@a; @b) when (@a) , (@b > 10){
+  margin: @b;
+}
+.test4 (@a; @b) when (@a) and (@b > 10){
+  padding: @b;
+}
+.test5() when (@t){
+  background: pink;
+}
 
+
+@t: true;
+@m: 0;
 .box{
-  font-size: 14px;
+  .test1(@t; @m);
+  .test2(@t; @m);
+  .test3(@t; @m);
+  .test4(@t; @m);
+  .test5();
 }
