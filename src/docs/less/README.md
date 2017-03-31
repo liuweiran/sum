@@ -231,11 +231,15 @@ div + div {
 }
 </pre>
 
+<br>
+
 ## <span id="jump_va">变量（Variables）</span>
 
 + [变量的定义（Definition）](#jump_va_de)
 + [变量的作用域（Scope）](#jump_va_sc)
 + [变量插值（Interpolation）](#jump_va_in)
+
+<br>
 
 ### <span id="jump_va_de">变量的定义（Definition）</span>
 
@@ -373,7 +377,9 @@ LESS源码：
 + [选择器插值（Interpolation）](#jump_ex_in)
 + [作用域/@media内的extend（Scope）](#jump_ex_sc)
 
-### <span id="jump_ex_co">扩展概念扩展概念（Concept）</span>
+<br>
+
+### <span id="jump_ex_co">扩展概念（Concept）</span>
 
 >extend是一个LESS伪类，它会把它所在的选择器扩展到它所引用的选择器上，使之拥有引用选择器的全部属性。（扩展的是选择器，而不是CSS。）
 
@@ -564,6 +570,8 @@ LESS源码：
   color: blue;
 }
 </pre>
+
+<br>
 
 ### <span id="jump_ex_al">"all"关键字（"all"）</span>
 
@@ -788,6 +796,8 @@ LESS源码：
 + [传递规则集给Mixins（Passing Rulesets to Mixins）](#jump_mi_pas)
 + [!important关键字（!important）](#jump_mi_im)
 + [命名空间方法（Namespace）](#jump_mi_na)
+
+<br>
 
 ### <span id="jump_mi_co">混合概念（Concept）</span>
 
@@ -1109,6 +1119,8 @@ LESS源码：
   padding: 10px 20px;
 }
 </pre>
+
+<br>
 
 + `@rest`代表除去其位置之前的所有参数
 
