@@ -1,5 +1,3 @@
-.box {
-  color: red;
-  margin: 0;
-  background: pink;
+.test {
+  transition: 1000ms;
 }

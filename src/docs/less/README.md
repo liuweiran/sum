@@ -791,10 +791,12 @@ LESS源码：
 + [混合参数（Params）](#jump_mi_pa)
 + [@arguments变量（@arguments）](#jump_mi_ar)
 + [高级参数和@rest变量（Advanced arguments and @rest）](#jump_mi_ad)
-+ [模式匹配（Pattern-matching）](#jump_mi_pa)
++ [模式匹配（Pattern-matching）](#jump_mi_pat)
 + [作为函数使用的Mixins（Mixins as Functions）](#jump_mi_fu)
 + [传递规则集给Mixins（Passing Rulesets to Mixins）](#jump_mi_pas)
 + [条件混合（Mixin Guards）](#jump_mi_ga)
++ [循环结构（Loops）](#jump_mi_lo)
++ [合并属性（Merge）](#jump_mi_me)
 + [!important关键字（!important）](#jump_mi_im)
 + [命名空间方法（Namespace）](#jump_mi_na)
 
@@ -857,7 +859,7 @@ LESS源码：
 
 ### <span id="jump_mi_pa">混合参数（Params）</span>
 
->定义样式选择器中圆括号()内可传入参数，叫做Parametric Mixins（混合参数），没有参数时可以省略括号。混合参数不限制数量，参数之间用英文逗号“,”或者分号“;”进行分隔，但是不可在一个mixin中同时使用逗号和分号来分隔。推荐使用分号进行分隔，更符合语法习惯。
+>定义样式选择器中圆括号()内可传入参数，叫做Parametric Mixins（混合参数），没有参数时可以省略括号。混合参数不限制数量，参数之间用英文逗号“,”或者分号“;”进行分隔，但是不可在一个mixin中同时使用逗号和分号来分隔。推荐使用分号进行分隔，一则更符合语法习惯，二则有少量css属性值（比如`font-family: Helvetica Neue, Microsoft YaHei;`）是用逗号分隔的，如此会产生歧义。
 
 LESS源码：
 
@@ -1151,7 +1153,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_pa">模式匹配（Pattern-matching）</span>
+### <span id="jump_mi_pat">模式匹配（Pattern-matching）</span>
 
 >基于传递给mixin的参数来控制它的行为。
 
@@ -1465,9 +1467,9 @@ LESS源码：
 
 <br>
 
-+ 多个条件；参数可以是多个，也可以没有
++ 多个条件
 
-多个Guards如果通过逗号`,`分隔，则其中任意一个结果为 true都匹配成功，这个相当于脚本中"或"的意思；如果通过`and`分隔，则需要结果都为 true才匹配成功，相当于脚本中"且"。
+多个Guards如果通过逗号`,`分隔，则其中任意一个结果为 true都匹配成功，这个相当于脚本中"或"的意思；如果通过`and`分隔，则需要结果都为 true才匹配成功，相当于脚本中"且"。(PS: 参数可以是多个，也可以没有。)
 
 LESS源码：
 
@@ -1509,6 +1511,240 @@ LESS源码：
   background: pink;
 }
 </pre>
+
+<br>
+
++ guard中的`not`
+
+使用`not`关键字来否定条件。
+
+LESS源码：
+
+<pre>
+.test(@a) when not (@a<0) {
+  background: blue;
+}
+
+.box{
+  .test(10)
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  background: blue;
+}
+</pre>
+
+<br>
+
++ 类型检查函数
+
+    如果需要基于值的类型来匹配mixins，可以使用`is`函数。
+    
+    有以下一些基本的类型检查函数：
+    
+    + `iscolor`
+    + `isnumber`
+    + `isstring`
+    + `iskeyword`
+    + `isurl`
+    
+    如果需要检查一个值除了数字是否是一个特定的单位，可以使用下列方法：
+    
+    + `ispixel`
+    + `ispercentage`
+    + `isem`
+    + `isunit`
+
+LESS源码：
+
+<pre>
+.test(@a) when (isnumber(@a)){
+  margin: @a;
+}
+
+.box{
+  .test(15px);
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  margin: 15px;
+}
+</pre>
+
+<br>
+
++ <span id="jump_fnDedault">`default`函数</span>
+
+`default`函数使用效果类似与`else`语句，当它的同名mixin不匹配时匹配。
+
+LESS源码：
+
+<pre>
+.test (@a) when (@a>0) {
+  background: pink;
+}
+.test (@a) when (default()) {   //第一个mixin不匹配是则匹配它
+  font-size: 12px;
+}
+
+.box1{
+  .test(1);
+}
+.box2{
+  .test(0);
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box1 {
+  background: pink;
+}
+.box2 {
+  font-size: 12px;
+}
+</pre>
+
+<br>
+
++ CSS Guards
+
+条件约束也可适用于CSS选择器。
+
+LESS源码：
+
+<pre>
+@a: true;
+@b: 1;
+
+.box1 when (@a){
+  background: blue;
+}
+
+.box2 when (@b = 1) {
+  background: pink;
+}
+.box3 when (@b < 0) {
+  background: pink;
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box1 {
+  background: blue;
+}
+.box2 {
+  background: pink;
+}
+</pre>
+
+<br>
+
+### <span id="jump_mi_lo">循环结构（Loops）</span>
+
+混合可以调用它自身。当一个混合递归调用自己，再结合Guard表达式和模式匹配这两个特性，就可以写出循环结构。
+
+LESS源码：
+
+<pre>
+.score(@n, @i: 1) when (@i =< @n) {
+  .score_@{i} {
+    :nth-child(-n+@{i}){
+      color: gold;
+    }
+  }
+  .score(@n, (@i+1));
+}
+
+.score(5);
+</pre>
+
+编译后的CSS：
+
+<pre>
+.score_1 :nth-child(-n + 1) {
+  color: gold;
+}
+.score_2 :nth-child(-n + 2) {
+  color: gold;
+}
+.score_3 :nth-child(-n + 3) {
+  color: gold;
+}
+.score_4 :nth-child(-n + 4) {
+  color: gold;
+}
+.score_5 :nth-child(-n + 5) {
+  color: gold;
+}
+</pre>
+
+<br>
+
+### <span id="jump_mi_me">合并属性（Merge）</span>
+
+将多个属性值以逗号或者空格分割集合到一起。
+
++ 逗号分割
+
+LESS源码：
+
+<pre>
+.test(){
+  font-family+: Helvetica Neue;
+}
+
+.box{
+  .test;
+  font-family+: Microsoft YaHei;
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  font-family: Helvetica Neue, Microsoft YaHei;
+}
+</pre>
+
+<br>
+
++ 空格分割
+
+LESS源码：
+
+<pre>
+.test(){
+  transform+_: scale(2);
+}
+
+.box{
+  .test;
+  transform+_: rotate(15deg);
+}
+</pre>
+
+编译后的CSS：
+
+<pre>
+.box {
+  transform: scale(2) rotate(15deg);
+}
+</pre>
+
+<br>
 
 ### <span id="jump_mi_im">!important关键字（!important）</span>
 
@@ -1606,6 +1842,57 @@ LESS源码：
 
 >LESS提供了许多用于转换颜色、处理字符串和进行算术运算的函数。
 
++ [杂项函数（Misc Functions）](#jump_fu_mi)
+
+<br>
+
+### <span id="jump_fu_mi">杂项函数（Misc Functions）</span>
+
++ color
+    
+    解析颜色，将代表颜色的字符串转换为颜色值。
+    
+    语法：`color(string)`
+    
+    案例：`color(red)`返回`#ff0000`；`color("#fff")`返回`#fff`
+
+<br>
+
++ convert
+
+    将数字从一种单位转换到另一种单位。第一个参数为带单位的数值，第二个参数为单位。如果两个参数的单位是兼容的，则数字的单位被转换。如果两个参数的单位不兼容，则原样返回第一个参数。
+    
+    兼容的单位是：
+    
+    + 长度： `m`, `cm`, `mm`, `in`, `pt` , `pc`
+    + 时间： `s` , `ms`
+    + 角度： `rad`, `deg`, `grad` , `turn`
+    
+    语法：`convert(number, unit)`
+    
+    案例：`convert(1s, ms)`返回`1000ms`
+    
+<br>
+                                  
++ data-uri
+
+  将资源内联进样式表，如果开启了 ieCompat 选项并且资源太大，或者此函数的运行环境为浏览器，则会回退到直接使用 url() 。如果没有指定 MIME，则 node 将使用 mime 包来决定正确的 mime 类型。
+  
+  语法：`data-uri(mimetype, url)`【`mimetype`：(可选) MIME 字符串；`url`：需要内嵌的文件的 URL 。】
+  
+<br>
+
++ default
+    
+    使用于`Minxin Guards`中，当其他mixin不匹配时返回`true`，否则返回`false`。案例见 Minxin Guards 中的 [default函数](#jump_fnDedault)。
+    
+
+    
+
+
+
+
+
 
 <br>
 
@@ -1645,7 +1932,7 @@ spin(@color, -10); // return a color with a 10 degree smaller hue than @color
 
 >LESS提供一系列CSS扩展以便更灵活的使用`@import`导入第三方css文件。
 
-**语法：`@import (keyword) "filename";`**
+**语法：`@import (keyword) "filename";` 多个关键字是允许的，使用逗号`,`分隔关键字：`@import (keyword1, keyword2) "filename";`**
 + `reference`：使用Less文件但不输出
 + `inline`：在输出中包含源文件但不加工它
 + `less`：将文件作为LESS文件对象，无论是什么文件扩展名
@@ -1764,6 +2051,8 @@ spin(@color, -10); // return a color with a 10 degree smaller hue than @color
   background: blue;
 }
 </pre>
+
+<br>
 
 ## <span id="jump_co">注释（Comments）</span>
 
