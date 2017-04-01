@@ -1884,7 +1884,7 @@ LESS源码：
 
 + default
     
-    使用于`Minxin Guards`中，当其他mixin不匹配时返回`true`，否则返回`false`。案例见 Minxin Guards 中的 [default函数](#jump_fnDedault)。
+    使用于`Minxin Guards`中，当其他mixin不匹配时返回`true`，否则返回`false`。案例见 Minxin Guards 中的 [$\underline{default函数}$](#jump_fnDedault)。
     
 
     
