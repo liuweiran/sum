@@ -1095,6 +1095,8 @@ LESS源码：
     }
     </pre>
 
+<br>
+
 + 接受 1-N 个参数
 
     LESS源码：
@@ -1432,7 +1434,7 @@ LESS源码：
 
 + 运算符判断
 
-    guards中可用的比较运算符的完整列表为： >, >=, =, =<, <。此外，关键字true是让两个mixins等价的唯一真值。
+    guards中可用的比较运算符的完整列表为： `>`, `>=`, `=`, `=<`, `<`。此外，关键字`true`是让两个mixins等价的唯一真值。
 
     LESS源码：
 
@@ -2014,7 +2016,9 @@ LESS源码：
 
     语法：`e(string)` 返回不带引号的转义字符串
 
-    案例：`filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");` 返回 `filter: ms:alwaysHasItsOwnSyntax.For.Stuff();`
+    案例：`filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");` 
+    
+    输出 `filter: ms:alwaysHasItsOwnSyntax.For.Stuff();`
 
     **PS：该函数也接受 ~"" 转义值和数字做参数，其他类型参数会返回一个错误。**
 
@@ -2058,9 +2062,17 @@ LESS源码：
     + `replacement`：用于替换匹配项的字符串
     + `flags`：(可选) 正则表达式匹配标识（全匹配还是...）
 
-    案例：`replace("Hello, Mars?", "Mars\?", "Earth!");` 
+    案例：
     
-    输出： `"Hello, Earth!";` ；`replace("One + one = 4", "one", "2", "gi");` 返回 `"2 + 2 = 4";`
+    `replace("Hello, Mars?", "Mars\?", "Earth!");` 
+    
+    `replace("One + one = 4", "one", "2", "gi");`
+    
+    输出： 
+    
+    `"Hello, Earth!";` 
+     
+     `"2 + 2 = 4";`
 
 <br>
 
@@ -2501,9 +2513,9 @@ LESS源码：
     
     参数：
     
-    +`hue` : 0-360 的整数，用于表示度数。
-    +`saturation` : 0-100% 的百分比数或 0-1 的整数。
-    +`value` : 0-100% 的百分比数或 0-1 的整数。
+    + `hue` : 0-360 的整数，用于表示度数。
+    + `saturation` : 0-100% 的百分比数或 0-1 的整数。
+    + `value` : 0-100% 的百分比数或 0-1 的整数。
     
     返回值： `color`
     
@@ -2519,10 +2531,10 @@ LESS源码：
     
     参数：
     
-    +`hue` : 0-360 的整数，用于表示度数。
-    +`saturation` : 0-100% 的百分比数或 0-1 的整数。
-    +`value` : 0-100% 的百分比数或 0-1 的整数。
-    +`alpha` : 0-100% 的百分比数或 0-1 的整数。
+    + `hue` : 0-360 的整数，用于表示度数。
+    + `saturation` : 0-100% 的百分比数或 0-1 的整数。
+    + `value` : 0-100% 的百分比数或 0-1 的整数。
+    + `alpha` : 0-100% 的百分比数或 0-1 的整数。
     
     返回值： `color`
     
@@ -2690,12 +2702,12 @@ LESS源码：
 
 ### <span id="jump_fu_op">颜色操作函数（Color Operation Functions）</span>
     
-+ 颜色值运算有几点注意事项：
-        
-    + 参数必须单位/格式相同；
-    + 百分比将作为绝对值处理，比如 10% 增加 10%，结果是 20% 而不是 11%；
-    + 参数值只能在限定的范围内；
-    + 返回值时，除了十六进制的颜色值 (hex versions) 外将对其他格式做简化处理。
+>颜色值运算有几点注意事项：
+>         
+> + 参数必须单位/格式相同；
+> + 百分比将作为绝对值处理，比如 10% 增加 10%，结果是 20% 而不是 11%；
+> + 参数值只能在限定的范围内；
+> + 返回值时，除了十六进制的颜色值 (hex versions) 外将对其他格式做简化处理。
 
 <br>
 
@@ -2947,10 +2959,14 @@ LESS源码：
 + multiply
     
     分别将两种颜色的红绿蓝 (RGB) 三种值做乘法运算，然后再除以 255，输出结果是更深的颜色。（译注：对应Photoshop中的“变暗/正片叠底”。）
+
+<br>
     
 + screen
     
     与 `multiply` 函数效果相反，输出结果是更亮的颜色。（译注：对应Photoshop中的“变亮/滤色”。）
+
+<br>
     
 + overlay
     
@@ -2960,6 +2976,8 @@ LESS源码：
          
      + `color1` : 基准颜色对象。也就是用以确定最终结果是浅些还是深些的参考色。
      + `color2` : 颜色对象。
+
+<br>
    
 + softlight
     
@@ -2969,6 +2987,8 @@ LESS源码：
          
      + `color1` : 混合色（光源）。
      + `color2` : 被混合的颜色。
+
+<br>
    
 + hardlight
     
@@ -2979,6 +2999,8 @@ LESS源码：
     + `color1` : 混合色（光源）。
     + `color2` : 基准色对象。它决定最终结果是亮些还是暗些。
 
+<br>
+
 + difference
     
     从第一个颜色值中减去第二个（分别计算 RGB 三种颜色通道），输出结果是更深的颜色。如果结果为负值则被反转。如果减去的颜色是黑色则不做改变；减去白色将得到颜色反转。（译注：对应Photoshop中的“差值/排除”。）
@@ -2987,6 +3009,8 @@ LESS源码：
         
     + `color1` : 被减的颜色对象。
     + `color2` : 减去的颜色对象。   
+
+<br>
     
 + exclusion
     
@@ -2997,9 +3021,13 @@ LESS源码：
     + `color1` : 被减的颜色对象。
     + `color2` : 减去的颜色对象。
 
+<br>
+
 + average
     
     分别对 RGB 的三种颜色值取平均值，然后输出结果。
+
+<br>
     
 + negation
     
@@ -3030,7 +3058,10 @@ LESS源码：
 
 >LESS提供一系列CSS扩展以便更灵活的使用`@import`导入第三方css文件。
 
-**语法：`@import (keyword) "filename";` 多个关键字是允许的，使用逗号`,`分隔关键字：`@import (keyword1, keyword2) "filename";`**
+语法：`@import (keyword) "filename";` 
+
+多个关键字是允许的，使用逗号`,`分隔关键字：`@import (keyword1, keyword2) "filename";`
+
 + `reference`：使用Less文件但不输出
 + `inline`：在输出中包含源文件但不加工它
 + `less`：将文件作为LESS文件对象，无论是什么文件扩展名
@@ -3126,7 +3157,7 @@ LESS源码：
 }
 </pre>
 
-现在`b.less`中引入`a.less`：
+在`b.less`中引入`a.less`：
 
 <pre>
 @import (multiple) 'a.less';
