@@ -1064,92 +1064,92 @@ LESS源码：
 
 + 接受 0-N 个参数
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test(...){
-  padding: @arguments;
-}
-.box1{
-  .test(20px);
-}
-.box2{
-  .test(10px 20px);
-}
-.box3{
-  .test(10px 20px 30px);
-}
-</pre>
+    <pre>
+    .test(...){
+      padding: @arguments;
+    }
+    .box1{
+      .test(20px);
+    }
+    .box2{
+      .test(10px 20px);
+    }
+    .box3{
+      .test(10px 20px 30px);
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box1 {
-  padding: 20px;
-}
-.box2 {
-  padding: 10px 20px;
-}
-.box3 {
-  padding: 10px 20px 30px;
-}
-</pre>
+    <pre>
+    .box1 {
+      padding: 20px;
+    }
+    .box2 {
+      padding: 10px 20px;
+    }
+    .box3 {
+      padding: 10px 20px 30px;
+    }
+    </pre>
 
 + 接受 1-N 个参数
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test(@top; ...){
-  padding: @arguments;
-}
+    <pre>
+    .test(@top; ...){
+      padding: @arguments;
+    }
 
-.box1{
-  .test(5px);
-}
-.box2{
-  .test(10px 20px);
-}
-</pre>
+    .box1{
+      .test(5px);
+    }
+    .box2{
+      .test(10px 20px);
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box1 {
-  padding: 5px;
-}
-.box2 {
-  padding: 10px 20px;
-}
-</pre>
+    <pre>
+    .box1 {
+      padding: 5px;
+    }
+    .box2 {
+      padding: 10px 20px;
+    }
+    </pre>
 
 <br>
 
-+ `@rest`代表除去其位置之前的所有参数
++ `@rest` 代表除去其位置之前的所有参数
 
-LESS源码：
+    LESS源码：
 
-<pre>
-//此处 @rest 代表除去 @a 和 @b 的所有参数，@rest后面的`...`可以省略
-.test(@a; @b; @rest...){
-  font-size: @a;
-  color: @b;
-  padding: @rest;
-}
-.box{
-  .test(15px; red; 20px 30px);
-}
-</pre>
+    <pre>
+    //此处 @rest 代表除去 @a 和 @b 的所有参数，@rest后面的"..."可以省略
+    .test(@a; @b; @rest...){
+      font-size: @a;
+      color: @b;
+      padding: @rest;
+    }
+    .box{
+      .test(15px; red; 20px 30px);
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box {
-  font-size: 15px;
-  color: red;
-  padding: 20px 30px;
-}
-</pre>
+    <pre>
+    .box {
+      font-size: 15px;
+      color: red;
+      padding: 20px 30px;
+    }
+    </pre>
 
 <br>
 
@@ -1159,101 +1159,101 @@ LESS源码：
 
 + 依据`@sitch`值进行匹配
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test(dark; @color; @size){
-  color: darken(@color, 10%);
-  font-size: @size;
-  background: pink;
-}
-.test(light; @color; @size){
-  color: lighten(@color, 10%);
-  font-size: @size;
-  background: blue;
-}
+    <pre>
+    .test(dark; @color; @size){
+      color: darken(@color, 10%);
+      font-size: @size;
+      background: pink;
+    }
+    .test(light; @color; @size){
+      color: lighten(@color, 10%);
+      font-size: @size;
+      background: blue;
+    }
 
-@switch: light; //将匹配第二个mixin
-.box{
-  .test(@switch; #333; 15px)
-}
-</pre>
+    @switch: light; //将匹配第二个mixin
+    .box{
+      .test(@switch; #333; 15px)
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box {
-  color: #4d4d4d;
-  font-size: 15px;
-  background: blue;
-}
-</pre>
+    <pre>
+    .box {
+      color: #4d4d4d;
+      font-size: 15px;
+      background: blue;
+    }
+    </pre>
 
 <br>
 
 + 直接使用非变量形式的值进行匹配
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test(dark; @color; @size){
-  color: darken(@color, 10%);
-  font-size: @size;
-  background: pink;
-}
-.test(light; @color; @size){
-  color: lighten(@color, 10%);
-  font-size: @size;
-  background: blue;
-}
+    <pre>
+    .test(dark; @color; @size){
+      color: darken(@color, 10%);
+      font-size: @size;
+      background: pink;
+    }
+    .test(light; @color; @size){
+      color: lighten(@color, 10%);
+      font-size: @size;
+      background: blue;
+    }
 
-.box{
-  .test(dark; #333; 15px)
-}
-</pre>
+    .box{
+      .test(dark; #333; 15px)
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box {
-    color: #1a1a1a;
-    font-size: 15px;
-    background: pink;
-}
-</pre>
+    <pre>
+    .box {
+        color: #1a1a1a;
+        font-size: 15px;
+        background: pink;
+    }
+    </pre>
 
 <br>
 
 + 依据参数数量进行匹配
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test(@a){
-  color: @a;
-}
-.test(@a; @b){
-  color: lighten(@a, @b);
-}
+    <pre>
+    .test(@a){
+      color: @a;
+    }
+    .test(@a; @b){
+      color: lighten(@a, @b);
+    }
 
-.box1{
-  .test(#000);  //一个参数，匹配第一个mixin
-}
-.box2{
-  .test(#000; 10%); //两个参数，匹配第二个mixin
-}
-</pre>
+    .box1{
+      .test(#000);  //一个参数，匹配第一个mixin
+    }
+    .box2{
+      .test(#000; 10%); //两个参数，匹配第二个mixin
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box1 {
-  color: #000;
-}
-.box2 {
-  color: #1a1a1a;
-}
-</pre>
+    <pre>
+    .box1 {
+      color: #000;
+    }
+    .box2 {
+      color: #1a1a1a;
+    }
+    </pre>
 
 <br>
 
@@ -1398,145 +1398,145 @@ LESS源码：
 
 + 通过LESS自带的函数判断
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.mixin (@a) when (lightness(@a) >= 50%) {
-  background-color: black;
-}
-.mixin (@a) when (lightness(@a) < 50%) {
-  background-color: white;
-}
-.mixin (@a) {
-  color: @a;
-}
+    <pre>
+    .mixin (@a) when (lightness(@a) >= 50%) {
+      background-color: black;
+    }
+    .mixin (@a) when (lightness(@a) < 50%) {
+      background-color: white;
+    }
+    .mixin (@a) {
+      color: @a;
+    }
 
-.class1 { .mixin(#ddd) }
-.class2 { .mixin(#555) }
-</pre>
+    .class1 { .mixin(#ddd) }
+    .class2 { .mixin(#555) }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.class1 {
-  background-color: black;
-  color: #ddd;
-}
-.class2 {
-  background-color: white;
-  color: #555;
-}
-</pre>
+    <pre>
+    .class1 {
+      background-color: black;
+      color: #ddd;
+    }
+    .class2 {
+      background-color: white;
+      color: #555;
+    }
+    </pre>
 
 <br>
 
 + 运算符判断
 
-guards中可用的比较运算符的完整列表为： >, >=, =, =<, <。此外，关键字true是让两个mixins等价的唯一真值。
+    guards中可用的比较运算符的完整列表为： >, >=, =, =<, <。此外，关键字true是让两个mixins等价的唯一真值。
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test1 (@a) when (@a){
-  display: block;
-}
-.test2 (@a) when (@a=true){
-  color: #fff;
-}
-.test3 (@a) when (@a>10){
-  font-size: @a;
-}
-@t: true;
-@size: 16px;
-.box{
-  .test1(@t);
-  .test2(@t);
-  .test3(@size);
-}
-</pre>
+    <pre>
+    .test1 (@a) when (@a){
+      display: block;
+    }
+    .test2 (@a) when (@a=true){
+      color: #fff;
+    }
+    .test3 (@a) when (@a>10){
+      font-size: @a;
+    }
+    @t: true;
+    @size: 16px;
+    .box{
+      .test1(@t);
+      .test2(@t);
+      .test3(@size);
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box {
-  display: block;
-  color: #fff;
-  font-size: 16px;
-}
-</pre>
+    <pre>
+    .box {
+      display: block;
+      color: #fff;
+      font-size: 16px;
+    }
+    </pre>
 
 <br>
 
 + 多个条件
 
-多个Guards如果通过逗号`,`分隔，则其中任意一个结果为 true都匹配成功，这个相当于脚本中"或"的意思；如果通过`and`分隔，则需要结果都为 true才匹配成功，相当于脚本中"且"。(PS: 参数可以是多个，也可以没有。)
+    多个Guards如果通过逗号`,`分隔，则其中任意一个结果为 true都匹配成功，这个相当于脚本中"或"的意思；如果通过`and`分隔，则需要结果都为 true才匹配成功，相当于脚本中"且"。(PS: 参数可以是多个，也可以没有。)
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test1 (@a; @b) when (@a), (@b < 0){
-  color: red;
-}
-.test2 (@a; @b) when (@a=false), (@b > 0){
-  z-index: @b;
-}
-.test3 (@a; @b) when (@a) , (@b > 10){
-  margin: @b;
-}
-.test4 (@a; @b) when (@a) and (@b > 10){
-  padding: @b;
-}
-.test5() when (@t){
-  background: pink;
-}
+    <pre>
+    .test1 (@a; @b) when (@a), (@b < 0){
+      color: red;
+    }
+    .test2 (@a; @b) when (@a=false), (@b > 0){
+      z-index: @b;
+    }
+    .test3 (@a; @b) when (@a) , (@b > 10){
+      margin: @b;
+    }
+    .test4 (@a; @b) when (@a) and (@b > 10){
+      padding: @b;
+    }
+    .test5() when (@t){
+      background: pink;
+    }
 
 
-@t: true;
-@m: 0;
-.box{
-  .test1(@t; @m);
-  .test2(@t; @m);
-  .test3(@t; @m);
-  .test4(@t; @m);
-  .test5();
-}
-</pre>
+    @t: true;
+    @m: 0;
+    .box{
+      .test1(@t; @m);
+      .test2(@t; @m);
+      .test3(@t; @m);
+      .test4(@t; @m);
+      .test5();
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box {
-  color: red;
-  margin: 0;
-  background: pink;
-}
-</pre>
+    <pre>
+    .box {
+      color: red;
+      margin: 0;
+      background: pink;
+    }
+    </pre>
 
 <br>
 
 + guard中的`not`
 
-使用`not`关键字来否定条件。
+    使用`not`关键字来否定条件。
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test(@a) when not (@a<0) {
-  background: blue;
-}
+    <pre>
+    .test(@a) when not (@a<0) {
+      background: blue;
+    }
 
-.box{
-  .test(10)
-}
-</pre>
+    .box{
+      .test(10)
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box {
-  background: blue;
-}
-</pre>
+    <pre>
+    .box {
+      background: blue;
+    }
+    </pre>
 
 <br>
 
@@ -1559,95 +1559,157 @@ LESS源码：
     + `isem`
     + `isunit`
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test(@a) when (isnumber(@a)){
-  margin: @a;
-}
+    <pre>
+    .test(@a) when (isnumber(@a)){
+      margin: @a;
+    }
 
-.box{
-  .test(15px);
-}
-</pre>
+    .box{
+      .test(15px);
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box {
-  margin: 15px;
-}
-</pre>
+    <pre>
+    .box {
+      margin: 15px;
+    }
+    </pre>
 
 <br>
 
 + <span id="jump_fnDedault">`default`函数</span>
 
-`default`函数使用效果类似与`else`语句，当它的同名mixin不匹配时匹配。
+    + `default`函数使用效果类似与`else`语句，当它的同名mixin不匹配时匹配。
 
-LESS源码：
+        LESS源码：
 
-<pre>
-.test (@a) when (@a>0) {
-  background: pink;
-}
-.test (@a) when (default()) {   //第一个mixin不匹配是则匹配它
-  font-size: 12px;
-}
+        <pre>
+        .test (@a) when (@a>0) {
+          background: pink;
+        }
+        .test (@a) when (default()) {   //第一个mixin不匹配是则匹配它
+          font-size: 12px;
+        }
 
-.box1{
-  .test(1);
-}
-.box2{
-  .test(0);
-}
-</pre>
+        .box1{
+          .test(1);
+        }
+        .box2{
+          .test(0);
+        }
+        </pre>
 
-编译后的CSS：
+        编译后的CSS：
 
-<pre>
-.box1 {
-  background: pink;
-}
-.box2 {
-  font-size: 12px;
-}
-</pre>
+        <pre>
+        .box1 {
+          background: pink;
+        }
+        .box2 {
+          font-size: 12px;
+        }
+        </pre>
+
+    <br>
+
+    + `default`函数可以与`not`关键字一起使用，例如`.mixin() when not(default()) {}`，当有至少一个除自身外的`mixin`满足条件时被匹配。
+
+        LESS源码：
+
+        <pre>
+        .test(@a) when (ispixel(@a)) {
+          width: @a;
+        }
+        .test(@a) when not(default()) {
+          padding: @a/5;
+        }
+
+        .box1 {
+          .test(100px); //两个mixins都被匹配
+        }
+        .box2 {
+          .test(100%); //两个mixins都没有被匹配
+        }
+        </pre>
+
+        编译后的CSS：
+
+        <pre>
+        .box1 {
+          width: 100px;
+          padding: 20px;
+        }
+        </pre>
+
+    <br>
+
+    + `default`函数可以与其他条件同时存在。
+
+        LESS源码：
+
+        <pre>
+        .test(pink){
+          background: pink;
+        }
+        .test(blue){
+          background: blue;
+        }
+        .test(@a) when (iscolor(@a)) and (default()){
+          color: @a;
+        }
+
+        .box1{
+          .test(grey);
+        }
+        </pre>
+
+        编译后的CSS：
+
+        <pre>
+        .box1 {
+          color: grey;
+        }
+        </pre>
+
 
 <br>
 
 + CSS Guards
 
-条件约束也可适用于CSS选择器。
+    条件约束也可适用于CSS选择器。
 
-LESS源码：
+    LESS源码：
 
-<pre>
-@a: true;
-@b: 1;
+    <pre>
+    @a: true;
+    @b: 1;
 
-.box1 when (@a){
-  background: blue;
-}
+    .box1 when (@a){
+      background: blue;
+    }
 
-.box2 when (@b = 1) {
-  background: pink;
-}
-.box3 when (@b < 0) {
-  background: pink;
-}
-</pre>
+    .box2 when (@b = 1) {
+      background: pink;
+    }
+    .box3 when (@b < 0) {
+      background: pink;
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box1 {
-  background: blue;
-}
-.box2 {
-  background: pink;
-}
-</pre>
+    <pre>
+    .box1 {
+      background: blue;
+    }
+    .box2 {
+      background: pink;
+    }
+    </pre>
 
 <br>
 
@@ -1698,51 +1760,51 @@ LESS源码：
 
 + 逗号分割
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test(){
-  font-family+: Helvetica Neue;
-}
+    <pre>
+    .test(){
+      font-family+: Helvetica Neue;
+    }
 
-.box{
-  .test;
-  font-family+: Microsoft YaHei;
-}
-</pre>
+    .box{
+      .test;
+      font-family+: Microsoft YaHei;
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box {
-  font-family: Helvetica Neue, Microsoft YaHei;
-}
-</pre>
+    <pre>
+    .box {
+      font-family: Helvetica Neue, Microsoft YaHei;
+    }
+    </pre>
 
 <br>
 
 + 空格分割
 
-LESS源码：
+    LESS源码：
 
-<pre>
-.test(){
-  transform+_: scale(2);
-}
+    <pre>
+    .test(){
+      transform+_: scale(2);
+    }
 
-.box{
-  .test;
-  transform+_: rotate(15deg);
-}
-</pre>
+    .box{
+      .test;
+      transform+_: rotate(15deg);
+    }
+    </pre>
 
-编译后的CSS：
+    编译后的CSS：
 
-<pre>
-.box {
-  transform: scale(2) rotate(15deg);
-}
-</pre>
+    <pre>
+    .box {
+      transform: scale(2) rotate(15deg);
+    }
+    </pre>
 
 <br>
 
@@ -1843,6 +1905,14 @@ LESS源码：
 >LESS提供了许多用于转换颜色、处理字符串和进行算术运算的函数。
 
 + [杂项函数（Misc Functions）](#jump_fu_mi)
++ [字符串函数（String Functions）](#jump_fu_st)
++ [列表函数（List Functions）](#jump_fu_li)
++ [数学函数（Math Functions）](#jump_fu_ma)
++ [类型函数（Type Functions）](#jump_fu_ty)
++ [颜色定义函数（Color Definition Functions）](#jump_fu_co)
++ [颜色通道函数（Color Channel Functions）](#jump_fu_ch)
++ [颜色操作函数（Color Operation Functions）](#jump_fu_op)
++ [颜色混合函数（Color Blending Functions）](#jump_fu_bl)
 
 <br>
 
@@ -1854,7 +1924,11 @@ LESS源码：
     
     语法：`color(string)`
     
-    案例：`color(red)`返回`#ff0000`；`color("#fff")`返回`#fff`
+    案例：
+
+    `color(red)` 返回 `#ff0000`；
+
+    `color("#fff")` 返回 `#fff`
 
 <br>
 
@@ -1870,50 +1944,1074 @@ LESS源码：
     
     语法：`convert(number, unit)`
     
-    案例：`convert(1s, ms)`返回`1000ms`
+    案例：`convert(1s, ms)` 返回 `1000ms`
     
 <br>
                                   
 + data-uri
-
-  将资源内联进样式表，如果开启了 ieCompat 选项并且资源太大，或者此函数的运行环境为浏览器，则会回退到直接使用 url() 。如果没有指定 MIME，则 node 将使用 mime 包来决定正确的 mime 类型。
-  
-  语法：`data-uri(mimetype, url)`【`mimetype`：(可选) MIME 字符串；`url`：需要内嵌的文件的 URL 。】
-  
+    
+    将资源内联进样式表，如果开启了 ieCompat 选项并且资源太大，或者此函数的运行环境为浏览器，则会回退到直接使用 url() 。如果没有指定 MIME，则 node 将使用 mime 包来决定正确的 mime 类型。
+    
+    语法：`data-uri(mimetype, url)`
+    
+    参数：
+        
+    + `mimetype` ：(可选) MIME 字符串
+    + `url` ：需要内嵌的文件的 URL
+    
 <br>
 
 + default
     
     使用于`Minxin Guards`中，当其他mixin不匹配时返回`true`，否则返回`false`。案例见 Minxin Guards 中的 [**default函数**](#jump_fnDedault)。
-    
-
-    
-
-
-
-
-
 
 <br>
 
->LESS有一组专门针对color操作的函数：
++ unit
 
-<pre>
-lighten(@color, 10%); // return a color which is 10% *lighter* than @color 色相值
-darken(@color, 10%); // return a color which is 10% *darker* than @color 
-saturate(@color, 10%); // return a color 10% *more* saturated than @color  饱和度
-desaturate(@color, 10%);// return a color 10% *less* saturated than @color 
-fadein(@color, 10%); // return a color 10% *less* transparent than @color  透明度
-fadeout(@color, 10%); // return a color 10% *more* transparent than @color 
-spin(@color, 10); // return a color with a 10 degree larger in hue than @color  亮度
-spin(@color, -10); // return a color with a 10 degree smaller hue than @color
-</pre>
+    移除或者改变属性值的单位。
+
+    语法：`unit(dimension, unit)`
+    
+    参数：
+    
+    + `dimension`：数字，带或不带单位
+    + `unit`：(可选)将要替换成的单位，如果省略则移除原单位
+
+    案例：
+    
+    `unit(1s, ms)` 返回 `1ms`
+    
+    `unit(5, px)` 返回 `5px`
+    
+    `unit(5em)` 返回 `5`
 
 <br>
 
->使用这些函数类似Javascript中使用函数。
+### <span id="jump_fu_st">字符串函数（String Functions）</span>
 
++ escape 转义函数
 
+    对字符串中的特殊字符做 URL-encoding 编码。
+
+    + 不转义编码的字符: `,`, `/`, `?`, `@`, `&`, `+`, `'`, `~`, `!` and `$`.
+
+    + 最常见的转义编码字符: `\<space\>`, `#`, `^`, `(`, `)`, `{`, `}`, `|`, `:`, `>`, `<`, `;`, `]`, `[` and `=`.
+
+    语法：`escape(string)` 返回不带引号的字符串
+
+    案例：`escape('a=1')` 返回 `a%3D1`
+
+    **PS：如果参数不是字符串的话，函数行为是不可预知的。目前传入颜色值的话会返回 `undefined` ，其它的值会原样返回。写代码时不应该依赖这个特性，而且这个特性在未来有可能改变。**
+
+<br>
+
++ e 预判函数
+
+    用于对 CSS 的转义，已经由 `~"value"` 语法代替。
+
+    它接受一个字符串作为参数，并原样返回内容，不含引号。它可用于输出一些不合法的 CSS 语法，或者是使用 LESS 不能识别的属性。
+
+    语法：`e(string)` 返回不带引号的转义字符串
+
+    案例：`filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");` 返回 `filter: ms:alwaysHasItsOwnSyntax.For.Stuff();`
+
+    **PS：该函数也接受 ~"" 转义值和数字做参数，其他类型参数会返回一个错误。**
+
+<br>
+
++ % 百分号格式化参数
+
+    语法：`%(string, arguments ...)` 
+    
+    参数：
+    
+    + `string`：有占位符的格式化字符串
+    + `arguments`：用于替换占位符的值
+    
+    第一个参数是一个包含占位符的字符串。占位符以百分号`%`开头，后面跟着字母 `s`、`S`、`d`、`D`、`a` 或 `A`。后续的参数用于替换这些占位符。如果你需要输出百分号，可以多用一个百分号来转义 `%%`。
+
+    使用大写的占位符可以将特殊字符按照 `UTF-8` 编码进行转义。 此函数将会对所有的特殊字符进行转义，除了 `()'~!` 。空格会被转义为 `%20` 。小写的占位符将原样输出特殊字符，不进行转义。
+
+    占位符说明：
+
+    + `d`, `D`, `a`, `A` - 以被任意类型的参数替换 (颜色、数字、转义后的字符串、表达式等)。如果将它们和字符串一起使用，则整个字符串都会被使用，包括引号。然而，引号将会按原样放在字符串中，不会用 "/" 或类似的方式转义。
+
+    + `s`, `S` - 可以被除了颜色的之外的任何类型参数替换。如果你将它们和字符串一起使用，则只有字符串的值会被使用，引号会被忽略。
+
+    案例：`format-a-d: %("repetitions: %a file: %d", 1 + 2, "directory/file.less");` 
+    
+    输出： `format-a-d: "repetitions: 3 file: "directory/file.less"";`
+
+<br>
+
++ replace 替换
+
+    用一个字符串替换一段文本。
+
+    语法：`replace(string, pattern, replacement, flags)` 
+    
+    参数：
+    
+    + `string`：用于搜索、替换操作的字符串
+    + `pattern`：用于搜索匹配的字符串或正则表达式
+    + `replacement`：用于替换匹配项的字符串
+    + `flags`：(可选) 正则表达式匹配标识（全匹配还是...）
+
+    案例：`replace("Hello, Mars?", "Mars\?", "Earth!");` 
+    
+    输出： `"Hello, Earth!";` ；`replace("One + one = 4", "one", "2", "gi");` 返回 `"2 + 2 = 4";`
+
+<br>
+
+### <span id="jump_fu_li">列表函数（List Functions）</span>
+
++ length 长度
+
+    返回列表中元素的个数。
+
+    语法：`length(list)` 【`list`：由逗号或空格分隔的元素列表。】
+
+    案例：`length(1px solid #0080ff);` 返回 `3`
+
+<br>
+
++ extract 提取
+
+    返回列表中指定索引的值。
+
+    语法：`extract(list, index)`
+
+    案例：`extract(8px dotted red, 2);` 返回 `dotted`
+
+<br>
+
+### <span id="jump_fu_ma">数学函数（Math Functions）</span>
+
++ ceil 向上取整
+
+    语法：`ceil(number)`
+
+    案例：`ceil(1.1)` 返回 `2`
+
+<br>
+
++ floor 向下取整
+
+    语法：`floor(number)`
+
+    案例：`floor(1.7)` 返回 `1`
+
+<br>
+
++ percentage 将浮点数转换为百分比字符串
+
+    语法：`percentage(number)`
+
+    案例：`percentage(0.5)` 返回 `50%`
+
+<br>
+
++ round 四舍五入取整
+
+    语法：`round(number)`
+
+    案例：`round(1.2)` 返回 `1`； `round(1.7)` 返回 `2`
+
+<br>
+
++ sqrt 计算一个数的平方根，并原样保持单位
+
+    语法：`sqrt(number)`
+
+    案例：`sqrt(25px)` 返回 `5px`
+
+<br>
+
++ abs 计算数字的绝对值，原样保持单位
+
+    语法：`abs(number)`
+
+    案例：`abs(-25px)` 返回 `25px`
+
+<br>
+
++ sin 正弦函数
+
+    处理时会将没有单位的数字认为是弧度值。
+
+    语法：`sin(number)`
+
+    案例：`sin(1deg)` 返回 `0.01745241`
+
+<br>
+
++ asin 反正弦函数
+
+    返回以弧度为单位的角度，区间在 `-π/2` 到 `π/2` 之间。
+
+    语法：`asin(number)` 【`number`：区间在 `[-1, 1]` 之间的浮点数。】
+
+<br>
+
++ cos 余弦函数
+
+    处理时会将没有单位的数字认为是弧度值。
+
+<br>
+
++ acos 反余弦函数
+
+    返回以弧度为单位的角度，区间在 `0` 到 `π` 之间。
+
+    语法：`acos(number)` 【`number`：区间在 `[-1, 1]` 之间的浮点数。】
+
+<br>
+
++ tan 正切函数
+
+    处理时会将没有单位的数字认为是弧度值。
+
+<br>
+
++ atan 反正切函数
+
+    返回以弧度为单位的角度，区间在 `-π/2` 到 `π/2` 之间。
+
+<br>
+
++ pi
+
+    返回圆周率 π (pi)。
+
+    案例：`pi()` 返回 `3.14159265`
+
+<br>
+
++ pow 乘方运算
+
+    语法：`pow(A, B)` 返回`A`的`B`次方，返回值与A有相同单位，B的单位被忽略。
+
+    案例：`pow(2px, 3)` 返回 `8px`
+
+<br>
+
++ mod 取余运算
+
+    语法：`mod(A, B)` 返回A对B取余的结果。返回值与A有相同单位，B的单位被忽略。这个函数也可以处理负数和浮点数。
+
+    案例：`mod(9px, 4)` 返回 `1`
+
+<br>
+
++ min 最小值运算
+
+    返回所有传入参数中的最小值
+
+    语法：`min(value1, value2, ..., valueN)`
+
+    案例：`min(9px, 10px, 15px, 99px, 1px)` 返回 `1px`
+
+<br>
+
++ max 最大值运算
+
+    返回所有传入参数中的最大值
+
+    语法：`max(value1, value2, ..., valueN)`
+
+    案例：`max(9px, 10px, 15px, 99px, 1px)` 返回 `99px`
+
+<br>
+
+### <span id="jump_fu_ty">类型函数（Type Functions）</span>
+
++ isnumber
+
+    如果待验证的值为数字则返回 `true` ，否则返回 `false`。
+
+    语法：`isnumber(value)`
+
+    案例：
+
+        isnumber(#ff0);     // false
+        isnumber(blue);     // false
+        isnumber("string"); // false
+        isnumber(1234);     // true
+        isnumber(56px);     // true
+        isnumber(7.8%);     // true
+        isnumber(keyword);  // false
+        isnumber(url(...)); // false
+
+<br>
+
++ isstring
+
+    如果待验证的值为字符串则返回 `true` ，否则返回 `false`。
+
+    语法：`isstring(value)`
+
+    案例：
+
+        isstring(#ff0);     // false
+        isstring(blue);     // false
+        isstring("string"); // true
+        isstring(1234);     // false
+        isstring(56px);     // false
+        isstring(7.8%);     // false
+        isstring(keyword);  // false
+        isstring(url(...)); // false
+
+<br>
+
++ iscolor
+
+    如果待验证的值为颜色则返回 `true` ，否则返回 `false`。
+
+    语法：`iscolor(value)`
+
+    案例：
+
+        iscolor(#ff0);     // true
+        iscolor(blue);     // true
+        iscolor("string"); // false
+        iscolor(1234);     // false
+        iscolor(56px);     // false
+        iscolor(7.8%);     // false
+        iscolor(keyword);  // false
+        iscolor(url(...)); // false
+
+<br>
+
++ iskeyword
+
+    如果待验证的值为关键字则返回 `true` ，否则返回 `false`。
+
+    语法：`iskeyword(value)`
+
+    案例：
+
+        iskeyword(#ff0);     // false
+        iskeyword(blue);     // false
+        iskeyword("string"); // false
+        iskeyword(1234);     // false
+        iskeyword(56px);     // false
+        iskeyword(7.8%);     // false
+        iskeyword(keyword);  // true
+        iskeyword(not);  // true
+        iskeyword(url(...)); // false
+
+<br>
+
++ isurl
+
+    如果待验证的值为 url 则返回 `true` ，否则返回 `false`。
+
+    语法：`isurl(value)`
+
+    案例：
+
+        isurl(#ff0);     // false
+        isurl(blue);     // false
+        isurl("string"); // false
+        isurl(1234);     // false
+        isurl(56px);     // false
+        isurl(7.8%);     // false
+        isurl(keyword);  // false
+        isurl(url(...)); // true
+
+<br>
+
++ ispixel
+
+    如果待验证的值为 像素长度单位的数字 则返回 `true` ，否则返回 `false`。
+
+    语法：`ispixel(value)`
+
+    案例：
+
+        ispixel(#ff0);     // false
+        ispixel(blue);     // false
+        ispixel("string"); // false
+        ispixel(1234);     // false
+        ispixel(56px);     // true
+        ispixel(7.8%);     // false
+        ispixel(keyword);  // false
+        ispixel(url(...)); // false
+
+<br>
+
++ isem
+
+    如果待验证的值为 em长度单位的数字 则返回 `true` ，否则返回 `false`。
+
+    语法：`isem(value)`
+
+    案例：
+
+        isem(#ff0);     // false
+        isem(blue);     // false
+        isem("string"); // false
+        isem(1234);     // false
+        isem(56px);     // false
+        isem(7.8em);    // true
+        isem(keyword);  // false
+        isem(url(...)); // false
+
+<br>
+
++ ispercentage
+
+    如果待验证的值为 百分比 则返回 `true` ，否则返回 `false`。
+
+    语法：`ispercentage(value)`
+
+    案例：
+
+        ispercentage(#ff0);     // false
+        ispercentage(blue);     // false
+        ispercentage("string"); // false
+        ispercentage(1234);     // false
+        ispercentage(56px);     // false
+        ispercentage(7.8%);     // true
+        ispercentage(keyword);  // false
+        ispercentage(url(...)); // false
+
+<br>
+
++ isunit
+
+    如果待验证的值为 指定单位的数字 则返回 `true` ，否则返回 `false`。
+
+    语法：`isunit(value, unit)`  `unit` 可带引号
+
+    案例：
+
+        isunit(11px, px);  // true
+        isunit(2.2%, px);  // false
+        isunit(33px, rem); // false
+        isunit(4rem, rem); // true
+        isunit(56px, "%"); // false
+        isunit(7.8%, '%'); // true
+        isunit(1234, em);  // false
+        isunit(#ff0, pt);  // false
+        isunit("mm", mm);  // false
+
+<br>
+
+### <span id="jump_fu_co">颜色定义函数（Color Definition Functions）</span>
+
++ rgb
+    
+    通过十进制红色、绿色、蓝色三种值 (RGB) 创建不透明的颜色对象。
+    
+    参数：
+    
+    + `red` : 0-255 的整数或 0-100% 的百分比数。
+    + `green` : 0-255 的整数或 0-100% 的百分比数。
+    + `blue` : 0-255 的整数或 0-100% 的百分比数。
+    
+    返回值： `color`
+    
+    案例： `rgb(90, 129, 32)`
+    
+    输出： `#5a8120`
+    
+<br>
+
++ rgba
+    
+    通过十进制红色、绿色、蓝色，以及 alpha 四种值 (RGBA) 创建带alpha透明的颜色对象。
+    
+    参数：
+    
+    + `red` : 0-255 的整数或 0-100% 的百分比数。
+    + `green` : 0-255 的整数或 0-100% 的百分比数。
+    + `blue` : 0-255 的整数或 0-100% 的百分比数。
+    + `alpha` : 0-1 的整数或 0-100% 的百分比数。
+    
+    返回值： `color`
+    
+    案例： `rgba(90, 129, 32, 0.5)`
+    
+    输出： `rgba(90, 129, 32, 0.5)`
+    
+<br>
+
++ argb
+    
+    创建格式为 `#AARRGGBB` 的十六进制颜色值 (**注意不是 `#RRGGBBAA`！**)。
+    
+    这种格式被用于 IE 、.NET 和 Android 的开发中。
+    
+    参数： `color`, 颜色对象。
+    
+    返回值： `string`
+    
+    案例： `argb(rgba(90, 23, 148, 0.5))`
+    
+    输出： `#805a1794`
+          
+<br>
+
++ hsl
+    
+    通过色相 (hue)，饱和度 (saturation)，亮度 (lightness) 三种值 (HSL) 创建不透明的颜色对象。
+    
+    参数：
+    
+    + `hue` : 0-360 的整数，用于表示度数。
+    + `saturation` : 0-100% 的百分比数或 0-1 的整数。
+    + `lightness` : 0-100% 的百分比数或 0-1 的整数。
+    
+    返回值： `color`
+    
+    案例： `hsl(90, 100%, 50%)`
+    
+    输出： `#80ff00`
+    
+    可以基于一种颜色的通道来创建另一种颜色，例如： `@new: hsl(hue(@old), 45%, 90%);`
+    
+    `@new` 将拥有 `@old` 的 色相值(hue)，以及它自身的饱和度与亮度。
+             
+<br>
+
++ hsla
+    
+    通过色相 (hue)，饱和度 (saturation)，亮度 (lightness)，以及 alpha 四种值 (HSLA) 创建透明的颜色对象。
+    
+    参数：
+    
+    + `hue` : 0-360 的整数，用于表示度数。
+    + `saturation` : 0-100% 的百分比数或 0-1 的整数。
+    + `lightness` : 0-100% 的百分比数或 0-1 的整数。
+    + `alpha` : 0-100% 的百分比数或 0-1 的整数。
+    
+    返回值： `color`
+    
+    案例： `hsl(90, 100%, 50%, 0.5)`
+    
+    输出： `rgba(128, 255, 0, 0.5)`
+    
+<br>
+
++ hsv
+
+    通过色相 (hue)、饱和度 (saturation)、色调 (value) 三种值 (HSV) 创建不透明的颜色对象。
+    
+    参数：
+    
+    +`hue` : 0-360 的整数，用于表示度数。
+    +`saturation` : 0-100% 的百分比数或 0-1 的整数。
+    +`value` : 0-100% 的百分比数或 0-1 的整数。
+    
+    返回值： `color`
+    
+    案例： `hsv(90, 100%, 50%)`
+    
+    输出： `#408000`
+    
+<br>
+
++ hsva
+
+    通过色相 (hue)，饱和度 (saturation)，色调 (value)，以及 alpha 四种值 (HSVA) 创建透明的颜色对象。
+    
+    参数：
+    
+    +`hue` : 0-360 的整数，用于表示度数。
+    +`saturation` : 0-100% 的百分比数或 0-1 的整数。
+    +`value` : 0-100% 的百分比数或 0-1 的整数。
+    +`alpha` : 0-100% 的百分比数或 0-1 的整数。
+    
+    返回值： `color`
+    
+    案例： `hsva(90, 100%, 50%, 0.5)`
+    
+    输出： `rgba(64, 128, 0, 0.5)`
+    
+<br>
+
+### <span id="jump_fu_ch">颜色通道函数（Color Channel Functions）</span>
+
++ hue
+    
+    从颜色对象的 HSL 颜色空间中提取色色调值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `整数（integer）`  `0-360`
+    
+    案例： `hue(hsl(90, 100%, 50%))`
+    
+    输出： `90`
+    
+<br>
+
++ saturation
+    
+    从颜色对象的 HSL 色彩空间中提取饱和度值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `百分比（percentage）`  `0-100`
+    
+    案例： `saturation(hsl(90, 100%, 50%))`
+    
+    输出： `100%`
+    
+<br>
+
++ lightness
+    
+    从颜色对象的 HSL 色彩空间中提取亮度值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `百分比（percentage）`  `0-100`
+    
+    案例： `lightness(hsl(90, 100%, 50%))`
+    
+    输出： `50%`
+    
+<br>
+
++ hsvhue
+    
+    在颜色对象的 HSV 色彩空间中提取色相值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `整数（integer）`  `0-360`
+    
+    案例： `hsvhue(hsv(90, 100%, 50%))`
+    
+    输出： `90`
+    
+<br>
+
++ hsvsaturation
+    
+    在颜色对象的 HSV 色彩空间提取饱和度值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `百分比（percentage）`  `0-100`
+    
+    案例： `hsvsaturation(hsv(90, 100%, 50%))`
+    
+    输出： `100%`
+    
+<br>
+
++ hsvvalue
+    
+    在颜色对象的 HSV 色彩空间提取色调值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `整数（integer）`  `0-360`
+    
+    案例： `hsvhue(hsv(90, 100%, 50%))`
+    
+    输出： `90`
+    
+<br>
+
++ red
+    
+    从颜色对象中提取红色通道值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `整数（integer）`  `0-255`
+    
+    案例： `red(rgb(10, 20, 30))`
+    
+    输出： `10`
+    
+<br>
+
++ green
+    
+    从颜色对象中提取绿色通道值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `整数（integer）`  `0-255`
+    
+    案例： `green(rgb(10, 20, 30))`
+    
+    输出： `20`
+    
+<br>
+
++ blue
+    
+    从颜色对象中提取蓝色通道值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `整数（integer）`  `0-255`
+    
+    案例： `blue(rgb(10, 20, 30))`
+    
+    输出： `30`
+    
+<br>
+
++ alpha
+    
+    从颜色对象中提取 alpha 通道值。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `浮点数（float）`  `0-1`
+    
+    案例： `alpha(rgba(10, 20, 30, 0.5))`
+    
+    输出： `0.5`
+    
+<br>
+
++ luma
+    
+    计算颜色对象的 luma (perceptual brightness) 值（亮度的百分比表示法）。
+    
+    参数： `color` - 颜色对象。
+    
+    返回值： `百分比（percentage）` `0-100%`
+    
+    案例： `luma(rgb(100, 200, 30))`
+    
+    输出： `44%`
+    
+<br>
+
+### <span id="jump_fu_op">颜色操作函数（Color Operation Functions）</span>
+    
++ 颜色值运算有几点注意事项：
+        
+    + 参数必须单位/格式相同；
+    + 百分比将作为绝对值处理，比如 10% 增加 10%，结果是 20% 而不是 11%；
+    + 参数值只能在限定的范围内；
+    + 返回值时，除了十六进制的颜色值 (hex versions) 外将对其他格式做简化处理。
+
+<br>
+
++ saturate
+    
+    增加一定数值的颜色饱和度。
+    
+    参数：
+    
+    + `color` : 颜色对象
+    + `amount` : 百分比 0-100%
+    
+    返回值： `color`
+    
+    例如： `saturate(hsl(90, 80%, 50%), 20%)`
+    
+    输出： `#80ff00 // hsl(90, 100%, 50%)`
+
+<br>
+
++ desaturate
+    
+    降低一定数值的颜色饱和度。
+    
+    参数：
+    
+    + `color` : 颜色对象
+    + `amount` : 百分比 0-100%
+    
+    返回值： `color`
+    
+    例如： `saturate(hsl(90, 80%, 50%), 20%)`
+    
+    输出： `#80cc33 // hsl(90, 60%, 50%)`
+
+<br>
+
++ lighten
+    
+    增加一定数值的颜色亮度。
+    
+    参数：
+    
+    + `color` : 颜色对象
+    + `amount` : 百分比 0-100%
+    
+    返回值： `color`
+    
+    例如： `lighten(hsl(90, 80%, 50%), 20%)`
+    
+    输出： `#b3f075 // hsl(90, 80%, 70%)`
+
+<br>
+
++ darken
+    
+    降低一定数值的颜色亮度。
+    
+    参数：
+    
+    + `color` : 颜色对象
+    + `amount` : 百分比 0-100%
+    
+    返回值： `color`
+    
+    例如： `darken(hsl(90, 80%, 50%), 20%)`
+    
+    输出： `#4d8a0f // hsl(90, 80%, 30%)`
+
+<br>
+
++ fadein
+    
+    降低颜色的透明度，令其更不透明。对不透明的颜色无效。
+    
+    参数：
+    
+    + `color` : 颜色对象
+    + `amount` : 百分比 0-100%
+    
+    返回值： `color`
+    
+    例如： `fadein(hsla(90, 90%, 50%, 0.5), 10%)`
+    
+    输出： `rgba(128, 242, 13, 0.6) // hsla(90, 90%, 50%, 0.6)`
+
+<br>
+
++ fadeout
+    
+    增加颜色的透明度，令其更透明。对不透明的颜色无效。
+    
+    参数：
+    
+    + `color` : 颜色对象
+    + `amount` : 百分比 0-100%
+    
+    返回值： `color`
+    
+    例如： `fadeout(hsla(90, 90%, 50%, 0.5), 10%)`
+    
+    输出： `rgba(128, 242, 13, 0.4) // hsla(90, 90%, 50%, 0.6)`
+
+<br>
+
++ fade
+    
+    给颜色（包括不透明的颜色）设定一定数值的透明度。
+    
+    参数：
+    
+    + `color` : 颜色对象
+    + `amount` : 百分比 0-100%
+    
+    返回值： `color`
+    
+    例如： `fade(hsl(90, 90%, 50%), 10%)`
+    
+    输出： `rgba(128, 242, 13, 0.1) //hsla(90, 90%, 50%, 0.1)`
+
+<br>
+
++ spin
+    
+    任意方向旋转颜色的色相角度 (hue angle)。
+    
+    旋转范围 0-360，超过一周后将从起点开始继续旋转（+-控制方向），比如旋转360度与720度是相同的结果。需要注意的是，颜色值会通过RGB格式转换，这个过程不能保留灰色的色相值（灰色没有饱和度，色相值也就没有意义了），因此要确定使用函数的方法能够保留颜色的色相值，例如不要这样使用函数：
+    
+    `@c: saturate(spin(#aaaaaa, 10), 10%);`
+    
+    而应该用这种方法代替：
+    
+    `@c: spin(saturate(#aaaaaa, 10%), 10);`
+    
+    因为颜色值永远输出为 RGB 格式，因此 spin() 函数对灰色无效。
+    
+    参数：
+    
+    + `color` : 颜色对象
+    + `angle` : 任意数字表示角度 （+ 或 – 表示方向）
+    
+    返回值： `color`
+    
+    例如：
+    
+    <pre>
+    spin(hsl(10, 90%, 50%), 30)
+    spin(hsl(10, 90%, 50%), -30)
+    </pre>
+    
+    输出：
+    
+    <pre>
+    #f2a60d // hsl(40, 90%, 50%)
+    #f20d59 // hsl(340, 90%, 50%)
+    </pre>
+
+<br>
+
++ mix
+    
+    根据比例混合两种颜色，包括计算不透明度。
+    
+    参数：
+        
+    + `color1` : 颜色对象
+    + `color2` : 颜色对象
+    + `weight` : (可选) 平衡两种颜色的百分比, 默认 50%
+
+    返回值： `color`
+    
+    例如：
+    
+    <pre>
+    mix(#ff0000, #0000ff, 50%)
+    mix(rgba(100,0,0,1.0), rgba(0,100,0,0.5), 50%)
+    </pre>
+    
+    输出：
+    
+    <pre>
+    #800080
+    rgba(75, 25, 0, 0.75)
+    </pre>
+
+<br>
+
++ greyscale
+    
+    完全移除颜色的饱和度，与 desaturate(@color, 100%) 函数效果相同。
+    
+    因为颜色的饱和度不受色相值影响，所以输出的颜色会稍显暗淡 (dull or muddy)；如果使用 `luma` 值可能会有更好的结果，因为它提取的是百分比亮度，而不是线性亮度。比如 `greyscale('#0000ff')` 与 `greyscale('#00ff00')` 会得出相同的结果，尽管对人眼来说，它们的亮度是不一样的。
+    
+    参数：`color` : 颜色对象
+    
+    返回值： `color`
+    
+    例如： `greyscale(hsl(90, 90%, 50%))`
+    
+    输出： `#808080 // hsl(90, 0%, 50%)`
+
+<br>
+
++ contrast
+    
+    选择两种颜色相比较，得出哪种颜色的对比度最大就倾向于对比度最大的颜色。
+    
+    这个函数对比 @background 的 luma 值与 @threshold 参数的大小，如果大于输出 @darkcolor, 小于则输出 @lightcolor，便于选择相对于背景更容易阅读的颜色，同时提高了使用颜色的灵活性，与 Compass 的 contrast() 函数 工作方式相同。根据 WCAG 2.0 应该对比颜色的 luma 值，而不是亮度值 (lightness)。
+    
+    `light` 和 `dark` 两个参数可以调换顺序。因为 `contrast()` 函数会自动计算它们的luma值和自动分配 `light` 和 `dark`，这样你就不用通过颠倒两个参数的顺序才能选到最小对比度颜色(the least contrasting color)。
+    
+    参数：
+    
+    + `color`: 需要对比的颜色对象 (A color object to compare against.)
+    + `dark`: 可选项 – 指定的黑色（默认 black）
+    + `light`: 可选项 – 指定的白色（默认 white）
+    + `threshold`: 可选项 – 百分比 0-100% 界定深色过渡到浅色的转变位置（默认 43%），这个数值决定了输出结果偏向于哪一方，比如判断 50% 的灰色背景应该显示白色还是黑色的文字。一般来说，如果本色方案偏浅，则应该设低一点，否则设高一点。
+    
+    返回值： `color`
+    
+    例如：
+    
+    <pre>
+    contrast(#aaaaaa)
+    contrast(#222222, #101010)
+    contrast(#222222, #101010, #dddddd)
+    contrast(hsl(90, 100%, 50%), #000000, #ffffff, 40%);
+    contrast(hsl(90, 100%, 50%), #000000, #ffffff, 60%);
+    </pre>
+    
+    输出：
+    
+    <pre>
+    #000000 // 黑色
+    #ffffff // 白色
+    #dddddd
+    #000000 // 黑色
+    #ffffff // 白色
+    </pre>
+
+<br>
+
+### <span id="jump_fu_bl">颜色混合函数（Color Blending Functions）</span>
+
+这些操作和图片编辑器（例如 Photoshop、Fireworks 或 GIMP）中的混合模式很类似（虽然不是完全一致），因此，你可以通过这些函数让 CSS 中的颜色与图片中的颜色相匹配。
+
+语法：`fn(color1, color2)`
+
++ multiply
+    
+    分别将两种颜色的红绿蓝 (RGB) 三种值做乘法运算，然后再除以 255，输出结果是更深的颜色。（译注：对应Photoshop中的“变暗/正片叠底”。）
+    
++ screen
+    
+    与 `multiply` 函数效果相反，输出结果是更亮的颜色。（译注：对应Photoshop中的“变亮/滤色”。）
+    
++ overlay
+    
+    结合 `multiply` 与 `screen` 两个函数的效果，令浅的颜色变得更浅，深的颜色变得更深。（译注：对应 Photoshop 中的“叠加”。）注意：输出结果由第一个颜色参数决定。
+
+    参数：
+         
+     + `color1` : 基准颜色对象。也就是用以确定最终结果是浅些还是深些的参考色。
+     + `color2` : 颜色对象。
+   
++ softlight
+    
+    与 `overlay` 函数效果相似，只是当纯黑色或纯白色作为参数时输出结果不会是纯黑色或纯白色。（译注：对应Photoshop中的“柔光”。）
+ 
+    参数：
+         
+     + `color1` : 混合色（光源）。
+     + `color2` : 被混合的颜色。
+   
++ hardlight
+    
+    与 `overlay` 函数效果相似，不过由第二个颜色参数决定输出颜色的亮度或黑度，而不是第一个颜色参数决定。（译注：对应Photoshop中的“强光/亮光/线性光/点光”。）
+ 
+    参数：
+        
+    + `color1` : 混合色（光源）。
+    + `color2` : 基准色对象。它决定最终结果是亮些还是暗些。
+
++ difference
+    
+    从第一个颜色值中减去第二个（分别计算 RGB 三种颜色通道），输出结果是更深的颜色。如果结果为负值则被反转。如果减去的颜色是黑色则不做改变；减去白色将得到颜色反转。（译注：对应Photoshop中的“差值/排除”。）
+    
+    参数：
+        
+    + `color1` : 被减的颜色对象。
+    + `color2` : 减去的颜色对象。   
+    
++ exclusion
+    
+    效果与 `difference` 函数效果相似，只是输出结果对比度更小 (lower contrast)。（译注：对应Photoshop中的“差值/排除”。）
+    
+    参数：
+        
+    + `color1` : 被减的颜色对象。
+    + `color2` : 减去的颜色对象。
+
++ average
+    
+    分别对 RGB 的三种颜色值取平均值，然后输出结果。
+    
++ negation
+    
+    与 `difference` 函数效果相反。
+    
+    输出结果是更亮的颜色。注意：效果 相反 不代表做加法运算。
+    
+    参数：
+    
+    + `color1` : 被减的颜色对象。
+    + `color2` : 减去的颜色对象。
+    
 <br>
 
 ## <span id="jump_im">导入样式（Import Directives）</span>

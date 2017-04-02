@@ -1,3 +1,16 @@
-.test{
-  transition: convert(1s, ms);
+//@a: iskeyword(!important);
+@b: iskeyword(keyword);
+@c: iskeyword(not);
+
+.test1 (@a) when (@a){
+  display: inline;
+  width: luma(rgb(100, 200, 30));
+}
+
+.box{
+  //.test1(@a);
+}
+
+.box2{
+  .test1(@c);
 }
