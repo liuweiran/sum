@@ -8,27 +8,75 @@
 </head>
 <body>
 请发表评论：
-<textarea name="" cols="30" rows="10" id="textarea"></textarea>
+<textarea name="" cols="30" rows="10" id="textarea"></textarea><button id="btn">提交</button>
 
 </body>
 <script>
-    var box = document.getElementById('textarea');
-    var url = window.location.href;
-    if( url.indexOf('?') == -1 ){
-        url = url + '?edit=1';
-    }else{
+    function parse(url){
+        url = url || window.location.href;
+        if( !/\?/.test(url) ) return false;
+        url = String(url).split('?').pop();
 
+        var params = {};
+        if( url && /=/.test(url) ){
+            url.split('&').forEach( v => {
+                var part = v.split('=');
+                var name = part[0];
+                var value = part[1];
+                params[name] = value;
+            })
+        }
+        return params;
     }
-    box.onkeyup = function(){
-        if(this.value){
-            console.log(url)
 
-            window.history.pushState({edit:1}, '', url);
+    function exit(){
+        if(!box.value) return;
+        if(urlStatus) return;
+        const msg = confirm('确定退出编辑吗？');
+
+        if(msg){
+            urlStatus = 1;  //更改变量的值，使得不再触发popstate的exit
+            window.history.back();
+        }else{
+            window.history.pushState({edit:1},'', window.location.href+ '?edit=1');
+        }
+    }
+    var urlStatus = 0;
+    var box = document.getElementById('textarea');
+    var btn = document.getElementById('btn');
+
+    //进入页面 包括刷新页面 如果已经在编辑状态的url 则返回到前一页非编辑状态的url
+    var searchs = parse(window.location.href);
+    if(searchs.edit){
+        window.history.back();
+    }
+
+    window.addEventListener('popstate', exit, false);   //监听popstate事件，状态改变时调用exit回调
+
+    //输入字符时，如果内容不为空，则添加一条url记录，如果内容为空（删除输入时）返回到非编辑状态的url
+    box.onkeyup = function(){
+        var searchs = parse(window.location.href);
+        if(box.value){
+            if(!searchs.edit){
+                window.history.pushState({edit:1},'', window.location.href+ '?edit=1'); //此处没有对url做判断，严谨情况不可直接如此操作，需要判断是否有?、#
+            }
+        }else{
+            if(searchs.edit){
+                window.history.back();
+            }
         }
     };
-    window.onload = function(){
 
-
+    //点击提交按钮
+    btn.onclick = function(){
+        if(box.value){
+            window.removeEventListener('popstate', this.exit); //移除监听事件
+            alert('评论成功！');
+            window.history.go(-2);
+        }else{
+            alert('评论内容不能为空！');
+        }
     }
+
 </script>
 </html>
