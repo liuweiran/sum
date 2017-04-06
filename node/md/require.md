@@ -16,6 +16,8 @@ module.do_nothing(); //→ function do_nothing(){ // I do nothing }
     a. 返回该模块。
      
     b. 不再继续执行。
+
+<br>
     
 + 如果 `X` 以 `./` 或者 `/` 或者 `../` 开头 
     
@@ -34,11 +36,15 @@ module.do_nothing(); //→ function do_nothing(){ // I do nothing }
     + X/index.js
     + X/index.json
     + X/index.node
+
+<br>
     
 + 如果 `X` 不带路径 
     
     a. 根据 `X` 所在的父模块，确定 X 可能的安装目录。
     
     b. 依次在每个目录中，将 X 当成文件名或目录名加载。
+
+<br>
     
 + 抛出 "not found"
