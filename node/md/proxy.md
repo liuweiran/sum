@@ -1,10 +1,12 @@
-# Install
+# http-proxy-middleware //跨域代理模块
+
+## Install
 
 ```
 $ npm install --save-dev http-proxy-middleware  //作为项目依赖安装
 ```
 
-# Core Concept
+## Core Concept
 
 ```
 var proxy = require('http-proxy-middleware');
@@ -16,7 +18,7 @@ var apiProxy = proxy({'/api', {target: 'http://www.example.ory'}});
 // `apiProxy` 可作为一个服务器中间件
 ```
 
-# Example
+## Example
 
 ```
 var express = require('express');

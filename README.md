@@ -23,7 +23,7 @@ node文件夹
 
 ## node模块介绍
 
-+ [http-proxy-middleware](./nm/md/proxy.md)
++ [http-proxy-middleware](node/md/proxy.md)
 
 
 ## 文档
