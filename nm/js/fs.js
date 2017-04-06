@@ -6,7 +6,7 @@
 //文件系统模块 fs
 
 const fs = require('fs'),
-    path = require('path');
+      path = require('path');
 
 //1、读取文件readFile函数
 //readFile(filename,[options],callback);
