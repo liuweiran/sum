@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>判断一个对象是否为空对象</title>
+</head>
+<body>
+
+</body>
+<script>
+    //为空对象时返回true
+    function isEmptyObject(obj) {
+        for (var key in obj)
+            return !1;
+        return !0;
+    }
+
+    var a = {}, b = {k: 'kk'};
+    console.log(isEmptyObject(a))
+    console.log(isEmptyObject(b))
+
+</script>
+</html>
