@@ -23,7 +23,12 @@ node文件夹
 
 ## node介绍
 
+### 模块
++ [require](node/md/require.md) （还木有添加内容。。）
 + [http-proxy-middleware](node/md/proxy.md)
+
+
+### 其他
 + [require语句](node/md/require.md)
 + [process对象](node/md/process.md)
 
@@ -31,3 +36,6 @@ node文件夹
 ## 文档
 
 + [LESS文档](./docs/less)
+
+## vue.js
++ [.vue 单文件组件](vuejs/vue.md)

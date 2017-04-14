@@ -17,10 +17,10 @@ module.exports = function (req, res) {
 
                 file = path.relative(root, file);
                 data.files.push({
-                    flag: '&hearts;',
-                    href: resolve('/src/' + file),
-                    path: resolve('src/' + file),
-                    title: title
+                     flag: '&hearts;',
+                     href: resolve('/src/' + file),
+                     path: resolve('src/' + file),
+                     title: title
                 })
             });
     }
