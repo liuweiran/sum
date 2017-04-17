@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo列表</title>
+    <link rel="shortcut icon" href="/demos/favicon.ico">
+</head>
+<body>
+<dl>
+    <dt>&clubs; <b>html+css</b></dt>
+    <dd>&bull; <a href="">1243</a></dd>
+</dl>
+<a href="/demos/html+css/baidu_search.html">baidu_search</a>
+
+
+<!--<ul>
+    <%files.forEach(function(file){%>
+    <li>&lt;!&ndash;<i><%-file.flag%></i>&ndash;&gt; <a href="<%=file.href%>"><%=file.path%> - <%=file.title%></a></li>
+    <%});%>
+</ul>-->
+<script>
+    window.data = <%-JSON.stringify(files)%>;
+</script>
+</body>
+</html>
