@@ -1,61 +1,44 @@
-const fs = require('fs-arm'),
-      path = require('path'),
-      ejs = require('ejs');
+const fs = require('fs'),
+      path = require('path');
 
-module.exports = function (req, res) {
+//module.exports = function (req, res) {
     let data = {
         files: []
     };
 
-    let root, html, title;
-    root = path.resolve(__dirname, 'src/htm');
+    let dir, root, html, title;
+    root = path.resolve(__dirname, 'demos');
     if (fs.existsSync(root)) {
-        fs.readdirsSync(root).files.forEach(function(file) {
-                html = fs.readFileSync(file, 'utf8');
-                title = html.match(/<title>([^<]+?)<\/title>/);
-                title = title ? title[1] : '';
+        fs.readdirSync(__dirname+'/demos', function(err, files){
+            if(err)
+                console.log(err)
 
-                file = path.relative(root, file);
-                data.files.push({
-                     flag: '&hearts;',
-                     href: resolve('/src/' + file),
-                     path: resolve('src/' + file),
-                     title: title
-                })
+            console.log(files)
+        });
+
+
+        /*fs.readdirSync(root).files.forEach(function(file) {
+            console.log(file)
+            fs.stat(root+'/'+file, function(err, stat){
+                if(stat.isDirectory()){
+                    console.log(file)
+
+                }
             });
+
+            html = fs.readFileSync(file, 'utf8');
+            title = html.match(/<title>([^<]+?)<\/title>/);
+            title = title ? title[1] : '';
+
+            file = path.relative(root, file);
+            data.files.push({
+                 flag: '&hearts;',
+                 href: resolve('/src/' + file),
+                 path: resolve('src/' + file),
+                 title: title
+            })
+
+
+        });*/
     }
-
-    // &hearts; 是html代码 表示心形特殊字符  &diams; 表示方块
-    //match() 返回存放结果的数组
-    /*
-    例如：'gagga<title>标题</title>'.match(/<title>([^<]+?)<\/title>/)
-    得到： ["<title>题目</title>", "题目", index: 5, input: "gagga<title>题目</title>"]
-    */
-
-    /*root = path.resolve(__dirname, 'dist');
-    if (fs.existsSync(root)) {
-        fs.readdirsSync(root).files.forEach(function(file) {
-                if (!/\.html$/.test(file)) return;
-
-                html = fs.readFileSync(file, 'utf8');
-                title = html.match(/<title>([^<]+?)<\/title>/);
-                title = title ? title[1] : '';
-
-                file = path.relative(root, file);
-                data.files.push({
-                    flag: '&diams;',
-                    href: resolve('/' + file),
-                    path: resolve(file),
-                    title: title
-                })
-            });
-    }*/
-
-    const filename = path.resolve(__dirname, './index.html'),
-          content = fs.readFileSync(filename, 'utf8');
-    res.end(ejs.render(content, data, {filename}));
-};
-
-function resolve(p) {
-    return p.replace(/\/|\\/g, '/');
-}
+//}
