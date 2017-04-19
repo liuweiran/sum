@@ -1,10 +1,12 @@
 const express = require('express'),
-      app = express();
+      app = express(),
       indexJs = require('./index');
 
 const default_port = 9901;
 
-app.use(indexJs);
+app.use(indexJs, function(){
+    next();
+});
 app.use('/', express.static('./', { redirect:false }));
 
 const index = process.argv.indexOf('--port'),
