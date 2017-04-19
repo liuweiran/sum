@@ -1,25 +1,25 @@
 #sum项目说明
 
-## 启动服务
+## demos
 
-<pre>
-$ node start --port [端口号]
-</pre>
+### 启动服务
 
-如果省略端口号，则使用默认端口。
+    $ node start --port [端口号]
 
-## 访问静态文件
-
-访问原始文件: `http://localhost:port/src`
+如果省略端口号，则使用默认端口`9901`。
 
 
 ## 项目结构说明
-htm文件夹
+
+demos文件夹
+
 -存放平时总结的案例
 
 node文件夹
+
 -存放node模块的使用方法
--文件名已node模块名命名
+
+-文件名以node模块名命名
 
 ## node介绍
 
