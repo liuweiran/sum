@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>三栏布局--左右自适应 中间固定</title>
+    <style type="text/css">
+        *{margin: 0;}
+        .warp1{float:left; width:50%;_margin-right:-3px; background: pink;}
+        .warp2{margin-left:50%; text-align:right; _margin-left:0; _zoom:1; background: orange;}
+        .view{ height: 200px;}
+        #id1{ margin-right:100px;}
+        #id2{margin-left:100px;}
+        #id3{ background:red;width:200px; position:absolute; left:50%; margin-left:-100px; top:0; z-index:2;}
+    </style>
+</head>
+
+<body>
+
+
+<div class="warp1">
+    <div id="id1" class="view"></div>
+</div>
+
+
+<div class="warp2">
+    <div id="id2" class="view"></div>
+</div>
+
+
+<div id="id3" class="view">
+</div>
+
+</body>
+</html>

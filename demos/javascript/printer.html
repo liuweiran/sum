@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS实现简单的页面局部打印</title>
+</head>
+<body>
+<button onclick="preview()">打印</button><br><br>
+<div style="height: 200px; background: orange;">区域一</div>
+<!--startprint-->
+<div style="height: 400px; background: pink;">区域二-需要打印的区域</div>
+<!--endprint-->
+<div style="height: 300px; background: grey;">区域三</div>
+</body>
+<script>
+    //将要打印的部分用特殊的字符标记起来进行打印
+    function preview() {
+        bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+        sprnstr="<!--startprint-->";//设置打印开始区域
+        eprnstr="<!--endprint-->";//设置打印结束区域
+        prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+        window.document.body.innerHTML=prnhtml;
+        window.print();
+        window.document.body.innerHTML=bdhtml;
+    }
+</script>
+</html>

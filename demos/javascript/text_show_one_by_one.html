@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文字逐个显示</title>
+</head>
+
+<body>
+<p id="p"></p>
+<script type="text/javascript">
+    var msg = "一二三四五六七";
+    var i = 0;
+    var p = document.getElementById('p');
+    function txtPlay(){
+        if(i<=msg.length){
+            p.innerHTML = msg.substring(0,i);
+            i++;
+            setTimeout('txtPlay()',300);
+        }
+        else{i=0;}
+    }
+    window.onload = txtPlay();
+</script>
+</body>
+</html>

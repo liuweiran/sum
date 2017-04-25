@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS特效文字左右无间断滚动</title>
+    <style type="text/css">
+        .box{ margin:10px auto; width:200px; background-color:#CCCCCC; height:20px; overflow:hidden; white-space:nowrap; }
+        /*white-space:nowrap 文本不换行*/
+        .span{ width:auto; height:20px; font-size:12px; }
+    </style>
+    <script type="text/javascript">
+        var s,s1,s2,timer;
+        function init(){
+            s=getid("box");
+            s1=getid("span1");
+            s2=getid("span2");
+            s2.innerHTML=s1.innerHTML;
+            timer=setInterval(mar,30)
+        }
+        function mar(){
+            if(s1.offsetWidth<=s.scrollLeft){
+                s.scrollLeft-=s1.offsetWidth;
+            }else{s.scrollLeft++;}
+        }
+        function getid(id){
+            return document.getElementById(id);
+        }
+        window.onload=init;
+    </script>
+</head>
+
+<body>
+<div class="box" id="box" onmouseover="clearInterval(timer)" onmouseout="timer=setInterval(mar,30)">
+    <span class="span" id="span1"><a href="#">第一段文字，第二段文字，</a><a href="#">第三段文字链接</a>，第四段文字，第五段文字，第六段文字。</span>
+    <span class="span" id="span2"></span>
+</div>
+</body>
+</html>
