@@ -1,0 +1,41 @@
+/*全局*/
+html,body{width:100%; height:100%; overflow:hidden;}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, select,span,i,em,a{ margin:0; padding:0; box-sizing:border-box;}
+body {font-size:12px; font-family:Verdana, Geneva, sans-serif;}
+fieldset, img { border:0; }
+img { display: inline-block; }
+ol, ul { list-style:none; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; font-weight: normal; }
+i,em { font-style:normal; }
+input, button, textarea { outline:none; border:none; display:inline-block;} 
+textarea { resize:none; padding:4px;}
+a {text-decoration:none;}
+a:hover {text-decoration:none; }
+input[type="text"]{padding-left:4px;}
+input[disabled="disabled"],textarea[disabled="disabled"]{border:none !important; background:none !important;}
+select[disabled="disabled"]{border:none !important; -moz-appearance: none; -webkit-appearance:none; -ms-appearance:none; appearance:none;}
+select{border:1px solid #ccc; outline:none;}
+
+.dn{display:none !important;}
+
+.header{height:80px; background:#0168B7; color:#fff;}
+.main{position:absolute; top:80px; bottom:30px; width:100%; padding:10px;}
+.mainL{display:inline-block; width:180px; height:100%;}
+.mainR{position:absolute; top:10px; bottom:10px; left:200px; right:10px;}
+.main iframe{width:100%; height:100%;}
+.footer{width:100%; position:absolute; bottom:0; height:30px; background:#EEEEEE;}
+
+.menu{width:180px; height:100%; border:1px solid #0168B7; padding:5px; overflow-y:auto; display:inline-block; font-size:0;}
+.menu a{display:inline-block; width:100%; height:100%;}
+.menu>*{display:inline-block; vertical-align:top; font-size:12px;}
+.tabL{width:15%;}
+.tabR{width:83%; margin-left:2%;}
+.tabL li{height:80px; margin-bottom:2px; background:#105FEF;}
+.tabL li:hover,.tabL li.current{background:#3745C4;}
+.tabL li a{text-align:center; padding:5px; color:#fff; }
+.menu .tabR dl>*{line-height:30px; padding-left:10px; margin-bottom:2px;}
+.menu .tabR dl dt{background:#75A6E8; color:#fff;}
+.menu .tabR dl dd a{color:#000;}
+.menu .tabR dl dd:hover,.menu .tabR dl dd.current{background:#DCE9F9;}
+
+.con{width:100%; height:100%; border:1px solid #0168B7; padding:10px; overflow-y:auto;}
