@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>呼吸灯轮换</title>
+    <style type="text/css">
+        * { margin: 0; padding: 0; list-style: none; }
+        .banner { margin: 100px auto; width: 500px; height: 420px; position: relative; }
+        .banner .show{ width: 100%; height: 100%; }
+        .banner ul { position: relative; width: 100%; height: 100%;}
+        .banner ul li { position: absolute; width: 100%; height: 100%; display: none; }
+        .banner ol { position: absolute; right: 10px; bottom: 10px; }
+        .banner ol li { float: left; width: 28px; height: 18px; margin: 0 0 0 10px; text-align: center; line-height: 18px; background: rgba(0,0,0,0.5); color: #fff; cursor: pointer; border: 1px solid #fff; }
+        .banner ol li.current,.banner ol li:hover { background: rgba(0,0,0,0.8); }
+        .prev,.next { width: 41px; height: 69px; position:absolute; top: 50%; margin: -35px 0 0 0; background:grey; }
+        .prev { left: -50px; }
+        .next { right: -50px; }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <div class="show">
+        <ul>
+            <li style="background-color: pink;">图1</li>
+            <li style="background-color: royalblue;">图2</li>
+            <li style="background-color: silver;">图3</li>
+            <li style="background-color: orange;">图4</li>
+            <li style="background-color: darkkhaki">图5</li>
+        </ul>
+    </div>
+    <span class="prev">	&lt;</span>
+    <span class="next">	&gt;</span>
+    <ol>
+    </ol>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="../../../assets/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        var li1 = $('.banner ul li');
+        var len = li1.length;
+        //默认显示第一张图
+        li1.eq(0).show();
+
+        //生成指示器
+        for( var i=0; i<len; i++ ){
+            $('.banner ol').append('<li></li>')
+        }
+        var li2 = $('.banner ol li');
+        li2.eq(0).addClass('current');
+
+        var myIndex = 0;
+        var num = 0;
+        var speed1 = 1000;
+
+        //鼠标划过指示器
+        li2.live('click',function(){
+            myIndex++;
+            $(this).addClass('current').siblings().removeClass('current');
+
+            var index = $(this).index();
+            li1.eq(index).fadeIn(speed1).siblings().stop().fadeOut(speed1);
+            num = index;
+        });
+
+        //自动播放
+        var timer = null;
+        var speed2 = 2000;
+
+        function autoRun(){
+            num++;
+            myIndex++;
+            if(num >= len){num = 0}
+            li1.eq(num).fadeIn(speed1).siblings().stop().fadeOut(speed1);
+            li2.eq(num).addClass('current').siblings().removeClass('current');
+        }
+
+
+        timer = setInterval(autoRun, speed2);
+        $('.banner').hover(function(){
+            clearInterval(timer);
+        },function(){
+            timer = setInterval(autoRun, speed2)
+        });
+
+        $('.next').click(function(e) {
+            autoRun();
+        });
+        $('.prev').click(function(e) {
+            li1.eq(num).stop().fadeOut(speed1);
+            num--;
+            myIndex--;
+            if(num < 0){num = 4}
+            li1.eq(num).stop().fadeIn(speed1);
+            li2.eq(num).addClass('current').siblings().removeClass('current');
+        });
+
+    })();
+</script>

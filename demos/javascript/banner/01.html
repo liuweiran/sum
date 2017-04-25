@@ -2,63 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>简单轮播</title>
+    <title>上下切换轮播</title>
     <style type="text/css">
-        * { margin: 0; padding: 0; list-style: none; }
-        .banner { margin: 50px auto; width: 600px; height: 300px; overflow: hidden; position: relative; }
-        .banner ul { width: 10000px; position: absolute; }
-        .banner ul li { float: left; width: 600px; height: 300px; line-height: 300px; text-align: center; font-weight: bold; font-size: 20px;}
+        *{margin:0; padding:0; list-style: none; }
+        .banner{width: 490px; height: 170px; padding: 5px; border:1px solid #ccc; margin:100px auto; }
+        .banner div{position: relative; width: 490px; height: 170px; overflow: hidden; cursor: pointer; }
+        img{display: block; }
+        ul{position: absolute; top: 0; left: 0; }
+        ul li{ width: 490px; height: 170px; }
+        ol{position: absolute; right:0; bottom: 10px; }
+        ol li{float:left; width:20px; height: 20px; background: #fff; border: 1px solid #ccc; text-align: center; line-height: 20px; margin-right:10px; border: 1px solid #ccc;}
+        .current{background: yellow;}
     </style>
 </head>
 <body>
 <div class="banner">
-    <ul>
-        <li style="background: pink">图1</li>
-        <li style="background: orange">图2</li>
-        <li style="background: green">图3</li>
-    </ul>
+    <div>
+        <ul>
+            <li style="background-color: pink;">图1</li>
+            <li style="background-color: royalblue;">图2</li>
+            <li style="background-color: silver;">图3</li>
+            <li style="background-color: orange;">图4</li>
+            <li style="background-color: darkkhaki">图5</li>
+        </ul>
+        <ol>
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+    </div>
 </div>
+
 </body>
 </html>
 
 <script type="text/javascript" src="../../../assets/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
     $(function(){
+        $('ol li').mouseenter(function(){
+            $(this).addClass('current').siblings().removeClass();
+            var index = $(this).index();
+            $('ul').stop().animate({top:-170*index}, 500);
+            num = index;
+        });
 
-//简单轮播
-
-         /*var myNum = 0;
-         var timer = null;
-         function autoRun() {
-             myNum++;
-             if (myNum > 1) {
-                 myNum = 0
-             }
-             $('.banner ul').stop().animate({left: -600 * myNum});
-         }
-         timer = setInterval(autoRun, 2000);*/
-
-
-//无缝轮播
-        $('.banner ul').append($('.banner ul li:first').clone(true));
-        var myNum = 0;
+        var num = 0;
         var timer = null;
         function autoRun(){
-            myNum++;
-            if(myNum > 2){
-                myNum = 1;
-                $('.banner ul').css('left','0');
-            }
-            $('.banner ul').stop().animate({'left': -600*myNum},300);
+            num++;
+            if(num > 4){num = 0 }
+            $('ul').stop().animate({top:-170*num}, 500);
+            $('ol li').eq(num).addClass('current').siblings().removeClass();
         }
-        timer = setInterval(autoRun,2000);
 
-        $('.banner').hover(function(e){
+        timer = setInterval(autoRun,1000);
+        $('.banner').hover(function(e) {
             clearInterval(timer);
         },function(){
             clearInterval(timer);
-            timer = setInterval(autoRun,2000);
+            timer = setInterval(autoRun,1000);
         });
-
     })
 </script>
