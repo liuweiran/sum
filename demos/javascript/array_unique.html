@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>数组去重</title>
-	<script src="jquery.min.js"></script>
+	<script type="text/javascript" src="../../assets/js/jquery-1.7.2.min.js"></script>
 	<script>
 		
 		Array.prototype.unique1 = function(){
@@ -14,10 +14,10 @@
 				}
 			}
 			return n;
-		}
+		};
 
 		var arr = ['aa','bb','ff','aa','gg','cc'];
-		console.log(arr.unique1())
+		console.log(arr.unique1());
 
 
 		Array.prototype.unique2 = function(){
@@ -29,27 +29,27 @@
 				}
 			}
 			return r;
-		}
-		console.log(arr.unique2())
+		};
+		console.log(arr.unique2());
 
 		Array.prototype.unique3 = function(){
 			var n = [];
 			for( var i=0; i<this.length; i++ ){
-				if( this.indexOf(this[i])==i ) n.push(this[i])	//如果当前数组的第i项在当前数组中第一次出现的位置不是i，那么表示第i项是重复的，忽略掉。否则存入结果数组
+				if( this.indexOf(this[i])==i ) n.push(this[i]);	//如果当前数组的第i项在当前数组中第一次出现的位置不是i，那么表示第i项是重复的，忽略掉。否则存入结果数组
 			}
 			return n;
-		}
-		console.log(arr.unique3())
+		};
+		console.log(arr.unique3());
 
 		Array.prototype.unique4 = function(){
 			this.sort();	//对数组的元素进行排序
 			var r = [];
 			for( var i=0; i<this.length; i++ ){
-				if( this[i] != r[r.length-1] ) r.push(this[i])	//比较相邻的两个值,不同则存入r
+				if( this[i] != r[r.length-1] ) r.push(this[i]);	//比较相邻的两个值,不同则存入r
 			}
 			return r;
-		}
-		console.log(arr.unique4())
+		};
+		console.log(arr.unique4());
 
 		//jq方法
 		var arr2 = ['aa','bb','ff','aa','gg','cc'];

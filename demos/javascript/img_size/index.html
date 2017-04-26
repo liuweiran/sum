@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>固定盒子大小 图片等比缩放 显示中间部分</title>
+<style type="text/css">
+.wrap{width:400px; margin: 0 auto;}
+.imgWrap{width:100%; height:0; padding-top:75%; background:pink; position:relative; overflow:hidden; margin-bottom:10px;}
+.imgWrap img{position:absolute; left:0; top:0;}
+</style>
+  <script type="text/javascript" src="../../../assets/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+        $('.imgWrap').each(function(){
+            var wW = $(this).outerWidth();
+            var wH = $(this).outerHeight();
+
+            var img = $(this).children('img');
+            img.load(function(){
+                var t = $(this);
+                var iW = t.width();
+                var iH = t.height();
+                var rateW = wW/iW;
+                var rateH = wH/iH;
+                var rateM = Math.max(rateW,rateH);
+                var mT = -(iH*rateM-wH)/2;
+                var mL = -(iW*rateM-wW)/2;
+
+                t.width(iW*rateM).height(iH*rateM).css({'marginTop':mT,'marginLeft':mL});
+
+
+              /*
+               if( iW>=wW && iH>=wH ){
+               t.width(iW*rateM).height(iH*rateM)
+               if( rateW>=rateH ){ t.css({'marginTop':mT}) }else{ t.css({'marginLeft':mL}) }
+               }
+               if( iW>=wW && iH<wH ){
+               t.width(iW*rateM).height(iH*rateM).css({'marginLeft':mL})
+               }
+               if( iW<wW && iH>=wH ){
+               t.width(iW*rateM).height(iH*rateM).css({'marginTop':mT})
+               }
+               if( iW<wW && iH<wH ){
+               t.width(iW*rateM).height(iH*rateM)
+               if( rateW>=rateH ){ t.css({'marginTop':mT}) }else{ t.css({'marginLeft':mL}) }
+               }
+               */
+
+            })
+        })
+    })
+</script>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="imgWrap"><img class="lazy" src="img/1.jpg"></div>
+  <div class="imgWrap"><img class="lazy" src="img/2.jpg"></div>
+  <div class="imgWrap"><img class="lazy" src="img/3.jpg"></div>
+  <div class="imgWrap"><img class="lazy" src="img/4.jpg"></div>
+  <div class="imgWrap"><img class="lazy" src="img/5.jpg"></div>
+  <div class="imgWrap"><img class="lazy" src="img/6.jpg"></div>
+</div>
+</body>
+</html>
