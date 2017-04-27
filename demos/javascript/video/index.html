@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态添加文字到视频</title>
+</head>
+<script src="http://cdn.staticfile.org/jquery/1.12.1/jquery.min.js"></script>
+<style>
+    .wrap{
+        width: 70%;
+        height: 500px;
+        background: #000;
+        margin: 0 auto;
+    }
+    video{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body>
+    <div class="wrap">
+        <video src="demo.mp4" controls="controls"></video>
+    </div>
+<script>
+    $(function(){
+        function addUsernameOnVideo(username){
+            $('video').each(function(){
+                var _video = $(this),
+                    _wrap  = _video.parent(),
+                    _timer = null;
+
+                if( _wrap.css('position') != 'absolute' ){
+                    _wrap.css('position', 'relative');
+                }
+
+                _wrap.append('<span class="usernameSpan">'+username+'</span>');
+                var _username = _wrap.children('.usernameSpan');
+                _username.css({'position': 'absolute', 'whiteSpace': 'nowrap', 'color': 'red', 'display': 'none'});
+
+                var w1 = _username.width(),
+                    h1 = _username.height(),
+                    w2 = _video.width(),
+                    h2 = _video.height();
+
+                $(window).resize(function(){
+                    w2 = _video.width();
+                    h2 = _video.height();
+                });
+                _video[0].addEventListener('webkitfullscreenchange',function(){
+                    w2 = _video.width();
+                    h2 = _video.height();
+                });
+
+                _video[0].addEventListener('play',function(){
+                    console.log('播放中');
+                    showInter();
+                });
+
+                _video[0].addEventListener('pause',function(){
+                    console.log('pause');
+                });
+
+                _video[0].addEventListener('ended',function(){
+                    console.log('ended');
+                });
+
+
+                function showSet(){
+                    var maxLeft = w2-w1,
+                        maxTop = h2-h1;
+
+                    var left = Math.floor(maxLeft * Math.random()),
+                        top  = Math.floor(maxTop * Math.random()),
+                        showtime = 3000 + Math.floor(2000 * Math.random());
+
+                    _username.css({'left': left, 'top': top}).show();
+                    setTimeout(function(){
+                        _username.hide();
+                    }, showtime);
+                }
+
+                function showInter(){
+                    //showSet();
+                    var intervaltime = 30000 + Math.floor(30000 * Math.random());
+                    console.log(intervaltime)
+                    setInterval(showSet, intervaltime)
+                }
+            });
+        }
+
+        addUsernameOnVideo('你个大坏蛋');
+    });
+</script>
+</body>
+</html>
