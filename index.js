@@ -8,11 +8,6 @@ const fs = require('fs'),
     if(fs.existsSync(root)){
         fs.readdirSync(root).forEach( dir => {
 
-            console.log(dir)
-            if(!fs.statSync(dir).isDirectory()) return;
-
-            console.log(12)
-
             let o = {};
             o.flag = '&clubs;';
             o.name = dir;

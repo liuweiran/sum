@@ -24,10 +24,17 @@
 <script>
     $(function(){
         function addUsernameOnVideo(username){
+            var time_show_min = 3000,
+                time_show_max = 5000,
+                time_inter_min = 30000,
+                time_inter_max = 60000;
+
             $('video').each(function(){
                 var _video = $(this),
-                    _wrap  = _video.parent(),
-                    _timer = null;
+                    _wrap  = _video.parent();
+
+                var timer_out = null,
+                    timer_inter = null;
 
                 if( _wrap.css('position') != 'absolute' ){
                     _wrap.css('position', 'relative');
@@ -35,7 +42,7 @@
 
                 _wrap.append('<span class="usernameSpan">'+username+'</span>');
                 var _username = _wrap.children('.usernameSpan');
-                _username.css({'position': 'absolute', 'whiteSpace': 'nowrap', 'color': 'red', 'display': 'none'});
+                _username.css({'position': 'absolute', 'whiteSpace': 'nowrap', 'color': 'red', 'fontWeight': 'bold', 'display': 'none'});
 
                 var w1 = _username.width(),
                     h1 = _username.height(),
@@ -52,38 +59,45 @@
                 });
 
                 _video[0].addEventListener('play',function(){
-                    console.log('播放中');
                     showInter();
                 });
 
                 _video[0].addEventListener('pause',function(){
-                    console.log('pause');
+                    showEnd();
                 });
 
                 _video[0].addEventListener('ended',function(){
-                    console.log('ended');
+                    showEnd();
                 });
 
 
                 function showSet(){
+                    clearTimeout(timer_out);
                     var maxLeft = w2-w1,
                         maxTop = h2-h1;
 
-                    var left = Math.floor(maxLeft * Math.random()),
-                        top  = Math.floor(maxTop * Math.random()),
-                        showtime = 3000 + Math.floor(2000 * Math.random());
+                    var left = Math.round(maxLeft * Math.random()),
+                        top  = Math.round(maxTop * Math.random()),
+                        time_show = time_show_min + Math.round((time_show_max - time_show_min) * Math.random());
 
                     _username.css({'left': left, 'top': top}).show();
-                    setTimeout(function(){
+                    timer_out = setTimeout(function(){
                         _username.hide();
-                    }, showtime);
+                    },time_show);
                 }
 
                 function showInter(){
-                    //showSet();
-                    var intervaltime = 30000 + Math.floor(30000 * Math.random());
-                    console.log(intervaltime)
-                    setInterval(showSet, intervaltime)
+                    clearTimeout(timer_inter);
+                    var time_inter = time_inter_min + Math.round((time_inter_max - time_inter_min) * Math.random());
+                    timer_inter = setInterval(showSet, time_inter);
+                }
+
+                function showEnd(){
+                    clearTimeout(timer_out);
+                    clearTimeout(timer_inter);
+                    timer_out = null;
+                    timer_inter = null;
+                    _username.hide();
                 }
             });
         }
