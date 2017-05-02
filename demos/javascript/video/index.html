@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>动态添加文字到视频</title>
 </head>
-<script src="http://cdn.staticfile.org/jquery/1.12.1/jquery.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/jquery-1.7.2.min.js"></script>
 <style>
     .wrap{
         width: 70%;
@@ -24,10 +24,10 @@
 <script>
     $(function(){
         function addUsernameOnVideo(username){
-            var time_show_min = 3000,
-                time_show_max = 5000,
-                time_inter_min = 30000,
-                time_inter_max = 60000;
+            var time_show_min = 1000,
+                time_show_max = 2000,
+                time_inter_min = 10000,
+                time_inter_max = 20000;
 
             $('video').each(function(){
                 var _video = $(this),

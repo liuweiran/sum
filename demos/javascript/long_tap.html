@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>长按</title>
+<style type="text/css">
+*{-webkit-user-select:none; -moz-user-select:none;}/*禁用手机浏览器的用户选择功能 */
+div{width:100px; height:44px; margin:10px; background:pink;}
+</style>
+<script type="text/javascript" src="../../assets/js/jquery-1.7.2.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	var timer01;
+	$('div').on({
+		mousedown:function(){
+			var my = $(this);
+			timer01 = setInterval(function(){
+				my.text('是我')
+			},2000)
+		},
+		"mouseup mouseout":function(){
+			clearTimeout(timer01)
+		} //事件名打双引号
+	})
+})
+</script>
+</head>
+<body>
+<div>长按2s</div>
+</body>
+</html>
+

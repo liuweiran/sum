@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>获取当前时间戳</title>
+</head>
+<body>
+<script>
+//1
+console.log( Date.parse(new Date()) );
+
+//2
+console.log( (new Date()).valueOf() );
+
+//3
+console.log( new Date().getTime() );
+
+//4 适用于ie8以上
+console.log( Date.now() );
+
+/*第一种：获取的时间戳是把毫秒改成000显示，
+第二种~第四种是获取了当前毫秒的时间戳。*/
+</script>
+</body>
+</html>

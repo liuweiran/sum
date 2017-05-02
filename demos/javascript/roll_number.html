@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数字滚动显示</title>
+    <style type="text/css">
+        * { margin: 0; padding: 0; list-style: none; }
+        .num { margin: 50px; }
+        .num li { width: 50px; height: 50px; display: inline-block; margin: 2px; position: relative; overflow: hidden; }
+        .num div { position: absolute; }
+        .num li p { width: 50px; height: 50px; font-size: 30px; box-sizing: border-box; border: 2px solid blue; text-align: center; line-height: 50px; }
+        .num i,.num b { font-weight: normal; font-style: normal; font-size: 30px; }
+    </style>
+</head>
+<body>
+<div class="num">
+    <ul>
+        <!--<li><div><p>0</p><p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p></div></li>-->
+    </ul>
+</div>
+
+<script type="text/javascript" src="../../assets/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        //var a = '3452510000';
+        var a = '4,657,313,434,131.00';
+        a = a.replace(/[^0-9]/g,'');
+        //alert(a);
+        var aNum = a.split('');
+        var liTag = '<li><div><p>0</p><p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p></div></li>';
+        var liAmount = aNum.length;
+        var pointPo = liAmount - 2;
+        var pointTag = $('<i>.</i>');
+        var commaTag = '<b>,</b>';
+        //alert(liAmount);
+        //$('ul').append(liTag);
+        //alert(aNum[0]);
+        for( var i=0; i<liAmount; i++ ){
+            $('.num').children('ul').append(liTag);
+        }
+
+        $('.num li').eq(pointPo).before(pointTag);
+
+        for( var i=pointPo-3; i>0; i-=3){
+            $('.num li').eq(i).before(commaTag);
+        }
+
+        for( var i=0; i<liAmount; i++ ){
+            $('.num li').eq(i).children('div').animate({'left':'0','top': -50*aNum[i]},1000);
+        }
+    })
+</script>
+</body>
+</html>

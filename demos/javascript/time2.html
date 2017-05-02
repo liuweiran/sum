@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>当前时间--倒计时--日期显示-某个时间是否已经过期</title>
+</head>
+<body>
+<div id="time"></div>
+<div id="time1"></div>
+<div id="time2"></div>
+<div id="time3"></div>
+<script>
+
+//当前时间
+function startTime(){
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+
+    // add a zero in front of numbers<10
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('time').innerHTML = '当前时间： '+h+":"+m+":"+s;
+    t=setTimeout('startTime()',500)
+}
+
+function checkTime(i){
+    if(i<10){i="0" + i}
+    return i
+}
+startTime();
+
+
+//倒计时
+(function(){
+    function countdown(v) {
+        var _this = this,
+            ends = new Date(v.replace(/-/g,"/")).getTime(),
+            timer = null,
+            timeMap = {
+                d: 86400000, //1000*60*60*24
+                h: 3600000, //1000*60*60
+                m: 60000, //1000*60
+                s: 1000
+            };
+
+        function time(){
+            var t = ends - new Date().getTime(),
+                  d = Math.floor(t/timeMap.d),
+                  h = Math.floor(t/timeMap.h%24),
+                  m = Math.floor(t/timeMap.m%60),
+                  s = Math.floor(t/timeMap.s%60);
+
+            switch(true){
+                case d>0:
+                    document.getElementById('time1').innerHTML = d+'天';
+                    break;
+                case h>0:
+                    document.getElementById('time1').innerHTML = h+'小时';
+                    break;
+                case m>0:
+                    document.getElementById('time1').innerHTML = m+'分钟';
+                    break;
+                case s>0:
+                    document.getElementById('time1').innerHTML = s+'秒';
+                    break;
+                case d==h==m==s==0:
+                    clearInterval(timer);
+                    document.getElementById('time1').innerHTML = v+' 倒计时结束';
+                    break;
+            }
+        }
+        timer = setInterval(time,200);
+    }
+    countdown('2017-03-01 11:37:59');
+})();
+
+//日期显示
+(function(){
+    function time(v1, v2) {
+        var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+            date1 = v1.substring(0,10),
+            date2 = v2.substring(0,10),
+            _date1 = date1.replace(/-/g,"/"),
+            _date2 = date2.replace(/-/g,"/"),
+            day1 = weekDay[new Date(date1).getDay()],
+            day2 = weekDay[new Date(date2).getDay()],
+            time1 = v1.substring(11,16),
+            time2 = v2.substring(11,16);
+        if(date1==date2){
+            var m1 = new Date(v1.replace(/-/g,"/")).getTime(),
+                m2 = new Date(v2.replace(/-/g,"/")).getTime(),
+                m = Math.floor((m2-m1)/60000);
+            document.getElementById('time2').innerHTML = _date1 +' '+ day1 +' '+ time1 + '-' + time2 + ' ' + '(' + m + '分钟)';
+        }else{
+            var d1 = new Date(date1).getTime(),
+                d2 = new Date(date2).getTime(),
+                d = Math.abs((d2-d1)/86400000);
+            document.getElementById('time2').innerHTML =  _date1 +' '+ day1 +' '+ time1 + ' - ' + _date2 +' '+ day2 +' '+ time2 + ' ' + '(' + d + '天)';
+        }
+    }
+    time('2017-03-01 11:37:59','2017-03-04 11:37:59');
+})();
+
+//某个时间是否已经过期
+(function(){
+    function end(v) {
+        time = new Date(v.replace(/-/g,"/")).getTime() - new Date().getTime();
+        if( time<0 ){
+            document.getElementById('time3').innerHTML = v+' 已经过期了'
+        }else{
+            document.getElementById('time3').innerHTML = v+' 还没有过期'
+        }
+    }
+    end('2017-04-01 11:37:59');
+})();
+</script>
+</body>
+</html>

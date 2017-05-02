@@ -8,6 +8,9 @@ const fs = require('fs'),
     if(fs.existsSync(root)){
         fs.readdirSync(root).forEach( dir => {
 
+            const dire = path.join(root, dir);
+            if(!fs.statSync(dire).isDirectory()) return;
+
             let o = {};
             o.flag = '&clubs;';
             o.name = dir;
@@ -15,8 +18,8 @@ const fs = require('fs'),
 
             let title, src;
 
-            fs.readdirSync(path.join(root, dir)).forEach( file => {
-                src = path.join(root, dir, file);
+            fs.readdirSync(dire).forEach( file => {
+                src = path.join(dire, file);
 
                 if(fs.statSync(src).isDirectory()){
                     src = path.join(src, 'index.html');

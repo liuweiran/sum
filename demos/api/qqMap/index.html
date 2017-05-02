@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>qqMap</title>
+</head>
+<body>
+<a href="http://lbs.qq.com/tool/component-marker.html" target="_blank">腾讯地图API：</a><br><br>
+<button onclick="go1()">位置展示组件 使用url传递数据</button><br><br>
+<button onclick="go2()">位置展示组件 使用地图检索数据</button><br><br>
+<button onclick="go3()">路线规划组件 使用当前地点为出发点</button><br><br>
+<button onclick="go4()">路线规划组件 指定出发点</button><br><br>
+<a href="02.html" target="_blank">地图选点组件 通过iframe内嵌调用</a><br><br>
+<button onclick="go5()">地图选点组件 通过页面跳转的方式调用</button><br><br>
+<a href="03.html">前端定位组件 引入封装好的JS模块 通过封装好的接口获取位置信息</a><br><br>
+<a href="04.html">前端定位组件 通过内嵌一个隐藏iframe的方式调用该组件</a><br><br>
+<a href="05.html">前端定位组件 引入封装好的JS文件，通过调用js api的接口获取定位信息</a><br><br>
+<button onclick="go6()">街景组件</button><br><br>
+<a href="06.html" target="_blank">JavaScript API</a>
+
+
+<script>
+    var loc = {
+        lat: 28.238110,
+        lng: 113.008885,
+        title: '先福安置小区B区',
+        addr: '湖南省长沙市开福区双拥路',
+        key: '酒店'
+    };
+    var loc2 = {
+        lat: 28.220420,
+        lng: 112.987780,
+        title: '新时代广场',
+        addr: '湖南省长沙市开福区芙蓉中路一段161号'
+    };    var loc3 = {
+        lat: 28.240980,
+        lng: 112.979210,
+        title: '长沙市图书馆',
+        addr: '湖南省长沙市开福区三角洲三馆一厅'
+    };
+    //位置展示组件 使用url传递数据
+    function go1(){
+        var url = 'http://apis.map.qq.com/tools/poimarker?type=0&marker=' +
+                  'coord:'+ loc.lat +','+ loc.lng +
+                  ';title:'+ loc.title +
+                  ';addr:'+ loc.addr +
+                  '|coord:'+ loc2.lat +','+ loc2.lng +
+                  ';title:'+ loc2.title +
+                  ';addr:'+ loc2.addr +
+                  '&key=NIMBZ-3MVCR-K6DWM-WBJEP-5GVA5-NDFOB&referer=mysite';
+        window.open(url);
+    }
+
+    //位置展示组件 使用地图检索数据
+    function go2(){
+        var url = 'http://apis.map.qq.com/tools/poimarker?type=1' +
+                  '&keyword='+ loc.key +
+                  '&center='+ loc.lat +','+ loc.lng +
+                  '&radius=1000' +
+                  '&key=NIMBZ-3MVCR-K6DWM-WBJEP-5GVA5-NDFOB&referer=mysite';
+        window.open(url);
+    }
+
+    //路线规划组件 使用当前地点为出发点
+    function go3(){
+        var url = 'http://apis.map.qq.com/tools/routeplan/' +
+                  'eword='+ loc2.title +
+                  '&epointx='+ loc2.lat +
+                  '&epointy='+ loc2.lng +
+                  '?key=NIMBZ-3MVCR-K6DWM-WBJEP-5GVA5-NDFOB&referer=mysite';
+        window.open(url);
+    }
+
+    //路线规划组件 指定出发点
+    function go4(){
+        var url = 'http://apis.map.qq.com/tools/routeplan/' +
+            'eword='+ loc3.title +
+            '&epointx='+ loc3.lat +
+            '&epointy='+ loc3.lng +
+            '&sword='+ loc.title +
+            '&spointx='+ loc.lat +
+            '&spointy='+ loc.lng +
+            '?key=NIMBZ-3MVCR-K6DWM-WBJEP-5GVA5-NDFOB&referer=mysite';
+        window.open(url);
+    }
+
+    //地图选点组件 通过页面跳转的方式调用
+    //通过页面跳转的方式调用该组件的时候，开发者需要设置backurl参数，用户点击选中的位置点后，页面跳转至开发者指定的返回地址（backurl），并将位置信息添加到回跳地址（backurl）上。
+    function go5(){
+        var thisUrl = window.location.href;
+        var url = 'http://apis.map.qq.com/tools/locpicker?search=1&type=0' +
+            '&backurl='+ thisUrl +
+            '&key=NIMBZ-3MVCR-K6DWM-WBJEP-5GVA5-NDFOB&referer=mysite';
+        window.open(url);
+    }
+
+    //街景组件
+    //http://apis.map.qq.com/tools/streetview?pano=10131053140812095958800&heading=7&pitch=-13&key=OB4BZ-D4W3U-7BVVO-4PJWW-6TKDJ-WPB77&referer=myapp
+    function go6(){
+        var url = 'http://apis.map.qq.com/tools/streetview?' +
+            'location='+loc.lat+','+loc.lng+
+            '&heading=7&pitch=-13' +
+            '&key=NIMBZ-3MVCR-K6DWM-WBJEP-5GVA5-NDFOB&referer=mysite';
+        window.open(url);
+    }
+
+
+</script>
+</body>
+</html>
