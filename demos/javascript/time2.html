@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>当前时间--倒计时--日期显示-某个时间是否已经过期</title>
+<title>当前时间--倒计时--日期显示-某个时间是否已经过期-第二天</title>
 </head>
 <body>
 <div id="time"></div>
 <div id="time1"></div>
 <div id="time2"></div>
 <div id="time3"></div>
+<div id="time4"></div>
 <script>
 
 //当前时间
@@ -114,6 +115,12 @@ startTime();
         }
     }
     end('2017-04-01 11:37:59');
+})();
+
+//第二天
+(function(){
+    var time = new Date(new Date().setHours(0,0,0,0)).getTime() + 86400000;
+    document.getElementById('time4').innerHTML = '明天是：'+ new Date(time);
 })();
 </script>
 </body>
