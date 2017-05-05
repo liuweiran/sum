@@ -1,5 +1,3 @@
-<br>
-
 # javascript传递参数如果是object的话，是按值传递还是按引用传递？
 
 >以下摘自知乎[苏墨橘](https://www.zhihu.com/question/27114726/answer/35481766)的回答。
