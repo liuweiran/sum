@@ -5,9 +5,87 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.3.2/dist/vue.js"></script>
     <title>Document</title>
 </head>
 <body>
-01html
+<div id="todo-list-example">
+    <ul>
+        <li v-for="i in list" v-if="i.type" :key="i.type">{{ i.msg }}</li>
+    </ul>
+
+    <ul>
+        <li v-for="n in evenNumbers">{{ n }}</li>
+    </ul>
+    <button v-on:click="greet">Greet</button>
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+
+    <input
+            type="checkbox"
+            v-model="toggle1"
+            v-bind:true-value="a"
+            v-bind:false-value="b"
+    >
+    <p>{{ toggle1 }}</p>
+
+    <input type="radio" v-model="a" v-bind:value="a">
+
+    <p>{{ a }}</p>
+</div>
+
+
+<script>
+
+    var vm = new Vue({
+        el: '#todo-list-example',
+        data: {
+            newTodoText: '',
+            list: [
+                {
+                    msg: 'msg1',
+                    type: 1
+                },
+                {
+                    msg: 'msg2',
+                    type: 1
+                },
+                {
+                    msg: 'msg3',
+                    type: 0
+                },
+                {
+                    msg: 'msg4',
+                    type: 1
+                }
+            ],
+            numbers: [ 1, 2, 3, 4, 5 ],
+            a: 12,
+            b: 13,
+            toggle1: 1,
+        },
+        methods: {
+            greet: function (event) {
+                // `this` 在方法里指当前 Vue 实例
+                //alert('Hello ' + this.name + '!');
+                // `event` 是原生 DOM 事件
+                //alert(event.target.tagName)
+                console.log(event)
+            },
+            warn: function (message, event) {
+                // 现在我们可以访问原生事件对象
+                if (event) event.preventDefault()
+                alert(message)
+            }
+        },
+        computed: {
+            evenNumbers: function () {
+                return this.numbers.filter(function (number) {
+                    return number % 2 === 0
+                })
+            }
+        }
+    })
+
+</script>
 </body>
 </html>
