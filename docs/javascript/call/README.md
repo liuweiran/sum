@@ -1,3 +1,5 @@
+<br>
+
 # javascript传递参数如果是object的话，是按值传递还是按引用传递？
 
 >以下摘自知乎[苏墨橘](https://www.zhihu.com/question/27114726/answer/35481766)的回答。
@@ -76,3 +78,4 @@
   + [stackoverflow对于函数传递问题的解释： Is JavaScript a pass-by-reference or pass-by-value language?](http://stackoverflow.com/questions/518000/is-javascript-a-pass-by-reference-or-pass-by-value-language?lq=1)
   + 我的红宝书《javascript高级程序设计》P69-P71
   
+<br>
