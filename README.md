@@ -9,7 +9,7 @@
 ### 本地查看
 
     # 安装依赖
-    npm install 
+    $ npm install 
        
     # 启动服务
     $ node start --port [端口号]   //如果省略端口号，则使用默认端口`9901`
@@ -41,3 +41,5 @@
 ### LESS
 
 + [LESS语法](./docs/less)
+
+<br>
