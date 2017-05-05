@@ -1,41 +1,43 @@
-#sum项目说明
+#sum
+
+>主要记录平时的学习和总结。分为两大模块，demos和docs。
 
 ## demos
 
-### 启动服务
+>案例记录。线上查看：http://ran0046.oschina.io/sum/
 
-    $ node start --port [端口号]
+### 本地查看
 
-如果省略端口号，则使用默认端口`9901`。
+    # 安装依赖
+    npm install 
+       
+    # 启动服务
+    $ node start --port [端口号]   //如果省略端口号，则使用默认端口`9901`
+
+## docs
+
+>文档记录。
+
+### javascript
+
++ [JS是按值传递还是按引用传递？](./docs/javascript/call)
+
+### node
+
++ [require](./docs/node/md/require.md) （还木有添加内容。。）
++ [http-proxy-middleware](./docs/node/md/proxy.md)
++ [require语句](./docs/node/md/require.md)
++ [process对象](./docs/node/md/process.md)
+
+### npm
+
++ [package.json](./docs/npm/package.md)
+
+### vue.js
+
++ [.vue 单文件组件](./docs/vuejs/vue.md)
 
 
-## 项目结构说明
+### LESS
 
-demos文件夹
-
--存放平时总结的案例
-
-node文件夹
-
--存放node模块的使用方法
-
--文件名以node模块名命名
-
-## node介绍
-
-### 模块
-+ [require](node/md/require.md) （还木有添加内容。。）
-+ [http-proxy-middleware](node/md/proxy.md)
-
-
-### 其他
-+ [require语句](node/md/require.md)
-+ [process对象](node/md/process.md)
-
-
-## 文档
-
-+ [LESS文档](./docs/less)
-
-## vue.js
-+ [.vue 单文件组件](vuejs/vue.md)
++ [LESS语法](./docs/less)
