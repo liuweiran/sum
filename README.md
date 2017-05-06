@@ -24,7 +24,8 @@
 
 ### css
 
-+ [css reset for mobile](./docs/css/reset_mobile.md)
++ [CSS Reset for Mobile](./docs/css/reset_mobile.md)
++ [CSS Reset for PC](./docs/css/reset_pc.md)
 
 ### javascript
 
