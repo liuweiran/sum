@@ -19,6 +19,8 @@ const fs = require('fs'),
             let title, src;
 
             fs.readdirSync(dire).forEach( file => {
+                if(file === '.DS_Store') return;
+
                 src = path.join(dire, file);
 
                 if(fs.statSync(src).isDirectory()){
