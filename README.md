@@ -46,10 +46,3 @@
 ### vue.js
 
 + [.vue 单文件组件](./docs/vuejs/vue.md)
-
-
-### LESS
-
-+ [LESS语法](./docs/less)
-
-<br>
