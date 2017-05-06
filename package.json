@@ -11,14 +11,7 @@
   },
   "private": true,
   "devDependencies": {
-    "buffer-crc32": "^0.2.5",
-    "ejs": "^2.5.1",
     "express": "^4.14.0",
-    "fs": "0.0.1-security",
-    "fs-arm": "0.0.1",
-    "fs-extra": "^0.30.0",
-    "gulp": "^3.9.1",
-    "gulp-less": "^3.3.0",
-    "http-proxy-middleware": "^0.17.4"
+    "fs": "0.0.1-security"
   }
 }

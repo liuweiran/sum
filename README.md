@@ -18,9 +18,13 @@
 
 >文档记录。
 
+### html
+
++ [meta标签](./docs/html/meta.md)
+
 ### javascript
 
-+ [JS是按值传递还是按引用传递？](./docs/javascript/call)
++ [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
 
 ### node
 
