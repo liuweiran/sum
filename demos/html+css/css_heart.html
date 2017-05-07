@@ -1,53 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta chartset="utf-8">
+<meta charset="UTF-8">
 <title>css-画心形</title>
 <style type="text/css">
-*{margin:0;padding:0;box-sizing: border-box;}
-html{font-size: 62.5%;}
-body{
-font-family: "mircoft yahei";
-font-size: 14px;
-font-size:1.4rem;
-line-height: 1;
-}
 .heart{
-position:relative;
-width:200px;
-height:200px;
-background-color: orange;
-margin:100px auto; 
-transform: rotate(45deg);
--webkit-transform: rotate(45deg);
-moz-transform: rotate(45deg);
--o-transform: rotate(45deg);
--ms-transform: rotate(45deg);
+    position:relative;
+    width:200px;
+    height:200px;
+    background-color: orange;
+    margin:100px auto;
+    -webkit-transform: rotate(45deg);
+    moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 .heart:before,.heart:after{
-  position:absolute;
-  content:'';
-  width:200px;
-  height:200px;
-  display:block;
-  border-radius:50%;
-  background-color: orange; 
+    position:absolute;
+    content:'';
+    width:200px;
+    height:200px;
+    display:block;
+    border-radius:50%;
+    background-color: orange;
 }
 .heart:before{
-left:-100px;
-bottom:0;
+    left:-100px;
+    bottom:0;
 }
 .heart:after{
-top:-100px;
-right:0;
+    top:-100px;
+    right:0;
 }
 </style>
 
 </head>
 <body>
-<div class="heart">
-	
-</div>
+<div class="heart"></div>
 </body>
 </html>

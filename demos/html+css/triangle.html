@@ -5,8 +5,8 @@
     <title>三角</title>
     <style type="text/css">
         .triangle{
-            width: 0px;
-            height: 0px;
+            width: 0;
+            height: 0;
             margin: 15px;
         }
 
@@ -29,12 +29,30 @@
             border-top: 20px solid transparent;
             border-right: 20px solid blue;
         }
+
+        .triangle5{
+            border-width: 10px;
+            border-style: solid dashed dashed dashed;
+            border-color: blue transparent transparent transparent;
+        }
+
+        i{display: block; margin: 15px; position: relative;}
+        em,span{width: 0; height: 0; position: absolute; border-width: 10px; border-style: dashed dashed solid dashed; border-color: transparent transparent #f40 transparent; top: 0; left: 0;}
+        span{top: 2px; border-bottom-color: white;}
+
     </style>
 </head>
 <div class="triangle triangle1"></div>
 <div class="triangle triangle2"></div>
 <div class="triangle triangle3"></div>
 <div class="triangle triangle4"></div>
+<div class="triangle triangle5"></div>
+
+<i>
+    <em></em>
+    <span></span>
+</i>
+
 <body>
 </body>
 </html>

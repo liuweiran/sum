@@ -30,12 +30,25 @@
 
 ### javascript
 
++ [jQuery选择器](./docs/javascript/jq_selector)
++ [获取字符串长度](./docs/javascript/str_length.md)
++ [数组去重](./docs/javascript/array_unique.md)
++ [判断一个对象是否为空对象](./docs/javascript/empty_object.md)
++ [date相关操作](./docs/javascript/date.md)
++ [获取url查询参数](./docs/javascript/get_url_search.md)
 + [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
 
 ### node
 
-+ [require](./docs/node/md/require.md) （还木有添加内容。。）
-+ [http-proxy-middleware](./docs/node/md/proxy.md)
+#### 模块
+
++ [fs 文件系统模块](./docs/node/md/fs.md)
++ [http-proxy-middleware 跨域代理模块](./docs/node/md/proxy.md)
+
+
+#### 语法
+
++ [require语句](./docs/node/md/require.md)
 + [require语句](./docs/node/md/require.md)
 + [process对象](./docs/node/md/process.md)
 

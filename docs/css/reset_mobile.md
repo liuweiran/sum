@@ -30,7 +30,7 @@ textarea{
     -ms-text-size-adjust: 100%;
 }
 
-/*禁止用户选择*/
+/* 禁用用户选择功能 */
 {
     -webkit-user-select: one;
 }

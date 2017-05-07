@@ -1,4 +1,4 @@
-# http-proxy-middleware //跨域代理模块
+# http-proxy-middleware 跨域代理模块
 
 ## Install
 
