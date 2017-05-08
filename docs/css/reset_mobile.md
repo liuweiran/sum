@@ -2,7 +2,7 @@
 
 ```
 html,body{
-  font-family: "Helvetica Neue", "Helvetica", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Arial", sans-serif;;
+  font-family: "Helvetica Neue", "Helvetica", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Arial", sans-serif;
   -webkit-text-size-adjust: 100%; 
   -ms-text-size-adjust: 100%; 
   -webkit-user-select: none; 
@@ -28,6 +28,7 @@ strong {
   font-weight: normal;
 }
 a, a:hover { 
+  color: inherit;
   -webkit-touch-callout: none; 
   text-decoration: none;
 }
