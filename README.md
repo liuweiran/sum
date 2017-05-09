@@ -1,10 +1,15 @@
-#sum
+# sum
 
 >主要记录平时的学习和总结。分为两大模块，demos和docs。
 
 ## demos
 
->案例记录。线上查看：http://ran0046.oschina.io/sum/
+>案例记录。
+
+### 线上查看
+
++ github &nbsp;&nbsp; https://liuweiran.github.io/sum/
++ oschina http://ran0046.oschina.io/sum/
 
 ### 本地查看
 
@@ -40,15 +45,15 @@
 
 ### node
 
-#### 模块
+##### 模块
 
 + [fs 文件系统模块](./docs/node/md/fs.md)
++ [path 路径模块](./docs/node/md/path.md)
 + [http-proxy-middleware 跨域代理模块](./docs/node/md/proxy.md)
 
 
-#### 语法
+##### 语法
 
-+ [require语句](./docs/node/md/require.md)
 + [require语句](./docs/node/md/require.md)
 + [process对象](./docs/node/md/process.md)
 

@@ -1,8 +1,9 @@
 # CSS Reset for Mobile
 
 ```
-html,body{
+html, body {
   font-family: "Helvetica Neue", "Helvetica", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Arial", sans-serif;
+  font-size: 14px;
   -webkit-text-size-adjust: 100%; 
   -ms-text-size-adjust: 100%; 
   -webkit-user-select: none; 

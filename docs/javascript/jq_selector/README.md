@@ -74,7 +74,9 @@ jQuery借用一套CSS选择器，共5种。
 
 　　格式： `$("parent>child")`
 
-　　例： `$("form > input");     //匹配form表单中所有的子级input元素。`
+　　例： `$("form > input"); `    
+
+匹配form表单中所有的子级input元素。
 
 #### 2.2.2 后代选择器
 
@@ -82,7 +84,9 @@ jQuery借用一套CSS选择器，共5种。
 
 　　格式： `$("ancestor descendant")`
 
-　　例： `$("form input");     //查找form元素的后代元素中为input的标记。`
+　　例： `$("form input");`
+     
+查找form元素的后代元素中为input的标记。
 
 #### 2.2.3 紧邻同辈选择器
 
@@ -90,7 +94,9 @@ jQuery借用一套CSS选择器，共5种。
 
 　　格式： `$("prev+next")`
 
-　　例： `$("div+span");     //匹配所有跟在div后的span元素。`
+　　例： `$("div+span"); `    
+
+匹配所有跟在div后的span元素。
 
 #### 2.2.4 相邻同辈选择器
 
@@ -190,7 +196,9 @@ jQuery借用一套CSS选择器，共5种。
 
 　　格式： `$(":selector:first")`
 
-　　例： `$("td:first").css("border","2px solid blue");     //将第一列的边框颜色设置为蓝色。`
+　　例： `$("td:first").css("border","2px solid blue");`
+     
+ 将第一列的边框颜色设置为蓝色。
 
 #### 3.1.2 :last选择器
 
@@ -214,26 +222,34 @@ jQuery借用一套CSS选择器，共5种。
 
 > 用于从匹配的集合中选择索引等于给定值的元素。
 
-　　格式： `$(":selector:eq(index));      //index为指定元素在selector集合中的索引值（从0开始计数）`
+　　格式： `$(":selector:eq(index));`
+      
+index为指定元素在selector集合中的索引值（从0开始计数）
 
 #### 3.1.6 :gt()选择器
 
 > 用于从匹配的集合中选择索引大于给定值的所有元素。
 
-　　格式： `$(":selector:gt(index));     //index 为指定元素在selector集合中的索引值（从0开始计数），只有索引值大于此值的元素才会包含在查询结果中。`
+　　格式： `$(":selector:gt(index));`     
+
+index 为指定元素在selector集合中的索引值（从0开始计数），只有索引值大于此值的元素才会包含在查询结果中。
 
 #### 3.1.7 :lt()选择器
 
 > 用于从匹配的集合中选择索引小于给定值的所有元素。
 
-　　格式： `$(":selector:lt(index));     //index 为指定元素在selector集合中的索引值（从0开始计数），只有索引值小于此值的元素才会包含在查询结果中。`
+　　格式： `$(":selector:lt(index));`
+
+index 为指定元素在selector集合中的索引值（从0开始计数），只有索引值小于此值的元素才会包含在查询结果中。
 
 
 #### 3.1.8 :not选择器
 
 > 用于从匹配的集合中去除与给定选择器匹配的元素。
 
-　　格式：`$(":selector1:not(selector2));    //其中selector1,selector2为任意有效的选择器,使用:not()选择器时， 将selector1匹配的集合中去掉 selector2匹配的所有元素。`
+　　格式：`$(":selector1:not(selector2));`
+    
+其中selector1,selector2为任意有效的选择器,使用:not()选择器时， 将selector1匹配的集合中去掉 selector2匹配的所有元素。
 
 　　例：`$("td:not(:first,:last)").css("background","#FCF");`
 
@@ -266,7 +282,9 @@ jQuery借用一套CSS选择器，共5种。
 
 > 用于选择包含给定子元素的元素。
 
-　　格式：`$("selector1:has(selector2)");    //selector1，selector2为任意有效的选择器。`
+　　格式：`$("selector1:has(selector2)");`
+    
+selector1，selector2为任意有效的选择器。
 
 #### 3.2.3 :empty选择器
 
@@ -296,7 +314,9 @@ jQuery借用一套CSS选择器，共5种。
 
 　　格式：`$("selector[attribute]")`
 
-　　　例：　`$("div[id]");    //从文档中选择包含id属性的div元素。`
+　　　例：　`$("div[id]");`
+    
+从文档中选择包含id属性的div元素。
 
 　　　　　　
 #### 3.3.2 属性等于选择器
