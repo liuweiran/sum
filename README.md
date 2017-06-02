@@ -1,6 +1,6 @@
 # sum
 
->主要记录平时的学习和总结。分为两大模块，demos和docs。
+>主要记录平时的学习和总结。
 
 ## demos
 
@@ -44,6 +44,7 @@
 + [获取url查询参数](./docs/javascript/get_url_search.md)
 + [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
 
+
 ### node
 
 ##### 模块
@@ -66,3 +67,10 @@
 ### vue.js
 
 + [.vue 单文件组件](./docs/vuejs/vue.md)
+
+
+## links
+
+> 链接记录。
+
++ [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
