@@ -8,8 +8,9 @@
 
 ### 线上查看
 
-+ github &nbsp;&nbsp; https://liuweiran.github.io/sum/
-+ oschina http://ran0046.oschina.io/sum/
++ github &nbsp;&nbsp;&nbsp; https://liuweiran.github.io/sum/
+
++ oschina &nbsp; http://ran0046.oschina.io/sum/
 
 ### 本地查看
 
@@ -48,6 +49,7 @@
 ##### 模块
 
 + [fs 文件系统模块](./docs/node/md/fs.md)
++ [fs-arm 文件操作辅助模块](./docs/node/md/fs-arm.md)
 + [path 路径模块](./docs/node/md/path.md)
 + [http-proxy-middleware 跨域代理模块](./docs/node/md/proxy.md)
 
