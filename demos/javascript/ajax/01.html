@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单的ajax请求</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            var btn = document.getElementById('btn');
+            var box = document.getElementById('box');
+
+            btn.onclick = function(){
+                var xhr = new XMLHttpRequest();
+                //创建一个ajax"信使"
+
+                xhr.open('get', '1.txt',true);
+                //读取的方式
+                //读取的文件
+                //是否异步读取
+
+                xhr.send();
+                //发送“信使”
+
+                /*当“信使”的就绪状态改变时（
+                 0: 请求未初始化（还没有调用open()）
+                 1: 服务器连接已建立(请求已经建立，但是还没有发送。还没有调用send（）)
+                 2: 请求已接收（请求已发送，正在处理中，通常现在可以从响应中获取内容头）
+                 3: 请求处理中（通常响应中已有部分数据可用了，但是服务器还没有完成响应的生成）
+                 4: 请求已完成，且响应已就绪（可以获取并使用服务器的响应了）
+                 ）*/
+
+                /*HTTP状态码
+                 200 OK 成功接收
+                 304 Not Modified 没有改变
+                 400 Bad Request 接收错误
+                 404 Not Found 文件不存在
+                 500 Internal Server Error 服务器错误
+                 */
+
+                xhr.onreadystatechange = function(){
+                    //console.log(xhr.readyState);
+                    if(xhr.readyState==4){
+                        if(xhr.status>=200 && xhr.status<300 || xhr.status==304){
+                            //成功接收
+                            //console.log(xhr.responseText)
+                            box.innerHTML = xhr.responseText;
+                        }else{
+                            alert('抱歉，文件没有找到！')
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn">按我</button>
+    <h1 id="box">这里将要显示text1的内容</h1>
+</body>
+</html>

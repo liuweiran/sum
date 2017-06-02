@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq的ajax方法</title>
+    <script type="text/javascript" src="../../../assets/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#btn').click(function() {
+                //  $.get(URL,data,function(data,status,xhr),dataType)
+                // $.post(URL,data,function(data,status,xhr),dataType)
+
+                // $.ajax({name:value, name:value, ... })
+                $.ajax({
+                    type: 'GET',
+                    url: "1.txt",
+                    data: {
+                        test: '123'
+                    },
+                    success: function (result) {
+                        $("#box").html(result);
+                    },
+                    error: function (res) {
+                        alert('请求失败！');
+                        console.log(res)
+                    }
+                });
+            });
+
+        })
+    </script>
+</head>
+<body>
+    <button id="btn">按我</button>
+    <h1 id="box">这里将要显示text1的内容</h1>
+</body>
+</html>
