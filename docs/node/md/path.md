@@ -26,7 +26,8 @@
 
 ## 相对路径 path.relative(from, to)
 
-> 返回某个路径下相对于另一个路径的相对位置串，相当于：`path.resolve(from, path.relative(from, to)) == path.resolve(to)`
+> 返回某个路径下相对于另一个路径的相对位置串，相当于：
+`path.resolve(from, path.relative(from, to)) == path.resolve(to)`
 
     path.relative('C:\\orandea\\test\\aaa', 'C:\\orandea\\impl\\bbb')
     // returns
