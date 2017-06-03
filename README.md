@@ -74,3 +74,4 @@
 > 链接记录。
 
 + [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
++ [Express 基于nodejs的应用开发框架](http://www.expressjs.com.cn)
