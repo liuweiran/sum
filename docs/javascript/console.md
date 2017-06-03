@@ -12,6 +12,7 @@
 
 格式化字符串类型：
 
+| ----- | ----- | ----- |
 | %s | 字符串 |
 | %d, %i | 整数 |
 | %f | 浮点数 |
@@ -104,8 +105,8 @@ console.timeEnd("控制台计时器一");
 
 ```
 function foo(){
-	// ...
-	console.count('foo被执行的次数');
+    // ...
+    console.count('foo被执行的次数');
 }
 foo();
 foo();
