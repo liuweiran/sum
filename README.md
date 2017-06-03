@@ -43,6 +43,7 @@
 + [date相关操作](./docs/javascript/date.md)
 + [获取url查询参数](./docs/javascript/get_url_search.md)
 + [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
++ [console 控制台输出](./docs/javascript/console.md)
 
 
 ### node
