@@ -50,16 +50,19 @@
 
 ##### 模块
 
-+ [fs 文件系统模块](./docs/node/md/fs.md)
-+ [fs-arm 文件操作辅助模块](./docs/node/md/fs-arm.md)
-+ [path 路径模块](./docs/node/md/path.md)
-+ [http-proxy-middleware 跨域代理模块](./docs/node/md/proxy.md)
++ [fs 文件系统模块](docs/node/module/fs.md)
++ [fs-arm 文件操作辅助模块](docs/node/module/fs-arm.md)
++ [path 路径模块](docs/node/module/path.md)
++ [http-proxy-middleware 跨域代理模块](docs/node/module/proxy.md)
++ [ejs](docs/node/module/ejs.md)
 
 
 ##### 语法
 
-+ [require语句](./docs/node/md/require.md)
-+ [process对象](./docs/node/md/process.md)
++ [require语句](docs/node/grammer/require.md)
++ [process对象](docs/node/grammer/process.md)
+
+
 
 ### npm
 

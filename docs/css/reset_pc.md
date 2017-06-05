@@ -39,7 +39,7 @@ img {
   width:auto\9;
   -ms-interpolation-mode: bicubic;
 }
-input, textarea, select, button {
+input[type="text"], textarea, select, button {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
