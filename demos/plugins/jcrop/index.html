@@ -109,6 +109,8 @@
 				var img = document.getElementById(''+node+'_cutBoxImg');
 				var canvas = document.getElementById(''+node+'_canvas');
 				var ctx = canvas.getContext("2d");
+
+				//context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);  剪切图像，并在画布上定位被剪切的部分
 				ctx.drawImage(img, Math.round(cut.x), Math.round(cut.y), Math.round(cut.w), Math.round(cut.h), 0, 0, w2, h2);
 				result = canvas.toDataURL();
 				callBack(result);
