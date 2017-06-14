@@ -37,13 +37,15 @@
 ### javascript
 
 + [jQuery选择器](./docs/javascript/jq_selector)
++ [console 控制台输出](./docs/javascript/console.md)
 + [获取字符串长度](./docs/javascript/str_length.md)
 + [数组去重](./docs/javascript/array_unique.md)
 + [判断一个对象是否为空对象](./docs/javascript/empty_object.md)
 + [date相关操作](./docs/javascript/date.md)
 + [获取url查询参数](./docs/javascript/get_url_search.md)
 + [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
-+ [console 控制台输出](./docs/javascript/console.md)
++ [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
++ [jQuery插件编写](./docs/javascript/jq_plugin.md)
 
 
 ### node
