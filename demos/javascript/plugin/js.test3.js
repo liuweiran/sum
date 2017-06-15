@@ -1,6 +1,6 @@
 /*
  * 以一个可以修改div背景颜色的插件作为案例
- * */
+ */
 
 ;(function(global) {
 // 分号开头，用于防止代码压缩合并时与其他代码混在一起造成语法错误
@@ -24,8 +24,8 @@
     global.test3 = test3;   // 注册全局变量，兼容直接使用script标签引入该插件
 
 /*
-* this，在浏览器环境指window，在nodejs环境指global
-* 使用this而不直接用window/global是为了兼容浏览器端和服务端
-* 将this传进函数体，使全局变量变为局部变量，可缩短函数访问全局变量的时间
-* */
+ * this，在浏览器环境指window，在nodejs环境指global
+ * 使用this而不直接用window/global是为了兼容浏览器端和服务端
+ * 将this传进函数体，使全局变量变为局部变量，可缩短函数访问全局变量的时间
+ */
 })(this);
