@@ -106,8 +106,8 @@ $.fn.extend(test) = $.prototype.extend(test) = $.fn.test
 
 ```
 /*
-* 以一个文本高亮插件作为案例
-* */
+ * 以一个文本高亮插件作为案例
+ */
 
 // 闭包限定命名空间
 (function ($) {
