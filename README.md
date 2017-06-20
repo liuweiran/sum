@@ -27,6 +27,7 @@
 ### html
 
 + [meta标签](./docs/html/meta.md)
++ [解决accept属性反应滞慢](./docs/html/accept.md)
 
 ### css
 
