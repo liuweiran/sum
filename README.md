@@ -48,7 +48,6 @@
 + [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
 + [javascript中的循环](./docs/javascript/loop.md)
 
-
 ### node
 
 ##### 模块
@@ -59,22 +58,14 @@
 + [http-proxy-middleware 跨域代理模块](docs/node/module/proxy.md)
 + [ejs](docs/node/module/ejs.md)
 
-
 ##### 语法
 
 + [require语句](docs/node/grammer/require.md)
 + [process对象](docs/node/grammer/process.md)
 
-
-
-### npm
-
-+ [package.json](./docs/npm/package.md)
-
 ### vue.js
 
 + [.vue 单文件组件](./docs/vuejs/vue.md)
-
 
 ## links
 
@@ -82,3 +73,4 @@
 
 + [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
 + [Express 基于nodejs的应用开发框架](http://www.expressjs.com.cn)
++ [package.json文件](http://javascript.ruanyifeng.com/nodejs/packagejson.html)
