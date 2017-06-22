@@ -73,5 +73,6 @@
 > 链接记录。
 
 + [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
++ [Javascript的this用法](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
 + [Express 基于nodejs的应用开发框架](http://www.expressjs.com.cn)
 + [package.json文件](http://javascript.ruanyifeng.com/nodejs/packagejson.html)
