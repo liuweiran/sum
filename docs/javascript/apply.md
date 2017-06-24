@@ -55,12 +55,8 @@ func.apply(this, [arg1, arg2])
 
 其中 this 是你想指定的上下文，他可以是任何一个 JavaScript 对象(JavaScript 中一切皆对象)，call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。　
 
-<br>
-
 JavaScript 中，某个函数的参数数量是不固定的，因此要说适用条件的话，当你的参数是明确知道数量时用 call 。
 而不确定的时候用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个伪数组来遍历所有的参数。
-
-<br>
 
 为了巩固加深记忆，下面列举一些常用用法：
 
@@ -243,9 +239,9 @@ console.log(foo.getX.apply(obj));   //81
 
  
 
-再总结一下：
+**再总结一下：**
 
-apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；
-apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；
-apply 、 call 、bind 三者都可以利用后续参数传参；
-bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用 。
++ apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；
++ apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；
++ apply 、 call 、bind 三者都可以利用后续参数传参；
++ bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用 。

@@ -40,16 +40,12 @@
 + [jQuery选择器](./docs/javascript/jq_selector)
 + [jQuery插件编写](./docs/javascript/jq_plugin.md)
 
-<br>
-
 + [console 控制台输出](./docs/javascript/console.md)
 + [获取字符串长度](./docs/javascript/str_length.md)
 + [数组去重](./docs/javascript/array_unique.md)
 + [判断一个对象是否为空对象](./docs/javascript/empty_object.md)
 + [date相关操作](./docs/javascript/date.md)
 + [获取url查询参数](./docs/javascript/get_url_search.md)
-
-<br>
 
 + [javascript的this用法](./docs/javascript/this.md)
 + [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
@@ -83,9 +79,6 @@
 > 链接记录。
 
 + [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
-+ [妙用Javascript中apply、call、bind](http://www.cnblogs.com/coco1s/p/4833199.html)
-
-<br>
 
 + [Express 基于nodejs的应用开发框架](http://www.expressjs.com.cn)
 + [package.json文件](http://javascript.ruanyifeng.com/nodejs/packagejson.html)
