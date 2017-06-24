@@ -2,17 +2,16 @@
 
 >主要记录平时的学习和总结。
 
-## demos
+## 1. demos
 
 >案例记录。
 
-### 线上查看
+### 1.1 线上查看
 
 + github &nbsp;&nbsp;&nbsp; https://liuweiran.github.io/sum/
-
 + oschina &nbsp; http://ran0046.oschina.io/sum/
 
-### 本地查看
+### 1.2 本地查看
 
     # 安装依赖
     $ npm install 
@@ -20,25 +19,31 @@
     # 启动服务
     $ node start --port [端口号]   //如果省略端口号，则使用默认端口`9901`
 
-## docs
+## 2. docs
 
 >文档记录。
 
-### html
+### 2.1 html
 
 + [meta标签](./docs/html/meta.md)
 + [解决accept属性反应滞慢](./docs/html/accept.md)
 
-### css
+### 2.2 css
 
 + [CSS Reset for Mobile](./docs/css/reset_mobile.md)
 + [CSS Reset for PC](./docs/css/reset_pc.md)
 + [LESS语法](./docs/css/less.md)
 
-### javascript
+### 2.3 javascript
 
-+ [jQuery选择器](./docs/javascript/jq_selector)
-+ [jQuery插件编写](./docs/javascript/jq_plugin.md)
++ [javascript的this用法](./docs/javascript/this.md)
++ [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
++ [javascript中的作用域](./docs/javascript/scope.md)
++ [javascript中的apply、call、bind](./docs/javascript/apply.md)
++ [javascript的基本类型&引用类型](./docs/javascript/type.md)
++ [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
++ [javascript中的循环(for循环、while循环)](./docs/javascript/loop.md)
+
 
 + [console 控制台输出](./docs/javascript/console.md)
 + [获取字符串长度](./docs/javascript/str_length.md)
@@ -47,17 +52,13 @@
 + [date相关操作](./docs/javascript/date.md)
 + [获取url查询参数](./docs/javascript/get_url_search.md)
 
-+ [javascript的this用法](./docs/javascript/this.md)
-+ [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
-+ [javascript中的作用域](./docs/javascript/scope.md)
-+ [javascript中的apply、call、bind](./docs/javascript/apply.md)
-+ [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
-+ [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
-+ [javascript中的循环](./docs/javascript/loop.md)
 
-### node
++ [jQuery选择器](./docs/javascript/jq_selector)
++ [jQuery插件编写](./docs/javascript/jq_plugin.md)
 
-##### 模块
+### 2.4 node
+
+##### 2.4.1 模块
 
 + [fs 文件系统模块](docs/node/module/fs.md)
 + [fs-arm 文件操作辅助模块](docs/node/module/fs-arm.md)
@@ -65,20 +66,21 @@
 + [http-proxy-middleware 跨域代理模块](docs/node/module/proxy.md)
 + [ejs](docs/node/module/ejs.md)
 
-##### 语法
+##### 2.4.2 语法
 
 + [require语句](docs/node/grammer/require.md)
 + [process对象](docs/node/grammer/process.md)
 
-### vue.js
+### 2.5 vue.js
 
 + [.vue 单文件组件](./docs/vuejs/vue.md)
 
-## links
+## 3. links
 
 > 链接记录。
 
 + [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
+
 
 + [Express 基于nodejs的应用开发框架](http://www.expressjs.com.cn)
 + [package.json文件](http://javascript.ruanyifeng.com/nodejs/packagejson.html)
