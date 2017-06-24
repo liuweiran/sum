@@ -54,6 +54,7 @@
 + [javascript的this用法](./docs/javascript/this.md)
 + [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
 + [javascript中的作用域](./docs/javascript/scope.md)
++ [javascript中的apply、call、bind](./docs/javascript/apply.md)
 + [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
 + [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
 + [javascript中的循环](./docs/javascript/loop.md)
