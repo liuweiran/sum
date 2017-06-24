@@ -48,6 +48,7 @@
 + [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
 + [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
 + [javascript中的循环](./docs/javascript/loop.md)
++ [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
 
 ### node
 
@@ -74,5 +75,8 @@
 
 + [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
 + [Javascript的this用法](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
+
+<br>
+
 + [Express 基于nodejs的应用开发框架](http://www.expressjs.com.cn)
 + [package.json文件](http://javascript.ruanyifeng.com/nodejs/packagejson.html)
