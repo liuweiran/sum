@@ -79,8 +79,8 @@
 
 > 链接记录。
 
++ [html5新特性](http://www.jb51.net/html5/45220.html)
++ [html5新特性详解](http://www.webkfa.com/one4/w1730.html)
 + [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
-
-
 + [Express 基于nodejs的应用开发框架](http://www.expressjs.com.cn)
 + [package.json文件](http://javascript.ruanyifeng.com/nodejs/packagejson.html)
