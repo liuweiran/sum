@@ -39,12 +39,19 @@
 
 + [jQuery选择器](./docs/javascript/jq_selector)
 + [jQuery插件编写](./docs/javascript/jq_plugin.md)
+
+<br>
+
 + [console 控制台输出](./docs/javascript/console.md)
 + [获取字符串长度](./docs/javascript/str_length.md)
 + [数组去重](./docs/javascript/array_unique.md)
 + [判断一个对象是否为空对象](./docs/javascript/empty_object.md)
 + [date相关操作](./docs/javascript/date.md)
 + [获取url查询参数](./docs/javascript/get_url_search.md)
+
+<br>
+
++ [Javascript的this用法](./docs/javascript/this.md)
 + [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
 + [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
 + [javascript中的循环](./docs/javascript/loop.md)
@@ -75,6 +82,7 @@
 
 + [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
 + [Javascript的this用法](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
++ [妙用Javascript中apply、call、bind](http://www.cnblogs.com/coco1s/p/4833199.html)
 
 <br>
 
