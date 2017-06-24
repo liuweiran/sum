@@ -51,11 +51,12 @@
 
 <br>
 
-+ [Javascript的this用法](./docs/javascript/this.md)
++ [javascript的this用法](./docs/javascript/this.md)
++ [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
++ [javascript中的作用域](./docs/javascript/scope.md)
 + [javascript传递参数如果是object的话，是按值传递还是按引用传递？](./docs/javascript/call)
 + [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
 + [javascript中的循环](./docs/javascript/loop.md)
-+ [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
 
 ### node
 
@@ -81,7 +82,6 @@
 > 链接记录。
 
 + [Javascript 严格模式详解](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)
-+ [Javascript的this用法](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
 + [妙用Javascript中apply、call、bind](http://www.cnblogs.com/coco1s/p/4833199.html)
 
 <br>

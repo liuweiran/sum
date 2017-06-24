@@ -1,4 +1,4 @@
-# Javascript的this用法
+# javascript的this用法
 
 转自 [阮一峰的网络日志](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
 
