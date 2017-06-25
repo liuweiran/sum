@@ -42,6 +42,7 @@
 + [javascript中的作用域](./docs/javascript/scope.md)
 + [javascript中函数的arguments对象](./docs/javascript/arguments.md)
 + [javascript中的匿名函数](./docs/javascript/anonymous.md)
++ [javascript中的回调函数](./docs/javascript/callback.md)
 + [javascript闭包](./docs/javascript/closure.md)
 + [javascript中的apply、call、bind](./docs/javascript/apply.md)
 + [javascript的基本类型&引用类型](./docs/javascript/type.md)
