@@ -1,8 +1,8 @@
-# sum
+# SUM
 
 >主要记录平时的学习和总结。
 
-## 1. demos
+## 1. Demos
 
 >案例记录。
 
@@ -19,7 +19,7 @@
     # 启动服务
     $ node start --port [端口号]   //如果省略端口号，则使用默认端口`9901`
 
-## 2. docs
+## 2. Docs
 
 >文档记录。
 
@@ -40,6 +40,7 @@
 + [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
 + [javascript中的自由变量](./docs/javascript/variable.md)
 + [javascript中的作用域](./docs/javascript/scope.md)
++ [javascript中的匿名函数](./docs/javascript/anonymous.md)
 + [javascript闭包](./docs/javascript/closure.md)
 + [javascript中的apply、call、bind](./docs/javascript/apply.md)
 + [javascript的基本类型&引用类型](./docs/javascript/type.md)
@@ -77,7 +78,7 @@
 
 + [.vue 单文件组件](./docs/vuejs/vue.md)
 
-## 3. links
+## 3. Links
 
 > 链接记录。
 
