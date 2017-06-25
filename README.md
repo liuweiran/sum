@@ -40,6 +40,7 @@
 + [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
 + [javascript中的自由变量](./docs/javascript/variable.md)
 + [javascript中的作用域](./docs/javascript/scope.md)
++ [javascript中函数的arguments对象](./docs/javascript/arguments.md)
 + [javascript中的匿名函数](./docs/javascript/anonymous.md)
 + [javascript闭包](./docs/javascript/closure.md)
 + [javascript中的apply、call、bind](./docs/javascript/apply.md)
