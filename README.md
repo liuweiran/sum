@@ -38,12 +38,12 @@
 
 + [javascript的this用法](./docs/javascript/this.md)
 + [javascript中的变量提升和函数提升](./docs/javascript/hoisting.md)
-+ [javascript中的自由变量](./docs/javascript/hoisting.md)
++ [javascript中的自由变量](./docs/javascript/variable.md)
 + [javascript中的作用域](./docs/javascript/scope.md)
 + [javascript闭包](./docs/javascript/closure.md)
 + [javascript中的apply、call、bind](./docs/javascript/apply.md)
 + [javascript的基本类型&引用类型](./docs/javascript/type.md)
-+ [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/variable.md)
++ [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
 + [javascript中的循环(for循环、while循环)](./docs/javascript/loop.md)
 
 
