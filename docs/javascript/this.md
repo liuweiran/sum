@@ -1,7 +1,5 @@
 # javascript的this用法
 
-转自 [阮一峰的网络日志](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
-
 > this是Javascript语言的一个关键字。
 > 它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，
 
@@ -115,3 +113,37 @@ o.m.apply(o);   // 1
 ```
 
 运行结果就变成了1，证明了这时this代表的是对象o。
+
+## 情况五 setTimeout/setInterval
+
+> 在定时器中，this始终代表全局对象window。
+
+```
+var a = 1;
+function fn(){
+	var a = 2;
+    setTimeout(function(){
+		var a = 3;
+        console.log(a);
+    },30);
+};
+
+fn();   // 3
+```
+
+```
+var a = 1;
+function fn(){
+	var a = 2;
+    setTimeout(function(){
+		var a = 3;
+        console.log(this.a);
+    },30);
+};
+
+fn();   // 1
+```
+
+# 参考
+
++ [阮一峰的网络日志 - Javascript的this用法](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
