@@ -364,5 +364,5 @@ a.f2();     // Uncaught TypeError: a.f2 is not a function
 # 参考
 
 + 编写高质量代码-Web前端开发修炼之道 P217-244
-+ 高程3 P144-
++ 高程3 P144-P169
 + [阮一峰的网络日志 - Javascript 面向对象编程（一）：封装](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html)
