@@ -116,7 +116,7 @@ o.m.apply(o);   // 1
 
 ## 情况五 setTimeout/setInterval
 
-> 在定时器中，this始终代表全局对象window。
+> 超时调用的代码都是在全局作用域中执行的，因此定时器中的函数中this的值在非严格模式下指向window对象，在严格模式下是undefined”。在这里，我们只讨论非严格模式。
 
 ```
 var a = 1;
