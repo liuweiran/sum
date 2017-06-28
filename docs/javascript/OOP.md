@@ -256,7 +256,7 @@ function B(name){
 + 每个构造函数都有一个原型对象
 + 原型对象都包含一个指向构造函数的指针
 + 实例都包含一个指向原型对象的内部指针
-+ 实例对象都包含一个指向构造函数的指针
++ 实例对象都有一个constructor属性，指向构造函数
 + 所有函数的默认原型都是Object的实例
 
 ```
@@ -319,6 +319,8 @@ a.f2();     // 2
 
 所以，在上例中，给B原型添加方法，也会作用到A的原型。
 
+而且，B的原型的constructor属性和B的实例的constructor属性均是指向A。
+
 鉴于此影响，可以使用另一种方法来实现原型的继承：
 
 ```
@@ -355,7 +357,7 @@ var a = new A;
 a.f2();     // Uncaught TypeError: a.f2 is not a function
 ```
 
-+ 使用`B.prototype = new A();`，使B继承了A的实例的所有方法和属性（即构造函数和原型中的），但这重写了B的prototype属性，使得prototype对象的constructor不再指向B，而是指向新的Object构造函数。
++ 使用`B.prototype = new A();`，使B继承了A的实例的所有方法和属性（即构造函数和原型中的），但这重写了B的prototype属性，使得prototype对象的constructor不再指向B，而是指向A。
 
 + 如果需要，可以使用`B.prototype.constructor = B;`将其纠正，使之重新指回B。
 
