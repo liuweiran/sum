@@ -1159,7 +1159,7 @@ LESS源码：
 
 >基于传递给mixin的参数来控制它的行为。
 
-+ 依据`@sitch`值进行匹配
++ 依据`@switch`值进行匹配
 
     LESS源码：
 
@@ -3218,9 +3218,8 @@ LESS源码：
 
 # 参考资料
 
-less中文文档  http://less.bootcss.com/features/
-
-Less.js  http://www.lesscss.net/features/
++ less中文文档  http://less.bootcss.com/features/
++ Less.js  http://www.lesscss.net/features/
 
 <br>
 <br>
