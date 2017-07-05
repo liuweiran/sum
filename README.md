@@ -59,6 +59,7 @@
 + [date相关操作](./docs/javascript/date.md)
 + [获取url查询参数](./docs/javascript/get_url_search.md)
 + [判断一个字母的大小写](./docs/javascript/isUpper.md)
++ [金额数字格式化](./docs/javascript/amount.md)
 
 
 + [jQuery选择器](./docs/javascript/jq_selector)
