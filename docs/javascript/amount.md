@@ -9,7 +9,7 @@ function outputAmount(number){
         var num1 = r > 0 ? [num[0].substring(0, r)] : [];
         var m = (len - r)/3;
         for ( var i=0; i<m; i++ ) {
-            num1.push(num[0].substring(3*i+r, 3*(i+1)+r))
+            num1.push(num[0].substring(3*i+r, 3*(i+1)+r));
         }
         return num1 + '.' + num[1];
     } else {

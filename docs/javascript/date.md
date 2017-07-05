@@ -19,6 +19,26 @@ Date.now();
 第二种~第四种是获取了当前毫秒的时间戳。*/
 ```
 
+## 获取当前日期（yyyy-MM-dd HH:MM:SS）
+
+```
+function current(){
+    var now = new Date(), date = [], time = [];
+    date.push(now.getFullYear(), now.getMonth() + 1, now.getDate());
+    time.push(now.getHours(), now.getMinutes(), now.getSeconds());
+
+    function addZero(arr){
+       return arr.map(function(i){
+            return i<10 ? '0'+i : i;
+        })
+    }
+
+    return addZero(date).join('-') + ' ' + addZero(time).join(':');
+}
+
+console.log(current());     // 2017-07-05 23:18:01
+```
+
 ## 解决new Date(time).getTime()在移动端返回NaN
 
 ```
