@@ -58,6 +58,7 @@
 + [判断一个对象是否为空对象](./docs/javascript/empty_object.md)
 + [date相关操作](./docs/javascript/date.md)
 + [获取url查询参数](./docs/javascript/get_url_search.md)
++ [判断一个字母的大小写](./docs/javascript/isUpper.md)
 
 
 + [jQuery选择器](./docs/javascript/jq_selector)

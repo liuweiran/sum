@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vuejs</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            padding: 50px;
+        }
+        .box{
+            width: 400px;
+            height: 400px;
+            background: pink;
+        }
+        .boxIn{
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+        .boxIn2{
+            width: 80px;
+            height: 80px;
+            background: brown;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div id="demo">
+        <span>Message is : {{ message }}</span><br>
+        <input type="text" v-model="message" placeholder="edit me">
+        <br>
+
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+
+        <br>
+        <br>
+        <input type="checkbox" id="jack" value="jack" v-model="checkNames">
+        <label for="jack">jack</label>
+        <input type="checkbox" id="john" value="john" v-model="checkNames">
+        <label for="john">john</label>
+        <input type="checkbox" id="mike" value="mike" v-model="checkNames">
+        <label for="mike">mike</label>
+        <br>
+        <span>Checked names: {{ checkNames | json }}</span>
+        <br>
+        <br>
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+        <br>
+        <br>
+
+        <select v-model="selected">
+            <option selected>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+        <br>
+        <br>
+
+        <select v-model="selected2" multiple>
+            <option selected>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected2 | json }}</span>
+
+    </div>
+</div>
+
+</body>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script>
+
+
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            message: '',
+            checked: false,
+            checkNames: [],
+            picked: '',
+            selected: '',
+            selected2: ''
+
+        },
+        methods: {
+
+        },
+        computed: {
+
+        },
+        created(){
+
+        }
+    });
+
+
+
+
+
+</script>
+</html>
