@@ -45,23 +45,6 @@
 
 <script>
 
-    function current(){
-        var now = new Date(), date = [], time = [];
-        date.push(now.getFullYear(), now.getMonth() + 1, now.getDate());
-        time.push(now.getHours(), now.getMinutes(), now.getSeconds());
-
-        function addZero(arr){
-           return arr.map(function(i){
-                return i<10 ? '0'+i : i;
-            })
-        }
-
-        return addZero(date).join('-') + ' ' + addZero(time).join(':');
-    }
-
-    console.log(current());
-
-
 
 
 

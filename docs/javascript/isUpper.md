@@ -46,6 +46,7 @@ console.log(isUpper4('a'));     // false
 
 # 更改字符串的大小写
 
+方法一：
 ```
 function changeCase(str){
     var newStr = '';
@@ -57,4 +58,17 @@ function changeCase(str){
 
 var foo = 'aBcDeFg';
 console.log(changeCase(foo));   // AbCdEfG
+```
+
+方法二：
+```
+function changeCare(str){
+    var arr = str.split('').map(function(i){
+        return i === i.toUpperCase() ? i.toLowerCase() : i.toUpperCase();
+    });
+    return arr.join().replace(/,/g ,'');
+}
+
+var foo = 'aBcDeF';
+console.log(changeCare(foo));   // AbCdEf
 ```
