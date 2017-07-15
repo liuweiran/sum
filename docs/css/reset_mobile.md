@@ -113,7 +113,6 @@ a{
 
 /* 图片自适应 */
 img{
-    max-width: 100%;
     height: auto;
     width:auto\9; /* ie8 */
     -ms-interpolation-mode:bicubic;/*为了照顾ie图片缩放失真*/

@@ -34,7 +34,6 @@ h1 ,h2, h3, h4, h5, h6 {
 }
 img {
   border: none;
-  max-width: 100%;
   height: auto;
   width:auto\9;
   -ms-interpolation-mode: bicubic;
