@@ -114,7 +114,9 @@ o.m.apply(o);   // 1
 
 运行结果就变成了1，证明了这时this代表的是对象o。
 
-## 情况五 setTimeout/setInterval
+## 补充说明
+
+### setTimeout/setInterval
 
 > 超时调用的代码都是在全局作用域中执行的，因此定时器中的函数中this的值在非严格模式下指向window对象，在严格模式下是undefined”。在这里，我们只讨论非严格模式。
 
@@ -142,6 +144,41 @@ function fn(){
 };
 
 fn();   // 1
+```
+
+### 匿名函数
+
+> 匿名函数的this指向window。
+
+```
+var a = 11;
+var A = {
+	a: 1,
+	b: [2,3,4],
+	fn: function(){
+		console.log(this.a);    // 1
+		this.b.forEach(function(i){
+			console.log(this.a);    // 11
+		});
+	}
+}
+
+A.fn();
+```
+
+```
+var a = 1;
+function fn(){
+	var a = 2;
+	console.log(a); // 2
+
+	var b = [1,2,3];
+	b.forEach(function(){
+		console.log(this);  // window
+		console.log(this.a);    // 1
+	});
+}
+fn();
 ```
 
 # 参考
