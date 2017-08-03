@@ -65,6 +65,8 @@
 + [jQuery选择器](./docs/javascript/jq_selector)
 + [jQuery插件编写](./docs/javascript/jq_plugin.md)
 
++ [typescript学习笔记](./docs/javascript/typescript.md)
+
 ### 2.4 node
 
 ##### 2.4.1 模块
