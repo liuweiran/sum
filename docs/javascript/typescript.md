@@ -38,5 +38,34 @@ sam.move();     // Slithering...  Sammy the Python moved 5
 tom.move(34);   // Galloping...   Tommy the Palomino moved 34
 ```
 
+## 枚举
 
+使用枚举我们可以定义一些有名字的数字常量。 枚举通过 enum关键字来定义。
 
+```
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+let up = Direction.Up;
+console.log(up);    // 0
+```
+
+默认枚举类型数值从0开始，也可以手动设置某个成员的值，其后的值则递增。比如将`Down`设置为3：
+```
+enum Direction {
+    Up,
+    Down = 3,
+    Left,
+    Right
+}
+
+let a = Direction.Up;
+let b = Direction.Down;
+let c = Direction.Left;
+let d = Direction.Right;
+console.log(a,b,c,d);    // 0 3 4 5
+```
