@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS图片裁剪</title>
+    <style>
+        .view{
+            background: #eee;
+            width: 800px;
+            height: 600px;
+            position: relative;
+        }
+        img{
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            margin: 0 auto;
+        }
+        .img-cover{
+            position: absolute;
+            left: 50%;
+            top: 0;
+            cursor: crosshair;
+        }
+        .clip-box{
+            position: absolute;
+            cursor: move;
+            border: 1px dashed #000;
+        }
+        .clip-corner{
+            width: 4px;
+            height: 4px;
+            position: absolute;
+            background: pink;
+        }
+        .clip-corner:nth-child(1){
+             left: 0;
+             top: 0;
+             cursor: nw-resize;
+         }
+        .clip-corner:nth-child(2){
+            right: 0;
+            top: 0;
+            cursor: sw-resize;
+        }
+        .clip-corner:nth-child(3){
+            left: 0;
+            bottom: 0;
+            cursor: ne-resize;
+        }
+        .clip-corner:nth-child(4){
+            right: 0;
+            top: 0;
+            cursor: se-resize;
+        }
+    </style>
+</head>
+<body>
+<div class="clip-img-container" id="container">
+    <div class="view">
+        <img id="img" src="../plugins/jcrop/img/1.jpg">
+        <div class="img-cover" id="img-cover"></div>    <!--图片覆盖层，用于阻止浏览器插件直接拖拽图片的事件-->
+        <div class="clip-box" id="clip-box">
+            <div class="clip-corner"></div>
+            <div class="clip-corner"></div>
+            <div class="clip-corner"></div>
+            <div class="clip-corner"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var clipRitia = 1;  // 裁剪比例
+    var clipBoxSpace = 40;
+
+    function getElementOffset(element){
+        var elementLeft = element.offsetLeft,
+            elementTop = element.offsetTop,
+            parent = element.offsetParent;
+
+        do {
+            elementLeft += parent.offsetLeft;
+            elementTop += parent.offsetTop;
+            parent = parent.offsetParent;
+        } while (parent !== null);
+
+        return {
+            x: elementLeft,
+            y: elementTop
+        }
+    }
+
+    window.onload = function(){
+        var $img = document.getElementById('img');
+        var $imgCover = document.getElementById('img-cover');
+
+        // 获取图片尺寸
+        var originalW = originalH = clientW = clientH = 0;
+        if (typeof $img.naturalWidth === 'undefined') {
+            var i = new Image();
+            i.src = $img.src;
+            originalW = i.width;
+            originalH = i.height;
+        }
+        else {
+            originalW = $img.naturalWidth;
+            originalH = $img.naturalHeight;
+        }
+        clientW = $img.clientWidth;
+        clientH = $img.clientHeight;
+
+        // 设置图片覆盖层的尺寸
+        $imgCover.style.cssText = 'width:'+clientW+'px; height:'+clientH+'px; margin-left: -'+clientW/2+'px';
+
+        var startX = startY = endX = endY = 0;
+        $imgCover.onmousedown = function(e){
+            startX = e.clientX;
+            startY = e.clientY;
+
+            document.onmousemove = function(e){
+            };
+
+
+        };
+
+        $imgCover.onmouseup = function(e){
+            endX = e.clientX;
+            endY = e.clientY;
+        }
+    }
+</script>
+</body>
+</html>
