@@ -48,7 +48,7 @@
 			_vamSpan.css({'width': '1px', 'height': '100%', 'marginLeft': '-1px'});
 			_cutBoxImg.css({'verticalAlign': 'middle'});
 			_preview.css({'width': w2+'px', 'height':  h2+'px', 'float': 'left', 'margin': '10px 0 0 10px', 'overflow': 'hidden', 'boxShadow': '0 0 5px 3px #d0d0d0'});
-			_canvas.attr({'width': w2, 'height': h2}).css({'margin': '10px 0 0 10px', 'display': 'none', 'visibility': 'hidden'});
+			_canvas.css({'margin': '10px 0 0 10px', 'display': 'none', 'visibility': 'hidden'});
 			_submit.css({'marginTop': '10px'});
 
 			var jcrop_api,
@@ -110,8 +110,10 @@
 				var canvas = document.getElementById(''+node+'_canvas');
 				var ctx = canvas.getContext("2d");
 
+                _canvas.attr({'width': Math.round(cut.w), 'height': Math.round(cut.h)});
+
 				//context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);  剪切图像，并在画布上定位被剪切的部分
-				ctx.drawImage(img, Math.round(cut.x), Math.round(cut.y), Math.round(cut.w), Math.round(cut.h), 0, 0, w2, h2);
+				ctx.drawImage(img, Math.round(cut.x), Math.round(cut.y), Math.round(cut.w), Math.round(cut.h), 0, 0, Math.round(cut.w), Math.round(cut.h));
 				result = canvas.toDataURL();
 				callBack(result);
 			});
