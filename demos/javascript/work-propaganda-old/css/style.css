@@ -29,7 +29,7 @@ input:focus {
 }
 
 .index {
-    top: 0;
+    /*top: 0;*/
 }
 
 .index .title {
@@ -184,6 +184,7 @@ input:focus {
 .container.form {
     box-sizing: border-box;
     padding: 15px;
+    top: 0;
 }
 
 .content {

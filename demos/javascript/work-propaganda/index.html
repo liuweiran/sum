@@ -54,41 +54,52 @@
 <div class="container page25"></div>
 <div class="container page26"></div>
 <div class="container form">
+    <div class="wrap">
+        <div class="border"></div>
+    </div>
     <div class="content">
+        <div class="title"><div>填写信息&nbsp;免费申请</div></div>
         <dl>
-            <dt class="title">填写信息&nbsp;免费申请</dt>
-            <dd class="store-name">
-                <i>
-                    <span class="split-line"></span>
-                </i>
-                <input placeholder="请输入您的餐厅名称"/>
+            <dd>
+                <div class="store-name">
+                    <i>
+                        <span class="split-line"></span>
+                    </i>
+                    <input placeholder="请输入您的餐厅名称"/>
+                </div>
             </dd>
-            <dd class="store-amount">
-                <i>
-                    <span class="split-line"></span>
-                </i>
-                <input placeholder="请输入您的门店数"/>
+            <dd>
+                <div class="store-amount">
+                    <i>
+                        <span class="split-line"></span>
+                    </i>
+                    <input placeholder="请输入您的门店数"/>
+                </div>
             </dd>
-            <dd class="user-name">
-                <i>
-                    <span class="split-line"></span>
-                </i>
-                <input placeholder="请输入您的姓名"/>
+            <dd>
+                <div class="user-name">
+                    <i>
+                        <span class="split-line"></span>
+                    </i>
+                    <input placeholder="请输入您的姓名"/>
+                </div>
             </dd>
-            <dd class="mobile">
-                <i>
-                    <span class="split-line"></span>
-                </i>
-                <input placeholder="请输入您的联系方式"/>
-            </dd>
-            <dd class="button-container">
-                <button class="button">提交</button>
+            <dd>
+                <div class="mobile">
+                    <i>
+                        <span class="split-line"></span>
+                    </i>
+                    <input placeholder="请输入您的联系方式"/>
+                </div>
             </dd>
         </dl>
-        <div class="logo"></div>
+        <div class="button-container">
+            <div>
+                <button class="button">提交</button>
+            </div>
+        </div>
     </div>
 </div>
-<!--<div class="container pic14"></div>-->
 <div class="end-page">
     <div class="absolute-center p15-pic"></div>
     <div class="absolute-center qrcode">
@@ -190,16 +201,46 @@
         });
 
         $('.button').on('click', function () {
+            var tenantName = $('.store-name input').val(),
+                storeAmount = $('.store-amount input').val(),
+                name = $('.user-name input').val(),
+                phone = $('.mobile input').val();
+
+            if (tenantName==='') {
+                alert('请输入您的餐厅名称');
+                return;
+            }
+
+            if (storeAmount==='') {
+                alert('请输入您的门店数');
+                return;
+            } else if (!/^[0-9]*$/.test(storeAmount)) {
+                alert('门店数格式不正确，请输入数字');
+                return;
+            }
+
+            if (name==='') {
+                alert('请输入您的姓名');
+                return;
+            }
+
+            if (phone==='') {
+                alert('请输入您的联系方式');
+                return;
+            } else  if (!/^[0-9]*$/.test(phone)) {
+                alert('联系方式格式不正确');
+                return;
+            }
 
             $.ajax({
                 type: "POST",
                 url: "https://mc.mealkey.cn/mini-app/registration",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({
-                    name: $('.user-name input').val(),
-                    tenantName: $('.store-name input').val(),
-                    phone: $('.mobile input').val(),
-                    storeAmount: $('.store-amount input').val(),
+                    tenantName: tenantName,
+                    storeAmount: storeAmount,
+                    name: name,
+                    phone: phone
                 }),
                 dataType: "json",
                 success: function (message) {
