@@ -1,0 +1,359 @@
+html, body, .container, .end-page {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
+}
+
+input:focus {
+    outline: none;
+}
+
+.container, .end-page {
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+.absolute-center {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.index {
+    top: 0;
+}
+
+.index .title {
+    width: 345px;
+    height: 245px;
+    background: url("../images/p1-title.png") no-repeat center center;
+    background-size: 345px 245px;
+    transform: translate(34px, -114px);
+}
+
+.index .content {
+    width: 100%;
+    height: 75px;
+    background: url("../images/p1-frame.png") no-repeat center center;;
+    background-size: 414px 75px;
+    transform: translateY(43px);
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    justify-content: center;
+}
+
+.index .content .text1 {
+    margin-left: -140px;
+}
+
+.index .store-list {
+    flex: 2;
+    position: relative;
+    overflow: hidden;
+}
+
+.index .store-list .list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    left: 50%;
+    margin-left: -137px;
+    font-size: 12px;
+    line-height: 25px;
+    color: white;
+    height: 100%;
+}
+
+.index .store-list .list .item {
+   opacity: 0.7;
+}
+
+
+.index .total-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    align-items: center;
+    color: white;
+    line-height: 16px;
+}
+
+#total {
+    font-size: 20px;
+    margin: 5px;
+}
+
+.index .footer {
+    width: 212px;
+    height: 141px;
+    background: url("../images/p1-pic.png") no-repeat center center;;
+    background-size: 212px 141px;
+    transform: translate(39px, 90px);
+}
+
+.pic2 {
+    background: url("../images/pic2.jpg") no-repeat center center;
+    background-size: 320px 508px;
+}
+
+.pic3 {
+    background: url("../images/pic3.jpg") no-repeat center center;
+    background-size: 320px 508px;
+}
+
+.pic4 {
+    background: url("../images/pic4.jpg") no-repeat center center;
+    background-size: 320px 508px;
+
+}
+
+.pic5 {
+    background: url("../images/pic5.jpg") no-repeat center center;
+    background-size: auto 508px;
+}
+
+.pic6 {
+    background: url("../images/pic6.jpg") no-repeat center center;
+    background-size: 320px 508px;
+}
+
+.pic7 {
+    background: url("../images/pic7.jpg") no-repeat center center;
+    background-size: 320px 508px;
+}
+
+.pic8 {
+    background: url("../images/pic8.jpg") no-repeat center center;
+    background-size: 320px 508px;
+}
+
+.pic9 {
+    background: url("../images/pic9.jpg") no-repeat center center;
+    background-size: 320px 508px;
+}
+
+.pic10 {
+    background: url("../images/pic10.jpg") no-repeat center center;
+    background-size: auto 508px;
+}
+
+.pic11 {
+    background: url("../images/pic11.jpg") no-repeat center center;
+    background-size: auto 708px;
+}
+
+.pic12 {
+    background: url("../images/pic12.jpg") no-repeat center center;
+    background-size: auto 508px;
+}
+
+.pic13 {
+    background: url("../images/pic13.jpg") no-repeat center center;
+    background-size: auto 508px;
+}
+
+.p15-pic {
+    background: url("../images/p15-pic.png") no-repeat 65px center;
+    background-size: 414px 91px;
+    transform: translate(0, -114px);
+}
+
+.qrcode {
+    width: 131px;
+    height: 131px;
+    transform: translateY(24px);
+}
+
+.qrcode img {
+    width: 100%;
+    height: 100%;
+}
+
+.container.form {
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.content {
+    border: 4px solid #d4342f;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.form .title {
+    font-size: 20px;
+    color: #d4342f;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    transform: translateY(-138px);
+    width: 200px;
+    background-color: white;
+}
+
+.content .store-name, .content .user-name, .content .mobile {
+    width: 210px;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    display: flex;
+    border-bottom: 1px solid #f2c2c0;
+    overflow: hidden;
+}
+
+.store-name {
+    transform: translateY(-82px);
+}
+
+.user-name {
+    transform: translateY(-50px);
+}
+
+.mobile {
+    transform: translateY(-15px);
+}
+
+.content i {
+    flex: 0 0 52px;
+    height: 28px;
+    display: inline-block;
+}
+
+.content .store-name i {
+    background: url("../images/icon-store.png") no-repeat center center;
+    background-size: 23px;
+    position: relative;
+}
+
+.content .user-name i {
+    background: url("../images/icon-user.png") no-repeat center center;
+    background-size: 21px;
+    position: relative;
+}
+
+.content .mobile i {
+    background: url("../images/icon-phone.png") no-repeat center center;
+    background-size: 19px;
+    position: relative;
+}
+
+.split-line {
+    width: 1px;
+    height: 21px;
+    display: inline-block;
+    background-color: #f2c2c0;
+    position: absolute;
+    right: 0;
+    top: 4px;
+}
+
+.content input {
+    flex: 1;
+    padding: 0 14px 0 15px;
+    border: none;
+    font-size: 14px;
+}
+
+.content .button-container {
+    width: 169px;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    transform: translateY(98px);
+    background-color: white;
+    padding: 3px 12px 4px 12px;
+    box-sizing: border-box;
+}
+
+.content .button {
+    width: 145px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    background-color: #d4342f;
+    color: white;
+    border-radius: 5px;
+    font-size: 17px;
+    letter-spacing: 20px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.music-control {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    top: 20px;
+    right: 15px;
+}
+
+@keyframes rotate-music-icon {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate-music-icon {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.music-icon {
+    width: 26px;
+    height: 26px;
+    display: block;
+    background: url("../images/icon-music-open.png") no-repeat center;
+    background-size: 26px 26px;
+    animation: rotate-music-icon 5s linear;
+    -webkit-animation: rotate-music-icon 5s linear;
+    animation-iteration-count: 9999;
+    -webkit-animation-iteration-count: 9999;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.music-icon.stop {
+    background: url("../images/icon-music-close.png") no-repeat center;
+    background-size: 26px 26px;
+    animation: none;
+    -webkit-animation: none;
+}
+
+.absolute-center.text {
+    width: 226px;
+    height: 38px;
+    background: url("../images/p15-text.png") no-repeat center;
+    background-size: 226px 38px;
+    transform: translateY(130px);
+}
+
+.logo {
+    position: absolute;
+    bottom: 8px;
+    width: 41px;
+    height: 15px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    background: url("../images/p15-logo.png") no-repeat center;
+    background-size: 41px 15px;
+}

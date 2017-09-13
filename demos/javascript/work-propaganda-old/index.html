@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="css/style.css">
+    <title>餐启科技营销助手</title>
+</head>
+<body>
+<div class="container index">
+    <div class="absolute-center title"></div>
+    <div class="absolute-center content">
+        <div class="store-list"></div>
+        <div class="total-container">
+            <span class="text1">已有</span>
+            <span id="total"></span>
+            <span>位餐BOSS创建</span>
+        </div>
+    </div>
+    <div class="absolute-center footer"></div>
+</div>
+<div class="container pic2"></div>
+<div class="container pic3"></div>
+<div class="container pic4"></div>
+<div class="container pic5"></div>
+<div class="container pic6"></div>
+<div class="container pic7"></div>
+<div class="container pic8"></div>
+<div class="container pic9"></div>
+<div class="container pic10"></div>
+<div class="container pic11"></div>
+<div class="container pic12"></div>
+<div class="container pic13"></div>
+<div class="container form">
+    <div class="content">
+        <div class="absolute-center title">
+            <span>填写信息</span>
+            <span>免费申请</span>
+        </div>
+        <div class="absolute-center store-name">
+            <i>
+                <span class="split-line"></span>
+            </i>
+            <input placeholder="请输入您的餐厅名称"/>
+        </div>
+        <div class="absolute-center user-name">
+            <i>
+                <span class="split-line"></span>
+            </i>
+            <input placeholder="请输入您的姓名"/>
+        </div>
+        <div class="absolute-center mobile">
+            <i>
+                <span class="split-line"></span>
+            </i>
+            <input type="tel" placeholder="请输入您的联系方式"/>
+        </div>
+        <div class="absolute-center button-container">
+            <div class="button">提交</div>
+        </div>
+    </div>
+</div>
+<!--<div class="container pic14"></div>-->
+<div class="end-page">
+    <div class="absolute-center p15-pic"></div>
+    <div class="absolute-center qrcode">
+        <img src="images/test.jpeg">
+    </div>
+    <div class="absolute-center text"></div>
+    <div class="logo"></div>
+</div>
+<audio id="backgroundMusic" src="mp3/background_music.mp3" autoplay></audio>
+<div class="music-control">
+    <i class="music-icon"></i>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+    var beginPageY = null;
+    var movePageY = null;
+    var move = false;
+    var id = null;
+    var timer = null;
+
+    $(function () {
+
+        $.ajax({
+            type: 'GET',
+            url: 'https://mc.mealkey.cn/mini-app/registration',
+            dataType: "json",
+            success: function (result) {
+                $('#total').text(result.total);
+
+                var sotreList = result.list.map(function (item, index) {
+
+                    var className = index === 1 ? 'item active' : 'item';
+                    var style = index === 1 ? "opacity: 1;" : '';
+
+                    return '<div class="'+className+'" style="'+style+'">' + item.tenantName + item.name + '领取小程序 1 份</div>'
+                });
+
+                $('.store-list').html('<div class="list">' + sotreList.join('') + '</div>');
+
+                timer = setInterval(loopMove, 3000);
+            }
+
+        });
+
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+
+        $('body').on('touchstart', function (event) {
+
+            var touch = event.targetTouches[0];
+            beginPageY = touch.pageY;
+
+        }).on('touchmove', function (event) {
+            event.preventDefault();
+            var touch = event.targetTouches[0];
+            movePageY = touch.pageY;
+            move = true;
+        }).on('touchend', function () {
+            if (!move) {
+                return;
+            }
+
+            var elem = getContainer(event.target);
+
+            if (movePageY - beginPageY < 0) {
+
+                if (elem.next().length && elem.next().hasClass('container')) {
+
+                    elem.animate({opacity: 0});
+                    elem.next().animate({top: 0});
+                }
+            } else {
+                if (elem.prev().length && elem.prev().hasClass('container')) {
+                    elem.prev().animate({opacity: 1});
+                    elem.animate({top: '100%'});
+                }
+            }
+
+            move = false;
+        });
+
+        $('.music-icon').on('click', function () {
+
+            if ($('.music-icon').hasClass('stop')) {
+                $('.music-icon').removeClass('stop');
+                document.getElementById('backgroundMusic').play();
+            } else {
+                $('.music-icon').addClass('stop');
+                document.getElementById('backgroundMusic').pause();
+            }
+
+
+        });
+
+        $('.button').on('click', function () {
+
+            $.ajax({
+                type: "POST",
+                url: "https://mc.mealkey.cn/mini-app/registration",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    name: $('.user-name input').val(),
+                    tenantName: $('.store-name input').val(),
+                    phone: $('.mobile input').val()
+                }),
+                dataType: "json",
+                success: function (message) {
+                    if (id = message.id) {
+                        $('.qrcode img').attr('src', 'https://mc.mealkey.cn/mini-app/weixin/qrCode/' + id);
+
+                        $('.form').animate({opacity: 0});
+                        $('.end-page').animate({top: 0});
+                    }
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("提交数据失败！");
+                }
+            });
+
+        });
+
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            document.getElementById('backgroundMusic').play();
+        }, false);
+
+
+        if (isAndroid) {
+
+            $('input').on('focus', function () {
+                $('body').css({'transform': 'translateY(0)'})
+            })
+        } else {
+            $('input').on('blur', function () {
+                this.scrollIntoView(false);
+
+            });
+        }
+    });
+
+
+    function getContainer(elem) {
+        elem = $(elem);
+        while (elem[0] && elem[0].tagName !== 'BODY' && !elem.hasClass('container')) {
+            elem = elem.parent();
+        }
+        return elem.hasClass('container') ? elem : null;
+    }
+
+
+    function loopMove() {
+        var storeList = $('.store-list .list');
+
+        if ($('.item.active').next().length) {
+
+            $('.item.active').animate({opacity:0.7});
+            $('.item.active').next().animate({opacity:1});
+
+            var currentTop = (storeList.css('top') == 'auto' ? '0' :storeList.css('top')).replace('px', '');
+
+            storeList.animate({'top': currentTop - 25}, function(){
+                $('.item.active').removeClass('active').next().addClass('active');
+            });
+        } else {
+            clearInterval(timer);
+        }
+
+    }
+
+
+</script>
+</html>
