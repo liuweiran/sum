@@ -9,25 +9,21 @@
     <title>餐启科技营销助手</title>
 </head>
 <body>
-<div class="container pic1 newIndex">
-    <ul>
-        <li class="li01">时尚五味张总申请试用</li>
-        <li class="li02">Lio餐厅李总申请试用</li>
-        <li class="li03">已有<span></span>位餐BOSS领取试用</li>
-    </ul>
-</div>
-<!--<div class="container index">
-    <div class="absolute-center title"></div>
-    <div class="absolute-center content">
-        <div class="store-list"></div>
-        <div class="total-container">
-            <span class="text1">已有</span>
-            <span id="total"></span>
-            <span>位餐BOSS创建</span>
+<div class="container page1 index">
+    <div class="content">
+        <ul class="bg">
+            <li></li>
+            <li></li>
+            <li class="li03"></li>
+        </ul>
+        <div class="store-list">
+            <ul class="list"></ul>
+        </div>
+        <div class="total">
+            已有<span></span>位餐BOSS领取试用
         </div>
     </div>
-    <div class="absolute-center footer"></div>
-</div>-->
+</div>
 <div class="container page2"></div>
 <div class="container page3"></div>
 <div class="container page4"></div>
@@ -73,7 +69,7 @@
                     <i>
                         <span class="split-line"></span>
                     </i>
-                    <input placeholder="请输入您的门店数"/>
+                    <input type="number" placeholder="请输入您的门店数"/>
                 </div>
             </dd>
             <dd>
@@ -89,7 +85,7 @@
                     <i>
                         <span class="split-line"></span>
                     </i>
-                    <input placeholder="请输入您的联系方式"/>
+                    <input type="number" placeholder="请输入您的联系方式"/>
                 </div>
             </dd>
         </dl>
@@ -123,34 +119,24 @@
     var timer = null;
 
     $(function () {
-        $.ajax({
-            url: 'json/client.json',
-            success: function(res) {
-                $('.container.pic1 .li03 span').text(res['clientStatistics']);
-            }
-        });
 
-        /*$.ajax({
+        $.ajax({
             type: 'GET',
             url: 'https://mc.mealkey.cn/mini-app/registration',
             dataType: "json",
-            success: function (result) {
-                $('#total').text(result.total);
+            success: function (res) {
+                $('.index .total span').text(res.total);
 
-                var sotreList = result.list.map(function (item, index) {
-
-                    var className = index === 1 ? 'item active' : 'item';
-                    var style = index === 1 ? "opacity: 1;" : '';
-
-                    return '<div class="'+className+'" style="'+style+'">' + item.tenantName + item.name + '领取小程序 1 份</div>'
+                var storeList = res.list.map(function (item) {
+                    return '<li>' + item.tenantName + item.name + '申请试用</li>'
                 });
 
-                $('.store-list').html('<div class="list">' + sotreList.join('') + '</div>');
+                $('.store-list .list').html(storeList.join(''));
 
-                timer = setInterval(loopMove, 3000);
+                loop();
             }
 
-        });*/
+        });
 
         var u = navigator.userAgent;
         var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
@@ -161,11 +147,14 @@
             beginPageY = touch.pageY;
 
         }).on('touchmove', function (event) {
+
             event.preventDefault();
             var touch = event.targetTouches[0];
             movePageY = touch.pageY;
             move = true;
+
         }).on('touchend', function () {
+
             if (!move) {
                 return;
             }
@@ -173,9 +162,7 @@
             var elem = getContainer(event.target);
 
             if (movePageY - beginPageY < 0) {
-
                 if (elem.next().length && elem.next().hasClass('container')) {
-
                     elem.animate({opacity: 0});
                     elem.next().animate({top: 0});
                 }
@@ -205,32 +192,6 @@
                 storeAmount = $('.store-amount input').val(),
                 name = $('.user-name input').val(),
                 phone = $('.mobile input').val();
-
-            if (tenantName==='') {
-                alert('请输入您的餐厅名称');
-                return;
-            }
-
-            if (storeAmount==='') {
-                alert('请输入您的门店数');
-                return;
-            } else if (!/^[0-9]*$/.test(storeAmount)) {
-                alert('门店数格式不正确，请输入数字');
-                return;
-            }
-
-            if (name==='') {
-                alert('请输入您的姓名');
-                return;
-            }
-
-            if (phone==='') {
-                alert('请输入您的联系方式');
-                return;
-            } else  if (!/^[0-9]*$/.test(phone)) {
-                alert('联系方式格式不正确');
-                return;
-            }
 
             $.ajax({
                 type: "POST",
@@ -263,7 +224,6 @@
 
 
         if (isAndroid) {
-
             $('input').on('focus', function () {
                 $('body').css({'transform': 'translateY(0)'})
             })
@@ -283,26 +243,28 @@
         return elem.hasClass('container') ? elem : null;
     }
 
+    function loop() {
+        var ul = $('.store-list .list'),
+            li = ul.children('li'),
+            len = li.length,
+            num = 1,
+            index = num;
+        //ul.append(li.eq(0).clone(true));
+        li.eq(num).addClass('active');
 
-    function loopMove() {
-        var storeList = $('.store-list .list');
-
-        if ($('.item.active').next().length) {
-
-            $('.item.active').animate({opacity:0.7});
-            $('.item.active').next().animate({opacity:1});
-
-            var currentTop = (storeList.css('top') == 'auto' ? '0' :storeList.css('top')).replace('px', '');
-
-            storeList.animate({'top': currentTop - 25}, function(){
-                $('.item.active').removeClass('active').next().addClass('active');
-            });
-        } else {
-            clearInterval(timer);
+        function autoRun(){
+            index++;
+            if(index>len-1){
+                clearInterval(timer);
+                return;
+                //index = num;
+                //ul.css('top','0');
+            }
+            ul.stop().animate({top: -31*(index-num)}, 500);
+            li.eq(index).addClass('active').siblings().removeClass('active');
         }
-
+        timer = setInterval(autoRun, 1000);
     }
-
 
 </script>
 </html>

@@ -5,10 +5,6 @@ html, body, .container, .end-page {
     overflow: hidden;
 }
 
-body {
-    overflow: hidden;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -33,77 +29,9 @@ input:focus {
     right: 0;
 }
 
-.index .title {
-    width: 345px;
-    height: 245px;
-    background: url("../images/p1-title.png") no-repeat center center;
-    background-size: 345px 245px;
-    transform: translate(34px, -114px);
+.page1 {
+    background-image: url("../images/pages/1.jpg");
 }
-
-.index .content {
-    width: 100%;
-    height: 75px;
-    background: url("../images/p1-frame.png") no-repeat center center;;
-    background-size: 414px 75px;
-    transform: translateY(43px);
-    display: flex;
-    flex-direction: column;
-    border: 0;
-    justify-content: center;
-}
-
-.index .content .text1 {
-    margin-left: -140px;
-}
-
-.index .store-list {
-    flex: 2;
-    position: relative;
-    overflow: hidden;
-}
-
-.index .store-list .list {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    left: 50%;
-    margin-left: -137px;
-    font-size: 12px;
-    line-height: 25px;
-    color: white;
-    height: 100%;
-}
-
-.index .store-list .list .item {
-   opacity: 0.7;
-}
-
-
-.index .total-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    font-size: 12px;
-    align-items: center;
-    color: white;
-    line-height: 16px;
-}
-
-#total {
-    font-size: 20px;
-    margin: 5px;
-}
-
-.index .footer {
-    width: 212px;
-    height: 141px;
-    background: url("../images/p1-pic.png") no-repeat center center;;
-    background-size: 212px 141px;
-    transform: translate(39px, 90px);
-}
-
 .page2 {
     background-image: url("../images/pages/2.jpg");
 }
@@ -250,13 +178,13 @@ input:focus {
     flex: 0 0 30px;
 }
 
-.content dl{
+.form .content dl{
     height: 192px;
     display: flex;
     flex-direction: column;
 }
 
-.content dd {
+.form .content dd {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -264,7 +192,7 @@ input:focus {
     justify-content: center;
 }
 
-.content dd>div {
+.form .content dd>div {
     flex: 0 0 30px;
     width: 210px;
     height: 28px;
@@ -417,40 +345,65 @@ input:focus {
     background-size: 41px 15px;
 }
 
-.pic1 {
-    background: url("../images/pic1.png") no-repeat center center;
-    background-size: cover;
-}
-.newIndex {
+.index {
     top: 0;
 }
-.newIndex ul{
+.index .content{
     position: absolute;
     bottom: 116px;
     width: 100%;
+    height: 92px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 14px;
+    text-align: right;
+}
+.index .bg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.index .bg li{
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.index .bg .li03{
+    border-bottom: none;
+}
+.index ul{
     list-style: none;
 }
-.newIndex ul li{
-    height: 30px;
-    line-height: 30px;
-    background: rgba(255, 255, 255, 0.2);
-    border-top: 1px solid rgba(255, 255, 255, 0.18);
-    text-align: right;
-    padding: 0 40px;
-    font-size: 14px;
+.index .store-list{
+    position: relative;
+    height: 62px;
     overflow: hidden;
 }
-.newIndex ul li.li01{
-    border-top: none;
-    color: rgba(255, 255, 255, 0.7);
+.index .store-list .list{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
-.newIndex ul li.li02{
-    color: rgba(255, 255, 255, 0.8);
+.index .store-list li{
+    height: 31px;
+    line-height: 31px;
+    padding: 0 40px;
+    overflow: hidden;
+    color: rgba(255,255,255,0.7);
 }
-.newIndex ul li.li03{
-    color: rgba(255, 255, 255, 1);
+.index .store-list li.active{
+    color: rgba(255,255,255,0.8);
 }
-.newIndex ul li.li03 span{
+.index .total{
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+    padding: 0 40px;
+}
+.index .total span{
     font-size: 15px;
     font-weight: bold;
     padding: 0 3px;
