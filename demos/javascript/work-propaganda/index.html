@@ -247,14 +247,14 @@
         var ul = $('.store-list .list'),
             li = ul.children('li'),
             len = li.length,
-            num = 1,
+            num = 0,
             index = num;
         //ul.append(li.eq(0).clone(true));
         li.eq(num).addClass('active');
 
         function autoRun(){
             index++;
-            if(index>len-1){
+            if(index>len-2){
                 clearInterval(timer);
                 return;
                 //index = num;
