@@ -81,6 +81,7 @@
 
 + [require语句](docs/node/grammer/require.md)
 + [process对象](docs/node/grammer/process.md)  
++ [locals对象](docs/node/grammer/locals.md)
 
 ### 2.5 vue.js
 
