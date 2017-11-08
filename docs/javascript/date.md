@@ -7,7 +7,7 @@
 Date.parse(new Date())；
 
 //方法二
-new Date()).valueOf()；
+new Date().valueOf()；
 
 //方法三
 new Date().getTime()；
