@@ -161,3 +161,26 @@ function nextDay(){
     return new Date(new Date().setHours(0,0,0,0)).getTime() + 86400000;
 }
 ```
+
+## 判断当前时间是否在某个时间段内 参数格式hh:mm
+```
+function (beginTime, endTime) {
+  let strb = beginTime.split(":");
+  let stre = endTime.split(":");
+
+  let b = new Date();
+  let e = new Date();
+  let n = new Date();
+
+  b.setHours(strb[0]);
+  b.setMinutes(strb[1]);
+  e.setHours(stre[0]);
+  e.setMinutes(stre[1]);
+
+  if ( n.getTime() >= b.getTime() && n.getTime() <= e.getTime() ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+```

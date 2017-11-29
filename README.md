@@ -51,6 +51,7 @@
 + [javascript中的值覆盖（定义的优先级）](./docs/javascript/overridden.md)
 + [javascript的面向对象编程](./docs/javascript/OOP.md)
 
+<br>
 
 + [console 控制台输出](./docs/javascript/console.md)
 + [获取字符串长度](./docs/javascript/str_length.md)
@@ -61,10 +62,14 @@
 + [判断一个字母的大小写](./docs/javascript/isUpper.md)
 + [金额数字格式化](./docs/javascript/amount.md)
 
+<br>
 
 + [jQuery选择器](./docs/javascript/jq_selector)
 + [jQuery插件编写](./docs/javascript/jq_plugin.md)
 
+<br>
+
++ [正则表达式](./docs/javascript/regEx.md)
 + [typescript学习笔记](./docs/javascript/typescript.md)
 
 ### 2.4 node
