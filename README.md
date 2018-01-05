@@ -50,6 +50,7 @@
 + [javascript中的循环(for循环、while循环)](./docs/javascript/loop.md)
 + [javascript中的值覆盖（定义的优先级）](./docs/javascript/overridden.md)
 + [javascript的面向对象编程](./docs/javascript/OOP.md)
++ [javascript的array](./docs/javascript/array.md)
 
 <br>
 
