@@ -3,9 +3,16 @@
 JavaScript 支持不同类型的循环：
 
 + for - 循环代码块一定的次数
-+ for/in - 循环遍历对象的属性/数组
++ for/in - 遍历对象，循环出的是key (可用于数组则循环出的是索引值)
 + while - 当指定的条件为 true 时循环指定的代码块
 + do/while - 同样当指定的条件为 true 时循环指定的代码块
++ for/of - 遍历数组，循环出的是value (不可用于对象)
++ forEach - 遍历数组，无返回值
++ map - 遍历数组，返回一个新数组
++ filter - 遍历数组，筛选符合条件的元素，返回一个新数组
++ every - 检测数组所有元素是否都符合指定条件，返回一个布尔值
++ some - 检测数组所有元素是否至少有一个符合指定条件，返回一个布尔值
++ reduce - 为数组中的每一个元素依次执行回调函数
 
 ## for 循环
 
@@ -136,7 +143,141 @@ do {
     console.log(i);     // 会执行一次 打印2
 } while (i <=0 );
 ```
+
+## for/of
+
+> 遍历数组，循环出的是value (不可用于对象)
+
+```
+let arr = ['a','b','c'];
+for (let i in arr) {
+    console.log(i)  // a b c
+}
+```
+
+## forEach
+
+> `array.forEach(function(currentValue, index, arr))`
+
+## map
+
+> `array.forEach(function(currentValue, index, arr))`
+
+```
+let arr = [1, 2, 3];
+let newArr = arr.map( (item) => {
+    return item * 10;
+});
+console.log(newArr);    // [10, 20, 30]
+```
+
+## filter
+
+> array.filter(function(currentValue,index,arr), thisValue)
+
+```
+let arr = [{a:1, isNeed: true},{a:2, isNeed: false},{a:3, isNeed: false},{a:4, isNeed: true}];
+let newArr = arr.filter( item => item.isNeed );
+console.log(newArr); // [{a:1, isNeed: true},{a:4, isNeed: true}]
+```
+
+## every
+
+> 使用指定函数检测数组中的所有元素，如果检测到一个元素不满足，则返回false且停止检测；如果所有元素满足条件则返回true
+
+> `array.every(function(currentValue,index,arr))`
+
+```
+   let arr = [1, 2, 3];
+   let isOk = arr.every( item => item < 3 );
+   console.log(isOk);   // false
+```
+
+## some
+
+> 使用指定函数检测数组中的所有元素，如果检测到一个元素满足，则返回true且停止检测；如果所有元素都不满足条件则返回false
+
+>  `array.some(function(currentValue,index,arr))`
+
+```
+   let arr = [1, 2, 3];
+   let isOk = arr.some( item => item < 3 );
+   console.log(isOk); // true
+```
+
+## reduce
+
+> reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
+
+> `array.reduce(function(previousValue, currentValue, currentIndex, arr), initialValue)`
+
++ callback （执行数组中每个值的函数，包含四个参数）
+    - previousValue （上一次调用回调返回的值，或者是提供的初始值（initialValue））
+    - currentValue （数组中当前被处理的元素）
+    - index （当前元素在数组中的索引）
+    - array （调用 reduce 的数组）
++ initialValue （作为第一次调用 callback 的第一个参数。）
+
+```
+// 简单应用
+var items = [10, 120, 1000];
+
+// our reducer function
+var reducer = function add(sumSoFar, item) { return sumSoFar + item; };
+
+// do the job
+var total = items.reduce(reducer, 0);
+
+console.log(total); // 1130
+```
+
+```
+// 简单应用
+var items = [10, 120, 1000];
+
+// our reducer function
+var reducer = function add(sumSoFar, item) {
+  sumSoFar.sum = sumSoFar.sum + item;
+  return sumSoFar;
+};
+
+// do the job
+var total = items.reduce(reducer, {sum: 0});
+
+console.log(total); // {sum:1130}
+```
+
+```
+var reducers = {
+  totalInEuros : function(state, item) {
+    return state.euros += item.price * 0.897424392;
+  },
+  totalInYen : function(state, item) {
+    return state.yens += item.price * 113.852;
+  }
+};
+
+var manageReducers = function(reducers) {
+  return function(state, item) {
+    return Object.keys(reducers).reduce(
+      function(nextState, key) {
+        reducers[key](state, item);
+        return state;
+      },
+      {}
+    );
+  }
+};
+
+var bigTotalPriceReducer = manageReducers(reducers);
+var initialState = {euros:0, yens: 0};
+var items = [{price: 10}, {price: 120}, {price: 1000}];
+var totals = items.reduce(bigTotalPriceReducer, initialState);
+console.log(totals);    // {euros: 1014.08956296, yens: 128652.76}
+```
+
 # 参考
 
 + [w3school](http://www.w3school.com.cn/js/js_loop_for.asp)
 + 高程3 P55-58
++ [segmentfault - JS数组reduce()方法详解及高级技巧](https://segmentfault.com/a/1190000010731933)

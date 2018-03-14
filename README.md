@@ -47,7 +47,7 @@
 + [javascript中的apply、call、bind](./docs/javascript/apply.md)
 + [javascript的基本类型&引用类型](./docs/javascript/type.md)
 + [javascript的toLocaleString()、toString()和valueOf()方法](./docs/javascript/toString.md)
-+ [javascript中的循环(for循环、while循环)](./docs/javascript/loop.md)
++ [javascript中的循环(for循环、while循环、forEach、map等)](./docs/javascript/loop.md)
 + [javascript中的值覆盖（定义的优先级）](./docs/javascript/overridden.md)
 + [javascript的面向对象编程](./docs/javascript/OOP.md)
 + [javascript的array](./docs/javascript/array.md)
