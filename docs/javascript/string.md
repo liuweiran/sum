@@ -1,6 +1,6 @@
 # javascript的字符串操作
 
-+ [字符串分割&提取](#jump_split)
++ <a href="#jump_split">字符串分割&提取</a>
     - split
     - trim
     - slice
@@ -17,7 +17,7 @@
     - match
     - replace
 
-## <span id="jump_split">字符串分割&提取</span>
+## <a name="jump_split">字符串分割&提取</span>
 
 ### split
 
