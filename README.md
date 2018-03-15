@@ -51,7 +51,7 @@
 + [javascript中的值覆盖（定义的优先级）](./docs/javascript/overridden.md)
 + [javascript的面向对象编程](./docs/javascript/OOP.md)
 + [javascript的array](./docs/javascript/array.md)
-+ [javascript的字符串操作](./docs/javascript/string.md)
++ [javascript的string操作](./docs/javascript/string.md)
 
 <br>
 

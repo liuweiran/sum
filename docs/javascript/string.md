@@ -1,4 +1,4 @@
-# javascript的字符串操作
+# javascript的string操作
 
 + <a href="#jump_split">字符串分割&提取</a>
     - split
@@ -7,13 +7,13 @@
     - substring
     - substr
     - charAt
-+ [字符串连接](#jump_concat)
++ <a href="#jump_concat">字符串连接</a>
     - concat
-+ [字符串检索](#jump_index)
++ <a href="#jump_index">字符串检索</a>
     - indexOf
     - lastIndexOf
     - search
-+ [字符串匹配](#jump_match)
++ <a href="#jump_match">字符串匹配</a>
     - match
     - replace
 
@@ -95,7 +95,7 @@ console.log(str.charAt(1)) // "b"
 console.log(str.charAt(-2)) // ""
 ```
 
-## <span id="jump_concat">字符串连接</span>
+## <a name="jump_concat">字符串连接</a>
 
 ### concat
 
@@ -103,7 +103,7 @@ console.log(str.charAt(-2)) // ""
 
 > `stringObject.concat(stringX,stringX,...,stringX)`
 
-## <span id="jump_index">字符串检索</span>
+## <a name="jump_index">字符串检索</a>
 
 ### indexOf
 
@@ -151,7 +151,7 @@ str.search('a');    // 0
 ```
 
 
-## <span id="jump_match">字符串匹配</span>
+## <a name="jump_match">字符串匹配</a>
 
 ### match
 

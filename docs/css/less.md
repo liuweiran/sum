@@ -8,20 +8,19 @@ LESS是一门动态样式语言，属于CSS预处理语言的一种。LESS支持
 
 # LESS语法
 
-+ [嵌套规则（Nested rules）](#jump_nr)
-+ [父选择符&（Parent Selectors）](#jump_ps)
-+ [变量（Variables）](#jump_va)
-+ [扩展（Extend）](#jump_ex)
-+ [混合（Mixins）](#jump_mi)
-+ [运算（Operations）](#jump_op)
-+ [函数（Functions）](#jump_fu)
-+ [导入样式（Import Directives）](#jump_im)
-+ [注释（Comments）](#jump_co)
-
++ <a href="#jump_nr">嵌套规则（Nested rules）</a>
++ <a href="#jump_ps">父选择符&（Parent Selectors）</a>
++ <a href="#jump_va">变量（Variables）</a>
++ <a href="#jump_ex">扩展（Extend）</a>
++ <a href="#jump_mi">混合（Mixins）</a>
++ <a href="#jump_op">运算（Operations）</a>
++ <a href="#jump_fu">函数（Functions）</a>
++ <a href="#jump_im">导入样式（Import Directives）</a>
++ <a href="#jump_co">注释（Comments）</a>
 
 <br>
 
-## <span id="jump_nr">嵌套规则（Nested rules）</span>
+## <a name="jump_nr">嵌套规则（Nested rules）</a>
 
 >LESS中可使用选择器的嵌套来实现继承，类似HTML结构。
 
@@ -63,7 +62,7 @@ LESS源码：
 
 <br>
 
-## <span id="jump_ps">父选择符&（Parent Selectors）</span>
+## <a name="jump_ps">父选择符&（Parent Selectors）</a>
 
 >符号`&`表示当前选择器的父选择器。
 
@@ -233,15 +232,15 @@ div + div {
 
 <br>
 
-## <span id="jump_va">变量（Variables）</span>
+## <a name="jump_va">变量（Variables）</a>
 
-+ [变量的定义（Definition）](#jump_va_de)
-+ [变量的作用域（Scope）](#jump_va_sc)
-+ [变量插值（Interpolation）](#jump_va_in)
++ <a href="#jump_va_de">变量的定义（Definition）</a>
++ <a href="#jump_va_sc">变量的作用域（Scope）</a>
++ <a href="#jump_va_in">变量插值（Interpolation）</a>
 
 <br>
 
-### <span id="jump_va_de">变量的定义（Definition）</span>
+### <a name="jump_va_de">变量的定义（Definition）</a>
 
 >变量允许我们单独定义一些通用的样式，在需要的时候进行调用。
 
@@ -310,7 +309,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_va_sc">变量的作用域（Scope）</span>
+### <a name="jump_va_sc">变量的作用域（Scope）</a>
 
 >LESS中的变量有其作用域，即全局变量和局部变量的概念。查找变量的顺序是从局部往父级进行查找，在局部定义中找不到则查找父级定义，直至全局。
 
@@ -342,7 +341,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_va_in">变量插值（Interpolation）</span>
+### <a name="jump_va_in">变量插值（Interpolation）</a>
 
 >Less的变量除了用于表示CSS属性值，还可用于选择器名称、属性名称、URL等。
 
@@ -368,18 +367,18 @@ LESS源码：
 
 <br>
 
-## <span id="jump_ex">扩展（Extend）</span>
+## <a name="jump_ex">扩展（Extend）</a>
 
-+ [扩展概念（Concept）](#jump_ex_co)
-+ [扩展语法（Grammar）](#jump_ex_gr)
-+ [extend的精确匹配（Exact matching）](#jump_ex_ex)
-+ ["all"关键字（"all"）](#jump_ex_al)
-+ [选择器插值（Interpolation）](#jump_ex_in)
-+ [作用域/@media内的extend（Scope）](#jump_ex_sc)
++ <a href="#jump_ex_co">扩展概念（Concept）</a>
++ <a href="#jump_ex_gr">扩展语法（Grammar）</a>
++ <a href="#jump_ex_ex">extend的精确匹配（Exact matching）</a>
++ <a href="#jump_ex_al">"all"关键字（"all"）</a>
++ <a href="#jump_ex_in">选择器插值（Interpolation）</a>
++ <a href="#jump_ex_sc">作用域/@media内的extend（Scope）</a>
 
 <br>
 
-### <span id="jump_ex_co">扩展概念（Concept）</span>
+### <a name="jump_ex_co">扩展概念（Concept）</a>
 
 >extend是一个LESS伪类，它会把它所在的选择器扩展到它所引用的选择器上，使之拥有引用选择器的全部属性。（扩展的是选择器，而不是CSS。）
 
@@ -403,7 +402,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_ex_gr">扩展语法（Grammar）</span>
+### <a name="jump_ex_gr">扩展语法（Grammar）</a>
 
 >扩展可以包含多个要扩展的选择器，选择器之间使用逗号分隔：
 
@@ -447,7 +446,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_ex_ex">extend的精确匹配（Exact matching）</span>
+### <a name="jump_ex_ex">extend的精确匹配（Exact matching）</a>
 
 >Extend默认为精确匹配。它不管选择器是否等价，只有相同的形式才会匹配。唯一的例外是属性选择器中的引号，有无引号、单双引号都会当作是相同的形式而进行匹配。
 
@@ -573,7 +572,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_ex_al">"all"关键字（"all"）</span>
+### <a name="jump_ex_al">"all"关键字（"all"）</a>
 
 >如果在extend参数后面指定all关键字，则为模糊匹配，将匹配所有相关选择器。
 
@@ -627,7 +626,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_ex_in">选择器插值（Interpolation）</span>
+### <a name="jump_ex_in">选择器插值（Interpolation）</a>
 
 >extend不能匹配变量选择器。如果选择器包含变量，extend会忽略它。但是extend可以附加给插值选择器。
 
@@ -673,7 +672,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_ex_sc">作用域/@media内的extend（Scope）</span>
+### <a name="jump_ex_sc">作用域/@media内的extend（Scope）</a>
 
 >编写在media声明内的extend只匹配同一media声明内的选择器。
 
@@ -785,24 +784,24 @@ LESS源码：
 
 <br>
 
-## <span id="jump_mi">混合（Mixins）</span>
+## <a name="jump_mi">混合（Mixins）</a>
 
-+ [混合概念（Concept）](#jump_mi_co)
-+ [混合参数（Params）](#jump_mi_pa)
-+ [@arguments变量（@arguments）](#jump_mi_ar)
-+ [高级参数和@rest变量（Advanced arguments and @rest）](#jump_mi_ad)
-+ [模式匹配（Pattern-matching）](#jump_mi_pat)
-+ [作为函数使用的Mixins（Mixins as Functions）](#jump_mi_fu)
-+ [传递规则集给Mixins（Passing Rulesets to Mixins）](#jump_mi_pas)
-+ [条件混合（Mixin Guards）](#jump_mi_ga)
-+ [循环结构（Loops）](#jump_mi_lo)
-+ [合并属性（Merge）](#jump_mi_me)
-+ [!important关键字（!important）](#jump_mi_im)
-+ [命名空间方法（Namespace）](#jump_mi_na)
++ <a href="#jump_mi_co">混合概念（Concept）</a>
++ <a href="#jump_mi_pa">混合参数（Params）</a>
++ <a href="#jump_mi_ar">@arguments变量（@arguments）</a>
++ <a href="#jump_mi_ad">高级参数和@rest变量（Advanced arguments and @rest）</a>
++ <a href="#jump_mi_pat">模式匹配（Pattern-matching）</a>
++ <a href="#jump_mi_fu">作为函数使用的Mixins（Mixins as Functions）</a>
++ <a href="#jump_mi_pas">传递规则集给Mixins（Passing Rulesets to Mixins）</a>
++ <a href="#jump_mi_ga">条件混合（Mixin Guards）</a>
++ <a href="#jump_mi_lo">循环结构（Loops）</a>
++ <a href="#jump_mi_me">合并属性（Merge）</a>
++ <a href="#jump_mi_im">!important关键字（!important）</a>
++ <a href="#jump_mi_na">命名空间方法（Namespace）</a>
 
 <br>
 
-### <span id="jump_mi_co">混合概念（Concept）</span>
+### <a name="jump_mi_co">混合概念（Concept）</a>
 
 >混合是将一系列属性从一个选择器引入（“混合”）到另外一个选择器。
 
@@ -857,7 +856,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_pa">混合参数（Params）</span>
+### <a name="jump_mi_pa">混合参数（Params）</a>
 
 >定义样式选择器中圆括号()内可传入参数，叫做Parametric Mixins（混合参数），没有参数时可以省略括号。混合参数不限制数量，参数之间用英文逗号“,”或者分号“;”进行分隔，但是不可在一个mixin中同时使用逗号和分号来分隔。推荐使用分号进行分隔，一则更符合语法习惯，二则有少量css属性值（比如`font-family: Helvetica Neue, Microsoft YaHei;`）是用逗号分隔的，如此会产生歧义。
 
@@ -1028,7 +1027,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_ar">@arguments变量（@arguments）</span>
+### <a name="jump_mi_ar">@arguments变量（@arguments）</a>
 
 >Mixins中有一个参数：@arguments，该参数表示所有参数。
 
@@ -1058,7 +1057,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_ad">高级参数和@rest变量（Advanced arguments and @rest）</span>
+### <a name="jump_mi_ad">高级参数和@rest变量（Advanced arguments and @rest）</a>
 
 >如果需要在 mixin 中不限制参数的数量，可以在变量名后添加`...`，表示这里可以使用 N 个参数。
 
@@ -1155,7 +1154,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_pat">模式匹配（Pattern-matching）</span>
+### <a name="jump_mi_pat">模式匹配（Pattern-matching）</a>
 
 >基于传递给mixin的参数来控制它的行为。
 
@@ -1259,7 +1258,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_fu">作为函数使用的Mixin（Mixins as Functions）</span>
+### <a name="jump_mi_fu">作为函数使用的Mixin（Mixins as Functions）</a>
 
 >定义在mixin中的变量都是可见的，其可以作用于调用它的作用域中。
 
@@ -1314,7 +1313,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_pas">传递规则集给Mixins（Passing Rulesets to Mixins）</span>
+### <a name="jump_mi_pas">传递规则集给Mixins（Passing Rulesets to Mixins）</a>
 
 >如果需要把某个媒体查询或者某些类抽离出来，可以把规则集传递给mixin, mixin会包装这些规则集。
 
@@ -1394,7 +1393,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_ga">条件混合（Mixin Guards）</span>
+### <a name="jump_mi_ga">条件混合（Mixin Guards）</a>
 
 >与匹配值或者匹配参数数量的情况不同，Guards 被用来匹配表达式 (expressions)。为了尽可能地符合 CSS 的语言结构，LESS 选择使用 guard混合(guarded mixins)(类似于 @media 的工作方式)执行条件判断，而不是加入 if/else 声明。
 
@@ -1583,7 +1582,7 @@ LESS源码：
 
 <br>
 
-+ <span id="jump_fnDedault">`default`函数</span>
++ <a name="jump_fnDedault">`default`函数</a>
 
     + `default`函数使用效果类似与`else`语句，当它的同名mixin不匹配时匹配。
 
@@ -1715,7 +1714,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_lo">循环结构（Loops）</span>
+### <a name="jump_mi_lo">循环结构（Loops）</a>
 
 混合可以调用它自身。当一个混合递归调用自己，再结合Guard表达式和模式匹配这两个特性，就可以写出循环结构。
 
@@ -1756,7 +1755,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_me">合并属性（Merge）</span>
+### <a name="jump_mi_me">合并属性（Merge）</a>
 
 将多个属性值以逗号或者空格分割集合到一起。
 
@@ -1810,7 +1809,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_im">!important关键字（!important）</span>
+### <a name="jump_mi_im">!important关键字（!important）</a>
 
 >使用!important关键字混合调用，将所有混合的属性标记为!important。
 
@@ -1837,7 +1836,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_mi_na">命名空间方法（Namespace）</span>
+### <a name="jump_mi_na">命名空间方法（Namespace）</a>
 
 >团队协作开发时，为避免选择器的重名问题，可采用命名空间的方法。
 
@@ -1866,7 +1865,7 @@ LESS源码：
 
 <br>
 
-## <span id="jump_op">运算（Operations）</span>
+## <a name="jump_op">运算（Operations）</a>
 
 >LESS可对任何数值型的value（数字、颜色、变量等）进行加减乘除四则运算。
 
@@ -1902,23 +1901,23 @@ LESS源码：
 
 <br>
 
-## <span id="jump_fu">函数（Functions）</span>
+## <a name="jump_fu">函数（Functions）</a>
 
 >LESS提供了许多用于转换颜色、处理字符串和进行算术运算的函数。
 
-+ [杂项函数（Misc Functions）](#jump_fu_mi)
-+ [字符串函数（String Functions）](#jump_fu_st)
-+ [列表函数（List Functions）](#jump_fu_li)
-+ [数学函数（Math Functions）](#jump_fu_ma)
-+ [类型函数（Type Functions）](#jump_fu_ty)
-+ [颜色定义函数（Color Definition Functions）](#jump_fu_co)
-+ [颜色通道函数（Color Channel Functions）](#jump_fu_ch)
-+ [颜色操作函数（Color Operation Functions）](#jump_fu_op)
-+ [颜色混合函数（Color Blending Functions）](#jump_fu_bl)
++ <a href="#jump_fu_mi">杂项函数（Misc Functions）</a>
++ <a href="#jump_fu_st">字符串函数（String Functions）</a>
++ <a href="#jump_fu_li">列表函数（List Functions）</a>
++ <a href="#jump_fu_ma">数学函数（Math Functions）</a>
++ <a href="#jump_fu_ty">类型函数（Type Functions）</a>
++ <a href="#jump_fu_co">颜色定义函数（Color Definition Functions）</a>
++ <a href="#jump_fu_ch">颜色通道函数（Color Channel Functions）</a>
++ <a href="#jump_fu_op">颜色操作函数（Color Operation Functions）</a>
++ <a href="#jump_fu_bl">颜色混合函数（Color Blending Functions）</a>
 
 <br>
 
-### <span id="jump_fu_mi">杂项函数（Misc Functions）</span>
+### <a name="jump_fu_mi">杂项函数（Misc Functions）</a>
 
 + color
     
@@ -1965,7 +1964,7 @@ LESS源码：
 
 + default
     
-    使用于`Minxin Guards`中，当其他mixin不匹配时返回`true`，否则返回`false`。案例见 Minxin Guards 中的 [**default函数**](#jump_fnDedault)。
+    使用于`Minxin Guards`中，当其他mixin不匹配时返回`true`，否则返回`false`。案例见 Minxin Guards 中的 <a href="#jump_fnDedault">**default函数**</a>。
 
 <br>
 
@@ -1990,7 +1989,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_fu_st">字符串函数（String Functions）</span>
+### <a name="jump_fu_st">字符串函数（String Functions）</a>
 
 + escape 转义函数
 
@@ -2076,7 +2075,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_fu_li">列表函数（List Functions）</span>
+### <a name="jump_fu_li">列表函数（List Functions）</a>
 
 + length 长度
 
@@ -2098,7 +2097,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_fu_ma">数学函数（Math Functions）</span>
+### <a name="jump_fu_ma">数学函数（Math Functions）</a>
 
 + ceil 向上取整
 
@@ -2236,7 +2235,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_fu_ty">类型函数（Type Functions）</span>
+### <a name="jump_fu_ty">类型函数（Type Functions）</a>
 
 + isnumber
 
@@ -2411,7 +2410,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_fu_co">颜色定义函数（Color Definition Functions）</span>
+### <a name="jump_fu_co">颜色定义函数（Color Definition Functions）</a>
 
 + rgb
     
@@ -2544,7 +2543,7 @@ LESS源码：
     
 <br>
 
-### <span id="jump_fu_ch">颜色通道函数（Color Channel Functions）</span>
+### <a name="jump_fu_ch">颜色通道函数（Color Channel Functions）</a>
 
 + hue
     
@@ -2700,7 +2699,7 @@ LESS源码：
     
 <br>
 
-### <span id="jump_fu_op">颜色操作函数（Color Operation Functions）</span>
+### <a name="jump_fu_op">颜色操作函数（Color Operation Functions）</a>
     
 >颜色值运算有几点注意事项：
 >         
@@ -2950,7 +2949,7 @@ LESS源码：
 
 <br>
 
-### <span id="jump_fu_bl">颜色混合函数（Color Blending Functions）</span>
+### <a name="jump_fu_bl">颜色混合函数（Color Blending Functions）</a>
 
 这些操作和图片编辑器（例如 Photoshop、Fireworks 或 GIMP）中的混合模式很类似（虽然不是完全一致），因此，你可以通过这些函数让 CSS 中的颜色与图片中的颜色相匹配。
 
@@ -3042,7 +3041,7 @@ LESS源码：
     
 <br>
 
-## <span id="jump_im">导入样式（Import Directives）</span>
+## <a name="jump_im">导入样式（Import Directives）</a>
 
 ### 基本规则（Basic Rules）
 
@@ -3183,7 +3182,7 @@ LESS源码：
 
 <br>
 
-## <span id="jump_co">注释（Comments）</span>
+## <a name="jump_co">注释（Comments）</a>
 
 >LESS的注释同css/js中的注释，有单行注释（//单行注释）和多行注释（/\*多行注释*/），但是LESS中的单行注释编译后不会出现在CSS中。
 
