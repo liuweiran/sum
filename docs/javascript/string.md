@@ -1,8 +1,23 @@
 # javascript的字符串操作
 
-+ 字符串分割&提取 split/slice/substring/substr
++ [字符串分割&提取](#jump_split)
+    - split
+    - trim
+    - slice
+    - substring
+    - substr
+    - charAt
++ [字符串连接](#jump_concat)
+    - concat
++ [字符串检索](#jump_index)
+    - indexOf
+    - lastIndexOf
+    - search
++ [字符串匹配](#jump_match)
+    - match
+    - replace
 
-## 字符串分割&提取
+## <span id="jump_split">字符串分割&提取</span>
 
 ### split
 
@@ -18,6 +33,16 @@ let str = "How are you";
 console.log(str.split(""))  // ["H", "o", "w", " ", "a", "r", "e", " ", "y", "o", "u"]
 console.log(str.split(" ")) // ["How", "are", "you"]
 console.log(str.split(/\s+/)) // ["How", "are", "you"]
+console.log(str.split('',3)) // ["H", "o", "w"]
+```
+
+### trim
+
+> 去掉字符串的前后空白
+
+```
+let str = ' abc def  ';
+str.trim();  // "abc def"
 ```
 
 ### slice
@@ -51,6 +76,127 @@ console.log(str.slice(1, -2)) // "bcd"
 + start 必需。要抽取的子串的起始下标。必须是数值。如果是负数，那么该参数声明从字符串的尾部开始算起的位置。也就是说，-1 指字符串中最后一个字符，-2 指倒数第二个字符，以此类推。
 + length 可选。子串中的字符数。必须是数值。如果省略了该参数，那么返回从 stringObject 的开始位置到结尾的字串。
 
+```
+let str = 'abcdef';
+console.log(str.substr(1)) // "bcdef"
+console.log(str.substr(2,2)) // "cd"
+console.log(str.substr(-2,2)) // "ef"
+```
+
+### charAt
+
+> 提取指定位置的字符：字符串中第一个字符的下标是 0。如果参数 index 不在 0 与 string.length 之间，该方法将返回一个空字符串。
+
+> `stringObject.charAt(index)`
+
+```
+let str = 'abcdef';
+console.log(str.charAt(1)) // "b"
+console.log(str.charAt(-2)) // ""
+```
+
+## <span id="jump_concat">字符串连接</span>
+
+### concat
+
+> 用于连接两个或多个字符串。(PS: 使用 " + " 运算符来进行字符串的连接运算通常会更简便一些。)
+
+> `stringObject.concat(stringX,stringX,...,stringX)`
+
+## <span id="jump_index">字符串检索</span>
+
+### indexOf
+
+> 返回某个指定的字符串值在字符串中首次出现的位置，如果没有则返回 -1。
+
+> `stringObject.indexOf(searchvalue,fromindex)`
+
++ searchvalue 必需。规定需检索的字符串值。
++ fromindex 可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。
+
+```
+let str = 'abcdeabcde';
+console.log(str.indexOf('b'));      // 1
+console.log(str.indexOf('bc'));     // 1
+console.log(str.indexOf('bc',4));   // 6
+```
+
+### lastIndexOf
+
+> 返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索。
+
+> `stringObject.lastIndexOf(searchvalue,fromindex)`
+
++ searchvalue 必需。规定需检索的字符串值。
++ fromindex 可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的最后一个字符处开始检索。`注意：该参数从后往前取`
+
+```
+let str = 'abcdeabcde';
+console.log(str.lastIndexOf('b'));      // 6
+console.log(str.lastIndexOf('bc'));     // 6
+console.log(str.lastIndexOf('bc',4));   // 1
+```
+
+## search
+
+> 返回检索与正则表达式匹配的字符所在位置，没有匹配到则返回 -1。search() 方法不执行全局匹配，它将忽略标志 g。它同时忽略 regexp 的 lastIndex 属性，并且总是从字符串的开始进行检索，这意味着它总是返回 stringObject 的第一个匹配的位置。
+
+> `stringObject.search(regexp)` search方法也接受字符串作为参数，但不推荐如此使用，使用字符串作为参数时，`indexOf`方法性能更高。
+
+```
+let str = 'abcdeABCDE';
+str.search(/A/);    // 5
+str.search(/A/i);   // 0
+str.search('a');    // 0
+```
+
+
+## <span id="jump_match">字符串匹配</span>
+
+### match
+
+> 在字符串内检索指定的值，返回一个类数组或者全局匹配的正则表达式匹配到的结果组成的数组，没有匹配到则返回null.
+
+> `stringObject.match(searchvalue/regexp)`
+
+```
+let str = 'abcdeabcde';
+console.log(str.match('a')); // ["a", index: 0, input: "abcdeabcde"]
+console.log(str.match(/b/)); // ["b", index: 1, input: "abcdeabcde"]
+console.log(str.match(/b/g));// ["b", "b"]
+console.log(str.match('f')); //  null
+```
+
+如果正则表达式包含子表达式，则返回结果也会包含子表达式匹配到的结果在其中；不过，若正则具有 `g` 标志，则仅返回最终匹配结果的组成的数组。
+
+```
+let str = '1988-11-13 1989-11-13';
+str.match(/(19|20)\d{2}/);   // ["1988", "19", index: 0, input: "1988-11-13 1989-11-13"]
+str.match(/(19|20)\d{2}/g);  // ["1988", "1989"]
+```
+
+### replace
+
+> replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+
+> `stringObject.replace(regexp/substr,replacement)`
+
+```
+let str = 'abcdeabcde';
+str.replace('a', 1);   // "1bcdeabcde"
+str.replace(/a/,1);    // "1bcdeabcde"
+str.replace(/a/g,1);   // "1bcde1bcde"
+```
+
+replace() 方法的参数 replacement 可以是函数而不是字符串，该函数的参数的匹配到的结果信息，如果全局匹配包含多个结果，则循环该函数。
+
+`stringObject.replace(regexp/substr, function(word, word1, ..., wordN, index, input){})`
+
+该函数的参数：
++ word 匹配的字符
++ word1 ~ wordN 子表达式匹配的字符，可以有0个或多个这样的参数
++ index 匹配的字符索引值
++ input  stringObject本身
 
 # 参考
 

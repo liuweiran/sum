@@ -2,19 +2,19 @@
 
 JavaScript 支持不同类型的循环：
 
-+ for - 循环代码块一定的次数
-+ for/in - 遍历对象，循环出的是key (可用于数组则循环出的是索引值)
-+ while - 当指定的条件为 true 时循环指定的代码块
-+ do/while - 同样当指定的条件为 true 时循环指定的代码块
-+ for/of - 遍历数组，循环出的是value (不可用于对象)
-+ forEach - 遍历数组，无返回值
-+ map - 遍历数组，返回一个新数组
-+ filter - 遍历数组，筛选符合条件的元素，返回一个新数组
-+ every - 检测数组所有元素是否都符合指定条件，返回一个布尔值
-+ some - 检测数组所有元素是否至少有一个符合指定条件，返回一个布尔值
-+ reduce - 为数组中的每一个元素依次执行回调函数
++ [for - 循环代码块一定的次数](#jump_for)
++ [for/in - 遍历对象，循环出的是key (可用于数组则循环出的是索引值)](#jump_forIn)
++ [while - 当指定的条件为 true 时循环指定的代码块](#jump_while)
++ [do/while - 同样当指定的条件为 true 时循环指定的代码块](#jump_doWhile)
++ [for/of - 遍历数组，循环出的是value (不可用于对象)](#jump_forOf)
++ [forEach - 遍历数组，无返回值](#jump_forEach)
++ [map - 遍历数组，返回一个新数组](#jump_map)
++ [filter - 遍历数组，筛选符合条件的元素，返回一个新数组](#jump_filter)
++ [every - 检测数组所有元素是否都符合指定条件，返回一个布尔值](#jump_every)
++ [some - 检测数组所有元素是否至少有一个符合指定条件，返回一个布尔值](#jump_some)
++ [reduce - 为数组中的每一个元素依次执行回调函数](#jump_reduce)
 
-## for 循环
+## <span id="jump_for">for 循环</span>
 
 > for 语句是一种前测试循环语句。
 
@@ -90,7 +90,7 @@ for (var i=5; i--;) {
 }
 ```
 
-## for/In 循环
+## <span id="jump_forIn">for/In 循环</span>
 
 > for/in 语句循环遍历对象的属性：
 
@@ -108,7 +108,7 @@ for (i in colors) {
 }
 ```
 
-## while 循环
+## <span id="jump_while">while 循环</span>
 
 > while 语句属于前测试循环语句。在循环体内的代码被执行之前，就会对出口条件求值。因此，循环体内的代码有可能不会被执行。
 
@@ -126,7 +126,7 @@ while (i<5) {
 }
 ```
 
-## do/while 循环
+## <span id="jump_doWhile">do/while 循环</span>
 
 > do/while 语句是一种后测试循环语句，即只有在循环体中的代码执行之后，才会测试出口条件。也就是说，在对条件表达式求值之前，该循环会执行一次代码块，在检查条件是否为真之前，然后如果条件为真的话，就会重复这个循环。
 
@@ -144,7 +144,7 @@ do {
 } while (i <=0 );
 ```
 
-## for/of
+## <span id="jump_forOf">for/of</span>
 
 > 遍历数组，循环出的是value (不可用于对象)
 
@@ -155,11 +155,11 @@ for (let i in arr) {
 }
 ```
 
-## forEach
+## <span id="jump_forEach">forEach</span>
 
 > `array.forEach(function(currentValue, index, arr))`
 
-## map
+## <span id="jump_map">map</span>
 
 > `array.forEach(function(currentValue, index, arr))`
 
@@ -171,7 +171,7 @@ let newArr = arr.map( (item) => {
 console.log(newArr);    // [10, 20, 30]
 ```
 
-## filter
+## <span id="jump_filter">filter</span>
 
 > array.filter(function(currentValue,index,arr), thisValue)
 
@@ -181,7 +181,7 @@ let newArr = arr.filter( item => item.isNeed );
 console.log(newArr); // [{a:1, isNeed: true},{a:4, isNeed: true}]
 ```
 
-## every
+## <span id="jump_every">every</span>
 
 > 使用指定函数检测数组中的所有元素，如果检测到一个元素不满足，则返回false且停止检测；如果所有元素满足条件则返回true
 
@@ -193,7 +193,7 @@ console.log(newArr); // [{a:1, isNeed: true},{a:4, isNeed: true}]
    console.log(isOk);   // false
 ```
 
-## some
+## <span id="jump_some">some</span>
 
 > 使用指定函数检测数组中的所有元素，如果检测到一个元素满足，则返回true且停止检测；如果所有元素都不满足条件则返回false
 
@@ -205,7 +205,7 @@ console.log(newArr); // [{a:1, isNeed: true},{a:4, isNeed: true}]
    console.log(isOk); // true
 ```
 
-## reduce
+## <span id="jump_reduce">reduce</span>
 
 > reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
 
