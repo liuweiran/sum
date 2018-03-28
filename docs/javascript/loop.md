@@ -2,18 +2,6 @@
 
 JavaScript 支持不同类型的循环：
 
-+ [for - 循环代码块一定的次数](#jump_for)
-+ [for/in - 遍历对象，循环出的是key (可用于数组则循环出的是索引值)](#jump_forIn)
-+ [while - 当指定的条件为 true 时循环指定的代码块](#jump_while)
-+ [do/while - 同样当指定的条件为 true 时循环指定的代码块](#jump_doWhile)
-+ [for/of - 遍历数组，循环出的是value (不可用于对象)](#jump_forOf)
-+ [forEach - 遍历数组，无返回值](#jump_forEach)
-+ [map - 遍历数组，返回一个新数组](#jump_map)
-+ [filter - 遍历数组，筛选符合条件的元素，返回一个新数组](#jump_filter)
-+ [every - 检测数组所有元素是否都符合指定条件，返回一个布尔值](#jump_every)
-+ [some - 检测数组所有元素是否至少有一个符合指定条件，返回一个布尔值](#jump_some)
-+ [reduce - 为数组中的每一个元素依次执行回调函数](#jump_reduce)
-
 + <a href="#jump_for">for - 循环代码块一定的次数</a>
 + <a href="#jump_forIn">for/in - 遍历对象，循环出的是key (可用于数组则循环出的是索引值)</a>
 + <a href="#jump_while">while - 当指定的条件为 true 时循环指定的代码块</a>
