@@ -52,6 +52,7 @@
 + [javascript的面向对象编程](./docs/javascript/OOP.md)
 + [javascript的array](./docs/javascript/array.md)
 + [javascript的string操作](./docs/javascript/string.md)
++ [javascript的object操作](./docs/javascript/object.md)
 
 <br>
 
