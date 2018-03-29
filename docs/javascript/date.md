@@ -1,16 +1,59 @@
+# javascript中的Date对象方法
+
+| 方法 | 描述 |
+| ----- | ----- |
+| <a href="#jump_concat">Date()</a> | 返回当日的日期和时间 |
+| getDate() | 从 Date 对象返回一个月中的某一天 (1 ~ 31) |
+| getDay() | 从 Date 对象返回一周中的某一天 (0 ~ 6) |
+| getMonth() | 从 Date 对象返回月份 (0 ~ 11) |
+| getFullYear() | 从 Date 对象以四位数字返回年份 |
+| getHours() | 返回 Date 对象的小时 (0 ~ 23) |
+| getMinutes() | 返回 Date 对象的分钟 (0 ~ 59) |
+| getSeconds() | 返回 Date 对象的秒数 (0 ~ 59) |
+| getMilliseconds() | 返回 Date 对象的毫秒(0 ~ 999) |
+| getTime() | 返回 1970 年 1 月 1 日至今的毫秒数 |
+| <a href="#jump_concat">parse()</a> | 返回1970年1月1日午夜到指定日期（字符串）的毫秒数 |
+| setDate() | 设置 Date 对象中月的某一天 (1 ~ 31) |
+| setMonth() | 设置 Date 对象中月份 (0 ~ 11) |
+| setFullYear() | 设置 Date 对象中的年份（四位数字） |
+| setHours() | 设置 Date 对象中的小时 (0 ~ 23) |
+| setMinutes() | 设置 Date 对象中的分钟 (0 ~ 59) |
+| setSeconds() | 设置 Date 对象中的秒钟 (0 ~ 59) |
+| setMilliseconds() | 设置 Date 对象中的毫秒 (0 ~ 999) |
+| setTime() | 以毫秒设置 Date 对象 |
+
+## <a name="jump_date">Date()</a>
+
+```
+Date() //"Wed Mar 28 2018 17:50:30 GMT+0800 (中国标准时间)"
+```
+
+## <a name="jump_parse">parse()</a>
+
+> `Date.parse(datestring)`  datestring 表示日期和时间的字符串。
+
+> PS: `Date.parse()`不同于`dateObject.getTime()`，会把毫秒改成`000`显示
+
+```
+Date.parse(new Date());
+Date.parse("Jul 8, 2005") //1120752000000
+Date.parse('2018-03-29')  //1522281600000
+console.log(Date.parse(new Date()),new Date().getTime()) //1522285621000 1522285621714
+```
+
 # date相关操作
 
 ## 获取当前时间戳
 
 ```
 //方法一
-Date.parse(new Date())；
+Date.parse(new Date());
 
 //方法二
-new Date().valueOf()；
+new Date().valueOf();
 
 //方法三
-new Date().getTime()；
+new Date().getTime();
 
 //方法四  适用于ie8以上
 Date.now();
@@ -184,3 +227,7 @@ function (beginTime, endTime) {
   }
 }
 ```
+
+# 参考
+
++ [w3school](http://www.w3school.com.cn/jsref/jsref_obj_date.asp)
