@@ -12,6 +12,7 @@
 | <a href="#jump_splice">splice()</a> | 删除元素，并向数组添加新元素。 |
 | reverse() | 颠倒数组中元素的顺序。 |
 | <a href="#jump_sort">sort()</a> | 对数组的元素进行排序。 |
+| <a href="#jump_includes">includes()</a> | 查找一个值是否在数组 |
 
 ## <a name="jump_concat">join()</a>
 
@@ -76,6 +77,17 @@ function sortNumber(a,b){
 
 let arr = ['1','3', '6','2'];
 arr.sort(sortNumber) // ["1", "2", "3", "6"]
+```
+
+## <a name="jump_includes">includes()</a>
+
+> `arrayObject.includes(value, index)`
+
+```
+let arr = ['a','b','c','d'];
+arr.includes('a');   //true
+arr.includes('a',0); //true
+arr.includes('a',1); //false
 ```
 
 # 参考
