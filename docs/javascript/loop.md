@@ -12,6 +12,8 @@ JavaScript 支持不同类型的循环：
 + <a href="#jump_filter">filter - 遍历数组，筛选符合条件的元素，返回一个新数组</a>
 + <a href="#jump_every">every - 检测数组所有元素是否都符合指定条件，返回一个布尔值</a>
 + <a href="#jump_some">some - 检测数组所有元素是否至少有一个符合指定条件，返回一个布尔值</a>
++ <a href="#jump_find">find - 返回数组中满足提供的函数的第一个元素的值</a>
++ <a href="#jump_findIndex">findIndex - 返回数组中满足提供的函数的第一个元素的索引</a>
 + <a href="#jump_reduce">reduce - 为数组中的每一个元素依次执行回调函数</a>
 
 ## <a name="jump_for">for 循环</a>
@@ -203,6 +205,34 @@ console.log(newArr); // [{a:1, isNeed: true},{a:4, isNeed: true}]
    let arr = [1, 2, 3];
    let isOk = arr.some( item => item < 3 );
    console.log(isOk); // true
+```
+
+## <a name="jump_find">find</a>
+
+> 返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
+
+>  `array.some(function(currentValue,index,arr))`
+
+```
+let arr = [{id:1, text:'a'},{id:2, text:'b'},{id:3, text:'c'}];
+let result = arr.find(item => {
+	return item.id == 2;
+})
+console.log(result); // {id:2, text:'b'}
+```
+
+## <a name="jump_findIndex">findIndex</a>
+
+> 返回数组中满足提供的函数的第一个元素的索引
+
+>  `array.some(function(currentValue,index,arr))`
+
+```
+let arr = [{id:1, text:'a'},{id:2, text:'b'},{id:3, text:'c'}];
+let result = arr.findIndex(item => {
+	return item.id == 2;
+})
+console.log(result); // 1
 ```
 
 ## <a name="jump_reduce">reduce</a>
