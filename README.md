@@ -98,6 +98,10 @@
 
 + [.vue 单文件组件](./docs/vuejs/vue.md)
 
+### 2.6 微信小程序
+
++ [promise化API request](./docs/applet/promisify_request.md)
+
 ## 3. Links
 
 > 链接记录。
