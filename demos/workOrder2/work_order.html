@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<style>
+    html, body {
+        font-family: "Helvetica Neue", "Helvetica", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Arial", sans-serif;
+        font-size: 14px;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-user-select: none;
+        width: 100%;
+        height: 100%;
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+        word-break: break-all;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        line-height: normal;
+        -webkit-tap-highlight-color: transparent;
+        border-width: thin;
+    }
+
+    ul, li {
+        list-style: none;
+    }
+
+    input, textarea, button {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        outline: none;
+        border: none;
+        -webkit-appearance: none;
+        background: none;
+    }
+
+    #form {
+        padding: 15px;
+    }
+
+    #form .title {
+        font-size: 24px;
+        border-bottom: 1px dashed #CCCCCC;
+        margin: 5px 0 15px;
+        padding: 0 0 10px 0;
+    }
+
+    #form .name {
+        font-size: 14px;
+    }
+
+    #form .name span {
+        color: red;
+        padding: 0 0 0 2px;
+    }
+
+    #form .input-wrap {
+        margin: 5px 0 15px 0;
+    }
+
+    #form .input-wrap input, .input-wrap textarea {
+        width: 100%;
+        height: 44px;
+        display: block;
+        padding: 0 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    #form .input-wrap textarea {
+        resize: none;
+        height: 100px;
+        padding: 4px;
+    }
+
+    #form .add, #form .picture {
+        width: 90px;
+        height: 90px;
+        border-radius: 6px;
+        border: 2px solid #ccc;
+        margin: 0 0 15px 10px;
+        overflow: hidden;
+    }
+
+    #form .picture {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    #form .add {
+        background-color: #f5f2f2;
+        position: relative;
+    }
+
+    #form .add input {
+        display: none;
+    }
+
+    #form .add label {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+
+    #form .line-v, #form .line-h {
+        background-color: #a7a5a5;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+
+    #form .line-v {
+        width: 4px;
+        height: 40px;
+        margin: -20px 0 0 -2px;
+    }
+
+    #form .line-h {
+        width: 40px;
+        height: 4px;
+        margin: -2px 0 0 -20px;
+    }
+
+    #form .files {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 0 10px 0;
+        margin-left: -10px;
+    }
+
+    .submit {
+        margin: 15px 0 0;
+        height: 44px;
+        line-height: 44px;
+        background-color: #2596e6;
+        text-align: center;
+        color: #fff;
+    }
+
+    .mask, .overlay {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+
+    .overlay {
+        background-color: rgba(255, 255, 255, .3);
+    }
+
+    .mask .info {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -20px 0 0 -35px;
+        width: 70px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 12px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .9);
+        border-radius: 8px;
+    }
+
+    .success {
+        overflow: hidden;
+    }
+
+    .success .icon {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        border-radius: 50%;
+        background-color: green;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    .success .txt {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    #check {
+        padding: 15px;
+        width: 100%;
+        height: 100%;
+    }
+
+    #check .title {
+        font-size: 24px;
+        margin: 5px 0 10px;
+    }
+
+    #check .form {
+        margin: 10px 0 0;
+        padding: 10px 0 0;
+        border-top: 1px dashed #CCCCCC;
+    }
+
+    #check .input {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    #check .name {
+        width: 80px;
+    }
+
+    #check .input input {
+        flex: 1;
+        height: 44px;
+        display: block;
+        padding: 0 4px;
+        border: 1px solid #ccc;
+    }
+
+    #check .no-result {
+        margin: 25px 0 0;
+        height: 44px;
+        line-height: 44px;
+        background-color: #fffde8;
+        text-align: center;
+        color: #000;
+        border: 1px dashed #CCCCCC;
+    }
+
+    #check .result {
+        margin: 15px 0 0;
+        overflow: hidden;
+    }
+
+    #check .result > .item {
+        margin: 10px 0;
+    }
+
+    #check .index {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2596e6;
+    }
+
+    #check .table {
+        border: 1px solid #ddd;
+        border-top: none;
+    }
+
+    #check .table li {
+        width: 100%;
+        display: flex;
+        border-top: 1px solid #ddd;
+    }
+
+    #check .table li > div {
+        padding: 8px 5px;
+    }
+
+    #check .table li > div:first-child {
+        background-color: #f4f4f4;
+        border-right: 1px solid #ddd;
+        flex: 0 0 100px;
+        font-weight: bold;
+    }
+
+    #check .table li > div:last-child {
+        flex: 1;
+    }
+
+    #check .table li img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #check .process {
+        overflow: hidden;
+    }
+
+    #check .process .item {
+        margin: 8px 0 5px;
+    }
+
+    #check .process .item .line {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    #check .process .item .line .username {
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #5d5d5d;
+    }
+
+    #check .process .item .line .time {
+        padding: 0 0 0 5px;
+        color: #9c9c9c;
+    }
+
+    #check .process .item .remark {
+        margin: 5px 0;
+        padding: 0 0 0 5px;
+        text-align: justify;
+    }
+</style>
+<body>
+<div id="page">
+    <template v-show="pageType">
+        <template v-if="pageType===1">
+            <div id="form" v-show="!showSuccess">
+                <div class="title">{{titles[pageType]}}</div>
+                <div class="name">您的姓名<span>*</span></div>
+                <div class="input-wrap"><input v-model="name" type="text"/></div>
+                <div class="name">您的电话<span>*</span></div>
+                <div class="input-wrap"><input v-model="mobile" type="tel"/></div>
+                <div class="name">您所在的餐厅名称+分店名<span>*</span></div>
+                <div class="input-wrap"><input v-model="address" type="text"/></div>
+                <div class="name">问题描述（包含日期+餐次+部门+台号）<span>*</span></div>
+                <div class="input-wrap"><textarea v-model="question"></textarea></div>
+                <div class="name">上传截图<span>*</span></div>
+                <div class="input-wrap files">
+                    <div class="picture" v-for="(i, index) in filePath" :style="{backgroundImage:'url('+i+')'}"
+                         @click="handleDeleteImg(index)"></div>
+                    <div class="add" v-show="showAdd">
+                        <input id="file" type="file" ref="file" multiple @change="handleUploadImg">
+                        <div class="line-h"></div>
+                        <div class="line-v"></div>
+                        <label for="file"></label>
+                    </div>
+                </div>
+                <div class="submit" @click="handleSubmitAdd">提交</div>
+            </div>
+            <div class="success" v-show="showSuccess">
+                <div class="icon">~^o^~</div>
+                <div class="txt">提交成功</div>
+            </div>
+        </template>
+
+        <div id="check" v-if="pageType===2">
+            <div class="title">{{titles[pageType]}}</div>
+            <div>输入查询条件，查询满足条件的数据，最多显示50条结果。</div>
+            <div class="form">
+                <div class="input">
+                    <div class="name">您的姓名</div>
+                    <input type="text" v-model="name"/>
+                </div>
+                <div class="input">
+                    <div class="name">您的电话</div>
+                    <input type="tel" v-model="mobile"/>
+                </div>
+                <div class="submit" @click="handleSubmitCheck">查询</div>
+            </div>
+            <div class="no-result" v-show="showNoResult">没有查询到结果，请确认所填信息正确。</div>
+            <div class="result">
+                <div class="item" v-for="(i, index) in checkList">
+                    <div class="index">{{index + 1}}.</div>
+                    <ul class="table">
+                        <li>
+                            <div>ID</div>
+                            <div>{{i.businessId}}</div>
+                        </li>
+                        <li>
+                            <div>您的姓名</div>
+                            <div>{{i.name}}</div>
+                        </li>
+                        <li>
+                            <div>您的电话</div>
+                            <div>{{i.mobile}}</div>
+                        </li>
+                        <li>
+                            <div>您所在的餐厅名称+分店名</div>
+                            <div>{{i.address}}</div>
+                        </li>
+                        <li>
+                            <div>问题描述（包含日期+餐次+部门+台号）</div>
+                            <div>{{i.quesion}}</div>
+                        </li>
+                        <li>
+                            <div>上传截图</div>
+                            <div><img v-for="subI in i.pictures" :src="subI"/></div>
+                        </li>
+                        <li>
+                            <div>进度结果</div>
+                            <div class="process">
+                                <div class="item" v-for="subI in i.processInstanceProgressList">
+                                    <div class="line">
+                                        <div class="username">{{subI.userName}}</div>
+                                        <div class="time">{{subI.createTime}}</div>
+                                    </div>
+                                    <div class="remark">{{subI.remark}}</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mask" v-show="showMask">
+            <div class="overlay"></div>
+            <div class="info">{{info}}</div>
+        </div>
+    </template>
+</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.bootcss.com/fetch/2.0.4/fetch.min.js"></script>
+<script>
+    /*
+    * 从地址栏获取页面用途
+    * type 1提交工单 2查询工单
+    * */
+
+    const HOST = 'https://wx240.mealkey.cn/';
+
+    function getQueryString(name) {
+        const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        const res = window.location.search.substr(1).match(reg);
+        return res ? res[2] : null;
+    }
+
+    const pageType = Number(getQueryString('type'));
+    const TITLES = ['', '餐时间技术支持工单', '餐时间技术支持工单查询'];
+    document.title = TITLES[pageType];
+
+    const maxName = 20;
+    const regMobile = /^[\d-]*$/;
+    const maxMobile = 20;
+    const maxAddress = 20;
+    const maxQuestion = 200;
+    const fileTypeList = ['png', 'jpg', 'jpeg']; //接受格式
+    const maxPictures = 6;  //截图接受张数
+    const fileType = 9;  //上传的图片类型
+
+    const vm = new Vue({
+        el: '#page',
+        data: {
+            pageType: pageType,
+            titles: TITLES,
+            showMask: false,
+            showSuccess: false,
+            showAdd: true,
+            info: '', //提示文字
+            name: '',
+            mobile: '',
+            address: '',
+            question: '',
+            filePath: [],
+            showNoResult: false,
+            checkList: []
+        },
+        methods: {
+            onToast: function (isShow, info) {
+                this.showMask = isShow;
+                this.info = info;
+            },
+            handleUploadImg: function () {
+                const files = this.$refs.file.files;
+                const filesLen = files.length; //新上传张数
+
+                if (!files || !filesLen) return;
+
+                if (this.filePath.length + filesLen > maxPictures) {
+                    alert(`最多只可上传${maxPictures}张图片`);
+                    return;
+                }
+
+                let arr = []; //创建一个index数组，用于后面循环
+                for (let j = 0; j < filesLen; j++) {
+                    const i = files[j];
+                    const type = i.name.split(".").length > 1 ? i.name.split(".")[i.name.split(".").length - 1] : "no-type";
+
+                    if (fileTypeList.indexOf(type.toLowerCase()) === -1) {
+                        alert(`上传图片格式错误，应上传：${fileTypeList.join('，')}`);
+                        return;
+                    }
+                    arr.push(j);
+                }
+
+                this.onToast(true, '上传中...');
+
+                const promiseUploadArray = arr.map(item => {
+                    return new Promise((resolve, reject) => {
+
+                        const i = files[item];
+
+                        let formData = new FormData();
+                        formData.append('file', i, i.name);
+                        formData.append('fileType', fileType);
+
+                        fetch(`${HOST}merchant/manager/files/nosession`, {
+                            method: 'POST',
+                            body: formData
+                        })
+                            .then(res => {
+                                if (res.ok) {
+                                    res.json().then(json => resolve(json.path))
+                                } else {
+                                    reject(res.error || '上传图片失败')
+                                }
+                            })
+                            .catch(err => {
+                                reject(err.error || err || '上传图片错误')
+                            })
+                    });
+                });
+
+                Promise.all(promiseUploadArray)
+                    .then(res => {
+                        this.filePath = this.filePath.concat(res);
+                        this.filePath.length === maxPictures && (this.showAdd = false);
+                        this.onToast(false, '');
+                    }, err => {
+                        this.onToast(false, '');
+                        alert(err);
+                    })
+            },
+            handleDeleteImg: function (index) {
+                if (confirm('删除后不可恢复，确认删除吗？')) {
+                    this.filePath.splice(index, 1);
+                    this.filePath.length === (maxPictures - 1) && (this.showAdd = true);
+                }
+            },
+            handleSubmitAdd: function () {
+                const name = this.name.trim();
+                const mobile = this.mobile.trim();
+                const address = this.address.trim();
+                const question = this.question.trim();
+
+                if (!name) {
+                    alert('请输入您的姓名');
+                    return;
+                }
+
+                if (name.length > maxName) {
+                    alert(`姓名不可超过${maxName}`);
+                    return;
+                }
+
+                if (!mobile) {
+                    alert('请输入您的电话');
+                    return;
+                }
+
+                if (!regMobile.test(mobile)) {
+                    alert('请输入正确的电话');
+                    return;
+                }
+
+                if (mobile.length > maxMobile) {
+                    alert(`电话不可超过${maxMobile}`);
+                    return;
+                }
+
+                if (!address) {
+                    alert('请输入您所在的餐厅名称+分店名');
+                    return;
+                }
+
+                if (address.length > maxAddress) {
+                    alert(`餐厅名称+分店名不可超过${maxAddress}`);
+                    return;
+                }
+
+                if (!question) {
+                    alert('请输入问题描述');
+                    return;
+                }
+
+                if (question.length > maxQuestion) {
+                    alert(`问题描述不可超过${maxQuestion}`);
+                    return;
+                }
+
+                if (!this.filePath.length) {
+                    alert('请上传至少一张截图');
+                    return;
+                }
+
+                this.onToast(true, '提交中...');
+
+                this.handleFetchPostAdd({
+                    name,
+                    mobile,
+                    address,
+                    question,
+                    pictures: this.filePath.join(',')
+                })
+                    .then(res => {
+                        this.name = '';
+                        this.mobile = '';
+                        this.address = '';
+                        this.question = '';
+                        this.filePath = [];
+                        this.onToast(false, '');
+                        this.showSuccess = true;
+                    }, err => {
+                        this.onToast(false, '');
+                        alert(err);
+                    })
+            },
+            handleFetchPostAdd: function (data) {
+                return new Promise((resolve, reject) => {
+                    fetch(`${HOST}mealtime2-service-worksheet/manager/dingtalk/processinstance/add`, {
+                        method: 'POST',
+                        headers: {'Content-type': 'application/json'},
+                        body: JSON.stringify(data)
+                    })
+                        .then(res => {
+                            if (res.ok) {
+                                res.json().then(json => resolve(json))
+                            } else {
+                                reject(res.error || '提交失败')
+                            }
+                        })
+                        .catch(err => {
+                            reject(err.error || err || '提交发生错误')
+                        })
+                })
+            },
+            handleSubmitCheck: function () {
+                this.showNoResult && (this.showNoResult = false);
+                this.checkList = [];
+                this.onToast(true, '查询中...');
+
+                const name = this.name.trim();
+                const mobile = this.mobile.trim();
+
+                fetch(`${HOST}mealtime2-service-worksheet/manager/dingtalk/processinstance/getCustomerProList?name=${name}&mobile=${mobile}`)
+                    .then(res => {
+                        this.onToast(false, '');
+                        if (res.ok) {
+                            res.json().then(json => {
+                                if (json.length) {
+                                    this.checkList = json;
+                                } else {
+                                    this.showNoResult = true;
+                                }
+                            })
+                        } else {
+                            alert(res.error || '提交失败');
+                        }
+                    })
+                    .catch(err => {
+                        this.onToast(false, '');
+                        alert(err.error || err || '提交发生错误');
+                    })
+            }
+        }
+    })
+</script>

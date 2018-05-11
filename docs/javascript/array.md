@@ -4,7 +4,7 @@
 | ----- | ----- |
 | push() | 向数组的末尾添加一个或更多元素，并返回新的长度。 |
 | concat() | 连接两个或更多的数组，并返回结果。 |
-| <a href="#jump_concat">join()</a> | 把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。 |
+| <a href="#jump_join">join()</a> | 把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。 |
 | pop() | 删除并返回数组的最后一个元素 |
 | shift() | 删除并返回数组的第一个元素 |
 | unshift() | 向数组的开头添加一个或更多元素，并返回新的长度 |
@@ -14,7 +14,7 @@
 | <a href="#jump_sort">sort()</a> | 对数组的元素进行排序。 |
 | <a href="#jump_includes">includes()</a> | 查找一个值是否在数组 |
 
-## <a name="jump_concat">join()</a>
+## <a name="jump_join">join()</a>
 
 > `arrayObject.join(separator)`
 
