@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>餐时间技术支持工单查询</title>
+</head>
+<style>
+    html, body {
+        font-family: "Helvetica Neue", "Helvetica", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Arial", sans-serif;
+        font-size: 14px;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-user-select: none;
+        width: 100%;
+        height: 100%;
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+        color: #333;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        line-height: normal;
+        -webkit-tap-highlight-color: transparent;
+        border-width: thin;
+    }
+
+    ul, li {
+        list-style: none;
+    }
+
+    input, textarea, button {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        outline: none;
+        border: none;
+        -webkit-appearance: none;
+        background: none;
+    }
+
+    .check {
+        padding: 15px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .title {
+        font-size: 24px;
+        margin: 5px 0 10px;
+    }
+
+    .form {
+        margin: 10px 0 0;
+        padding: 10px 0 0;
+        border-top: 1px dashed #CCCCCC;
+    }
+
+    .input {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .name {
+        width: 80px;
+    }
+
+    .input input {
+        flex: 1;
+        height: 44px;
+        display: block;
+        padding: 0 4px;
+        border: 1px solid #ccc;
+    }
+
+    .submit {
+        margin: 15px 0 0;
+        height: 44px;
+        line-height: 44px;
+        background-color: #2596e6;
+        text-align: center;
+        color: #fff;
+    }
+
+    .no-result {
+        margin: 25px 0 0;
+        height: 44px;
+        line-height: 44px;
+        background-color: #fffde8;
+        text-align: center;
+        color: #000;
+        border: 1px dashed #CCCCCC;
+        display: none;
+    }
+
+    .result {
+        margin: 15px 0 0;
+        overflow: hidden;
+    }
+
+    .result > .item {
+        margin: 10px 0;
+    }
+
+    .index {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2596e6;
+    }
+
+    .table {
+        border: 1px solid #ddd;
+        border-top: none;
+    }
+
+    .table li {
+        width: 100%;
+        display: flex;
+        border-top: 1px solid #ddd;
+    }
+
+    .table li > div {
+        padding: 8px 5px;
+    }
+
+    .table li > div:first-child {
+        background-color: #f4f4f4;
+        border-right: 1px solid #ddd;
+        flex: 0 0 100px;
+        font-weight: bold;
+    }
+
+    .table li > div:last-child {
+        flex: 1;
+    }
+
+    .table li img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .process {
+        overflow: hidden;
+    }
+
+    .process .item {
+        margin: 8px 0 5px;
+    }
+
+    .process .item .line {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .process .item .line .username {
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #5d5d5d;
+    }
+
+    .process .item .line .time {
+        padding: 0 0 0 5px;
+        color: #9c9c9c;
+    }
+
+    .process .item .remark {
+        margin: 5px 0;
+        text-align: justify;
+    }
+
+    .mask {
+        display: none;
+    }
+
+    .mask, .overlay {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+
+    .overlay {
+        background-color: rgba(255, 255, 255, .3);
+    }
+
+    .mask .info {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -20px 0 0 -35px;
+        width: 70px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 12px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .9);
+        border-radius: 8px;
+    }
+
+</style>
+<body>
+<div class="check">
+    <div class="title">餐时间技术支持工单查询</div>
+    <div>输入查询条件，查询满足条件的数据，最多显示50条结果。</div>
+    <div class="form">
+        <div class="input">
+            <div class="name">您的姓名</div>
+            <input type="text" id="name"/>
+        </div>
+        <div class="input">
+            <div class="name">您的电话</div>
+            <input type="tel" id="mobile"/>
+        </div>
+        <div class="submit">查询</div>
+    </div>
+    <div class="no-result">没有查询到结果，请确认所填信息正确。</div>
+    <div class="result"></div>
+</div>
+<div class="mask" id="mask">
+    <div class="overlay"></div>
+    <div class="info">查询中...</div>
+</div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    $(function () {
+        const HOST = 'https://wx240.mealkey.cn/';
+
+        let $submit = $('.submit');
+        let $name = $('#name');
+        let $mobile = $('#mobile');
+        let $mask = $('#mask');
+        let $noResult = $('.no-result');
+        let $result = $('.result');
+
+        $submit.click(function () {
+            $noResult.hide();
+            $result.empty();
+            $mask.show();
+
+            let name = $name.val().trim();
+            let mobile = $mobile.val().trim();
+
+            $.ajax({
+                url: `${HOST}mealtime2-service-worksheet/manager/dingtalk/processinstance/getCustomerProList?name=${name}&mobile=${mobile}`,
+                success: res => {
+                    if (res instanceof Array) {
+                        if (res.length) {
+                            let resList = res.map((i, index) => {
+                                let pictures = (i.pictures && i.pictures.length) ? i.pictures.map(subI => `<img src="${subI}">`) : '';
+                                let process = (i.processInstanceProgressList && i.processInstanceProgressList.length) ? i.processInstanceProgressList.map(subI => {
+                                    return `
+                                    <div class="item">
+                            <div class="line">
+                                <div class="username">${subI.userName}</div>
+                                <div class="time">${subI.createTime}</div>
+                            </div>
+                            <div class="remark">${subI.remark}</div>
+                        </div>
+                                    `
+                                }) : '';
+
+                                return `
+                                <div class="item">
+            <div class="index">${index + 1}.</div>
+            <ul class="table">
+                <li>
+                    <div>ID</div>
+                    <div>${i.businessId}</div>
+                </li>
+                <li>
+                    <div>您的姓名</div>
+                    <div>${i.name}</div>
+                </li>
+                <li>
+                    <div>您的电话</div>
+                    <div>${i.mobile}</div>
+                </li>
+                <li>
+                    <div>您所在的餐厅名称+分店名</div>
+                    <div>${i.address}</div>
+                </li>
+                <li>
+                    <div>问题描述（包含日期+餐次+部门+台号）</div>
+                    <div>${i.quesion}</div>
+                </li>
+                <li>
+                    <div>上传截图</div>
+                    <div>${pictures.join('')}
+                    </div>
+                </li>
+                <li>
+                    <div>进度结果</div>
+                    <div class="process">${process.join('')}</div>
+                </li>
+            </ul>
+        </div>
+                                `;
+                            });
+                            $result.html(resList.join(''));
+                        } else {
+                            $noResult.show();
+                        }
+                    } else {
+                        alert(res.error || '提交失败')
+                    }
+                },
+                fail: err => {
+                    alert(err.error || err || '查询发生错误');
+                },
+                complete: () => {
+                    $mask.hide();
+                }
+            })
+        })
+    })
+</script>

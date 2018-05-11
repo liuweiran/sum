@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>餐时间技术支持工单</title>
+</head>
+<style>
+    html, body {
+        font-family: "Helvetica Neue", "Helvetica", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Arial", sans-serif;
+        font-size: 14px;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-user-select: none;
+        width: 100%;
+        height: 100%;
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        line-height: normal;
+        -webkit-tap-highlight-color: transparent;
+        border-width: thin;
+    }
+
+    input, textarea, button {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        outline: none;
+        border: none;
+        -webkit-appearance: none;
+        background: none;
+    }
+
+    .form {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 24px;
+        border-bottom: 1px dashed #CCCCCC;
+        margin: 5px 0 15px;
+        padding: 0 0 10px 0;
+    }
+
+    .name {
+        font-size: 14px;
+    }
+
+    .name span {
+        color: red;
+        padding: 0 0 0 2px;
+    }
+
+    .input-wrap {
+        margin: 5px 0 15px 0;
+    }
+
+    .input-wrap input, .input-wrap textarea {
+        width: 100%;
+        height: 44px;
+        display: block;
+        padding: 0 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .input-wrap textarea {
+        resize: none;
+        height: 100px;
+        padding: 4px;
+    }
+
+    .add, .picture {
+        width: 90px;
+        height: 90px;
+        border-radius: 6px;
+        border: 2px solid #ccc;
+        margin: 0 0 15px 10px;
+        overflow: hidden;
+    }
+
+    .picture {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .add {
+        background-color: #f5f2f2;
+        position: relative;
+    }
+
+    .add input {
+        display: none;
+    }
+
+    .add label {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+
+    .line-v, .line-h {
+        background-color: #a7a5a5;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+
+    .line-v {
+        width: 4px;
+        height: 40px;
+        margin: -20px 0 0 -2px;
+    }
+
+    .line-h {
+        width: 40px;
+        height: 4px;
+        margin: -2px 0 0 -20px;
+    }
+
+    .files {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 0 10px 0;
+        margin-left: -10px;
+    }
+
+    .submit {
+        margin: 15px 0 0;
+        height: 44px;
+        line-height: 44px;
+        background-color: #2596e6;
+        text-align: center;
+        color: #fff;
+    }
+
+    .mask {
+        display: none;
+    }
+
+    .mask, .overlay {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+
+    .overlay {
+        background-color: rgba(255, 255, 255, .3);
+    }
+
+    .mask .info {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -20px 0 0 -35px;
+        width: 70px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 12px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .9);
+        border-radius: 8px;
+    }
+
+    .success {
+        display: none;
+        overflow: hidden;
+    }
+
+    .success .icon {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        border-radius: 50%;
+        background-color: green;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    .success .txt {
+        font-size: 30px;
+        text-align: center;
+    }
+
+</style>
+<body>
+<div class="form">
+    <div class="title">餐时间技术支持工单</div>
+    <div class="name">您的姓名<span>*</span></div>
+    <div class="input-wrap"><input id="name" type="text"/></div>
+    <div class="name">您的电话<span>*</span></div>
+    <div class="input-wrap"><input id="mobile" type="tel"/></div>
+    <div class="name">您所在的餐厅名称+分店名<span>*</span></div>
+    <div class="input-wrap"><input id="address" type="text"/></div>
+    <div class="name">问题描述（包含日期+餐次+部门+台号）<span>*</span></div>
+    <div class="input-wrap"><textarea id="question"></textarea></div>
+    <div class="name">上传截图<span>*</span></div>
+    <div class="input-wrap files">
+        <div class="add">
+            <input id="file" name="file" type="file" multiple>
+            <div class="line-h"></div>
+            <div class="line-v"></div>
+            <label for="file"></label>
+        </div>
+    </div>
+    <div class="submit">提交</div>
+</div>
+<div class="mask" id="mask">
+    <div class="overlay"></div>
+    <div class="info"></div>
+</div>
+<div class="success">
+    <div class="icon">~^o^~</div>
+    <div class="txt">提交成功</div>
+</div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    const HOST = 'https://wx240.mealkey.cn/';
+
+    const maxName = 20;
+    const regMobile = /^[\d-]*$/;
+    const maxMobile = 20;
+    const maxAddress = 20;
+    const maxQuestion = 200;
+    const fileTypeList = ['png', 'jpg', 'jpeg']; //接受格式
+    const maxPictures = 6;  //截图接受张数
+
+    $(function () {
+        let $name = $('#name');
+        let $mobile = $('#mobile');
+        let $address = $('#address');
+        let $question = $('#question');
+        let $file = $('#file');
+        let $submit = $('.submit');
+        let $mask = $('#mask');
+        let $add = $('.add');
+        let $files = $('.files');
+        let $form = $('.form');
+        let $success = $('.success');
+
+        let filePath = [];
+
+        //提交表单
+        $submit.click(function () {
+            let name = $name.val().trim();
+            let mobile = $mobile.val().trim();
+            let address = $address.val().trim();
+            let question = $question.val().trim();
+
+            if (!name) {
+                alert('请输入您的姓名');
+                return;
+            }
+
+            if (name.length > maxName) {
+                alert(`姓名不可超过${maxName}`);
+                return;
+            }
+
+            if (!mobile) {
+                alert('请输入您的电话');
+                return;
+            }
+
+            if (!regMobile.test(mobile)) {
+                alert('请输入正确的电话');
+                return;
+            }
+
+            if (mobile.length > maxMobile) {
+                alert(`电话不可超过${maxMobile}`);
+                return;
+            }
+
+            if (!address) {
+                alert('您所在的餐厅名称+分店名');
+                return;
+            }
+
+            if (address.length > maxAddress) {
+                alert(`餐厅名称+分店名不可超过${maxAddress}`);
+                return;
+            }
+
+            if (!question) {
+                alert('请输入问题描述');
+                return;
+            }
+
+            if (question.length > maxQuestion) {
+                alert(`问题描述不可超过${maxQuestion}`);
+                return;
+            }
+
+            if (!filePath.length) {
+                alert('请上传至少一张截图');
+                return;
+            }
+
+            $mask.children('.info').text('提交中...');
+            $mask.show();
+
+            $.ajax({
+                url: `${HOST}mealtime2-service-worksheet/manager/dingtalk/processinstance/add`,
+                type: 'POST',
+                headers: {'Content-type': 'application/json'},
+                data: JSON.stringify({
+                    name,
+                    mobile,
+                    address,
+                    question,
+                    pictures: filePath.join(',')
+                }),
+                success: res => {
+                    if (res.success) {
+                        $name.val('');
+                        $mobile.val('');
+                        $address.val('');
+                        $question.val('');
+                        $files.children('.picture').each(function () {
+                            $(this).remove();
+                        });
+                        filePath = [];
+                        $form.hide();
+                        $success.show();
+                    } else {
+                        alert(res.error || '提交失败')
+                    }
+                },
+                fail: err => {
+                    alert(err.error || err || '提交发生错误')
+                },
+                complete: () => {
+                    $mask.children('.info').text('');
+                    $mask.hide();
+                }
+            })
+        });
+
+        //上传图片
+        $file.change(() => {
+
+            let _files = $file[0].files;
+            let _filesLen = _files.length; //新上传张数
+
+            if (_files && _filesLen) {
+                if (filePath.length + _filesLen > maxPictures) {
+                    alert(`最多只可上传${maxPictures}张图片`);
+                    return;
+                }
+
+                for (let j = 0; j < _filesLen; j++) {
+//                for (let i of _files) {
+                    let i = _files[j];
+                    let type = i.name.split(".").length > 1 ? i.name.split(".")[i.name.split(".").length - 1] : "no-type";
+
+                    if (fileTypeList.indexOf(type.toLowerCase()) === -1) {
+                        alert(`上传图片格式错误，应上传：${fileTypeList.join('，')}`);
+                        return;
+                    }
+
+                    $mask.children('.info').text('上传中...');
+                    $mask.show();
+
+                    let formData = new FormData();
+                    formData.append('file', i, i.name);
+                    formData.append('fileType', 9);
+
+                    $.ajax({
+                        url: `${HOST}merchant/manager/files/nosession`,
+                        type: 'POST',
+                        data: formData,
+                        async: false,
+                        contentType: false,
+                        processData: false,
+                        success: res => {
+                            if (res.path) {
+                                filePath.push(res.path);
+                                $add.before(`<div class="picture" style="background-image:url(${res.path})"></div>`);
+                                filePath.length === maxPictures && $add.hide();
+                            } else {
+                                alert(res.error || '上传图片失败')
+                            }
+                        },
+                        fail: err => {
+                            alert(err.error || err || '上传图片错误')
+                        },
+                        complete: (res) => {
+                            $mask.children('.info').text('');
+                            $mask.hide();
+                        }
+                    });
+                }
+            }
+        });
+
+        //删除图片
+        $files.on('click', '.picture', function () {
+            let index = $(this).index();
+            if (confirm('删除后不可恢复，确认删除吗？')) {
+                $(this).remove();
+                filePath.splice(index, 1);
+                filePath.length === (maxPictures - 1) && $add.show();
+            }
+        })
+    })
+</script>
