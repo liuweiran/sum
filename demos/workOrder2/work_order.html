@@ -440,7 +440,7 @@
         return res ? res[2] : null;
     }
 
-    const pageType = Number(getQueryString('type'));
+    const pageType = Number(getQueryString('type')) || 0;
     const TITLES = ['', '餐时间技术支持工单', '餐时间技术支持工单查询'];
     document.title = TITLES[pageType];
 
