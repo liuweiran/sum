@@ -432,7 +432,9 @@
     * type 1提交工单 2查询工单
     * */
 
-    const HOST = 'https://wx240.mealkey.cn/';
+//    const HOST = 'https://wx240.mealkey.cn/';
+    const HOST = 'http://120.77.238.132:10002/';
+    const HOST_IMG = 'https://time.mealkey.cn/';
 
     function getQueryString(name) {
         const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -509,7 +511,7 @@
                         formData.append('file', i, i.name);
                         formData.append('fileType', fileType);
 
-                        fetch(`${HOST}merchant/manager/files/nosession`, {
+                        fetch(`${HOST_IMG}merchant/manager/files/nosession`, {
                             method: 'POST',
                             body: formData
                         })
